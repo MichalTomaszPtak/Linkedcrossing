@@ -91,6 +91,7 @@ Node::Node(float a, float b, float c, float d) {
 
 S2d Node::update_position(float delta) {
 	position.addscaled(velocity, delta);
+	return position;
 }
 
 void Node::set_position(S2d pos) {
@@ -113,18 +114,23 @@ S2d Node::get_velocity(void) {
 
 // Arena
 
-Arena::Arena() {
-	Arena(0, 0, 0);
-	return;
-}
-
-Arena::Arena(float x, float y, float r) {
+void Arena::init(float x, float y, float r) {
 	center.x = x;
 	center.y = y;
 	radius = r;
 #if DEBUG
 	printf("Arena object created at (%f, %f) with radius %f\n", x, y, radius);
 #endif
+	return;
+}
+
+Arena::Arena() {
+	init(0, 0, 0);
+	return;
+}
+
+Arena::Arena(float x, float y, float r) {
+	init(x, y, r);
 	return;
 }
 
