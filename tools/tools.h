@@ -41,7 +41,6 @@ class Node {
 };
 
 class Particle: Node {
-
 };
 
 class Arena {
