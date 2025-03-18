@@ -24,10 +24,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="first commit">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Started defining readfile function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jeu/jeu.h" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/tools.h" beforeDir="false" afterPath="$PROJECT_DIR$/tools/tools.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +144,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing",
+    "last_opened_file_path": "/home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing/constantes",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -156,6 +155,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/constantes" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -204,7 +204,7 @@
       <workItem from="1742306145539" duration="334000" />
       <workItem from="1742306500217" duration="726000" />
       <workItem from="1742307241757" duration="443000" />
-      <workItem from="1742307686038" duration="4876000" />
+      <workItem from="1742307686038" duration="9319000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -254,7 +254,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742310831062</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added constantes.h">
+      <option name="closed" value="true" />
+      <created>1742314241168</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742314241168</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Started defining readfile function">
+      <option name="closed" value="true" />
+      <created>1742315995883</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742315995883</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +316,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="Added constantes.h" />
+    <MESSAGE value="Started defining readfile function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started defining readfile function" />
   </component>
 </project>
