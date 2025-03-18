@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "debug.h"
+#include "debug/debug.h"
 #include <math.h>
 
 typedef struct S2d {
