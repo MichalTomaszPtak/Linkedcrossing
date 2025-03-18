@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef TOOLS_H
+#define TOOLS_H
 
 #include "debug/debug.h"
 #include <math.h>
