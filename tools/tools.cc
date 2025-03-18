@@ -120,6 +120,17 @@ S2d Node::get_velocity(void) {
 }
 
 // Particle
+void Particle::init(unsigned int count) {
+	counter = count;
+}
+
+Particle::Particle(void) {
+	init(0);
+}
+
+Particle::Particle(unsigned int count) {
+	init(count);
+}
 
 // Faiseur
 void Faiseur::init(float r, float l, int s) {
