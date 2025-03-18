@@ -41,7 +41,6 @@ private:
 };
 
 class Particle: Node {
-
 };
 
 class Faiseur: Node {
