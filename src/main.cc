@@ -1,6 +1,7 @@
 #include "game.h"
 #include "gui.h"
 #include "debug.h"
+#include "tools.h"
 
 #define ARENA_RADIUS 10
 

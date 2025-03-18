@@ -1,4 +1,4 @@
-#include "game.h"
+#include "tools.h"
 
 // Vector2
 
@@ -100,3 +100,8 @@ int Arena::is_inside(Vector2 pos) {
 		return 0;
 	}
 }
+
+int Arena::is_inside(Node *n) {
+	return is_inside(n->position);
+}
+
