@@ -1,18 +1,16 @@
 CC = g++
-CFLAGS = -Wall -std=c++17 `pkg-config --cflags --libs gtkmm-4.0`
-OBJS = main.o game.o gui.o tools.o
-ODIR = obj
-SDIR = src
-HDIR = include
+CFLAGS = -Wall -std=c++17 -iquote .# `pkg-config --cflags --libs gtkmm-4.0`
+MODULES = main debug message tools
+OBJECTS = $(foreach mod,$(MODULES),$(mod)/$(mod).o)
 
-all: main
+all: main.out
 
-main: $(addprefix $(ODIR)/, $(OBJS))
+main.out: $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(ODIR)/%.o: $(SDIR)/%.cpp
-	$(CC) -I $(HDIR) $(CFLAGS) -o $@ -c $<
+%.o: %.cc
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	rm -f obj/*
-	rm main
+	rm $(OBJECTS)
+	rm main.out
