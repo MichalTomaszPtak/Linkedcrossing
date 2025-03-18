@@ -1,15 +1,19 @@
 #include "tools.h"
 
 // S2d
+void S2d::init(float a, float b) {
+	x = a;
+	y = b;
+	return;
+}
 
 S2d::S2d() {
-	S2d(0, 0);
+	init(0, 0);
 	return;
 }
 
 S2d::S2d(float a, float b) {
-	x = a;
-	y = b;
+	init(a, b);
 	return;
 }
 
@@ -22,6 +26,12 @@ void S2d::scale(float factor) {
 void S2d::add(S2d a) {
 	x += a.x;
 	y += a.y;
+	return;
+}
+
+void S2d::addscaled(S2d a, float factor) {
+	x += factor*a.x;
+	y += factor*a.y;
 	return;
 }
 
@@ -55,25 +65,50 @@ S2d s2d_dif(S2d a, S2d b) {
 
 // Node
 
-Node::Node() {
-	Node(0, 0, 0, 0);
-	return;
-}
-
-Node::Node(float a, float b) {
-	Node(a, b, 0, 0);
-	return;
-}
-
-Node::Node(float a, float b, float c, float d) {
-	position.x = a;
-	position.y = b;
-	velocity.x = c;
-	velocity.y = d;
+void Node::init(float a, float b, float c, float d) {
+	position = S2d(a, b);
+	velocity = S2d(c, d);
 #if DEBUG
 	printf("Node created at (%f, %f)\n", a, b);
 #endif
 	return;
+}
+
+Node::Node() {
+	init(0, 0, 0, 0);
+	return;
+}
+
+Node::Node(float a, float b) {
+	init(a, b, 0, 0);
+	return;
+}
+
+Node::Node(float a, float b, float c, float d) {
+	init(a, b, c, d);
+	return;
+}
+
+S2d Node::update_position(float delta) {
+	position.addscaled(velocity, delta);
+}
+
+void Node::set_position(S2d pos) {
+	position = pos;
+	return;
+}
+
+void Node::set_velocity(S2d vel) {
+	velocity = vel;
+	return;
+}
+
+S2d Node::get_position(void) {
+	return position;
+}
+
+S2d Node::get_velocity(void) {
+	return velocity;
 }
 
 // Arena
@@ -102,6 +137,6 @@ int Arena::is_inside(S2d pos) {
 }
 
 int Arena::is_inside(Node *n) {
-	return is_inside(n->position);
+	return is_inside(n->get_position());
 }
 
