@@ -27,8 +27,9 @@ S2d s2d_dif(S2d a, S2d b);		// returns a - b
 class Node {
 public:
 	Node(void);
-	Node(float a, float b);
-	Node(float a, float b, float c, float d);
+	Node(float posx, float posy);
+	Node(S2d pos, S2d vel);
+	Node(float posx, float posy, float velx, float vely);
 	S2d update_position(float delta);	// advance the node's position
 	S2d get_position(void);
 	S2d get_velocity(void);
@@ -37,16 +38,23 @@ public:
 private:
 	S2d position;
 	S2d velocity;
-	void init(float a, float b, float c, float d);
+	void init(float posx, float posy, float velx, float vely);
 };
 
 class Particle: Node {
+
 };
 
 class Faiseur: Node {
 public:
+	Faiseur(void);
+	Faiseur(S2d pos, S2d vel, float radius, float length, int segments);
+	Faiseur(float posx, float posy, float velx, float vely, float radius, float length, int segments);
 private:
-	int length;
+	float radius;
+	float length;
+	int segments;
+	void init(float radius, float length, int segments);
 };
 
 class Arena {

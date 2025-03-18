@@ -1,4 +1,4 @@
-#include "tools.h"
+#include "tools/tools.h"
 
 // S2d
 void S2d::init(float a, float b) {
@@ -65,12 +65,14 @@ S2d s2d_dif(S2d a, S2d b) {
 
 // Node
 
-void Node::init(float a, float b, float c, float d) {
-	position = S2d(a, b);
-	velocity = S2d(c, d);
+void Node::init(float posx, float posy, float velx, float vely) {
+	position = S2d(posx, posy);
+	velocity = S2d(velx, vely);
+	/*
 #if DEBUG
-	printf("Node created at (%f, %f)\n", a, b);
+	printf("Node created at (%f, %f)\n", posx, posy);
 #endif
+	*/
 	return;
 }
 
@@ -79,13 +81,18 @@ Node::Node() {
 	return;
 }
 
-Node::Node(float a, float b) {
-	init(a, b, 0, 0);
+Node::Node(float posx, float posy) {
+	init(posx, posy, 0, 0);
 	return;
 }
 
-Node::Node(float a, float b, float c, float d) {
-	init(a, b, c, d);
+Node::Node(float posx, float posy, float velx, float vely) {
+	init(posx, posy, velx, vely);
+	return;
+}
+
+Node::Node(S2d pos, S2d vel) {
+	init(pos.x, pos.y, vel.x, vel.y);
 	return;
 }
 
@@ -110,6 +117,34 @@ S2d Node::get_position(void) {
 
 S2d Node::get_velocity(void) {
 	return velocity;
+}
+
+// Particle
+
+// Faiseur
+void Faiseur::init(float r, float l, int s) {
+	radius = r;
+	length = l;
+	segments = s;
+	return;
+}
+
+Faiseur::Faiseur(void) {
+	Node(0, 0, 0, 0);
+	init(0, 0, 0);
+	return;
+}
+
+Faiseur::Faiseur(S2d pos, S2d vel, float radius, float length, int segments) {
+	Node(pos, vel);
+	init(radius, length, segments);
+	return;
+}
+
+Faiseur::Faiseur(float posx, float posy, float velx, float vely, float radius, float length, int segments) {
+	Node(posx, posy, velx, vely);
+	init(radius, length, segments);
+	return;
 }
 
 // Arena
