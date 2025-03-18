@@ -1,7 +1,7 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#define DEBUG 1 // if nonzero, print information to the console
+#define DEBUG 1 // debug level
 #if DEBUG
 #include <stdio.h>
 #endif

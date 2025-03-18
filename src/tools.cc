@@ -1,55 +1,55 @@
 #include "tools.h"
 
-// Vector2
+// S2d
 
-Vector2::Vector2() {
-	Vector2(0, 0);
+S2d::S2d() {
+	S2d(0, 0);
 	return;
 }
 
-Vector2::Vector2(float a, float b) {
+S2d::S2d(float a, float b) {
 	x = a;
 	y = b;
 	return;
 }
 
-void Vector2::scale(float factor) {
+void S2d::scale(float factor) {
 	x *= factor;
 	y *= factor;
 	return;
 }
 
-void Vector2::add(Vector2 vec) {
-	x += vec.x;
-	y += vec.y;
+void S2d::add(S2d a) {
+	x += a.x;
+	y += a.y;
 	return;
 }
 
-void Vector2::sub(Vector2 vec) {
-	x -= vec.x;
-	y -= vec.y;
+void S2d::sub(S2d a) {
+	x -= a.x;
+	y -= a.y;
 	return;
 }
 
-float Vector2::dot(Vector2 vec) {
-	return (x*vec.x + y*vec.y);
+float S2d::dot(S2d a) {
+	return (x*a.x + y*a.y);
 }
 
-float Vector2::get_length() {
+float S2d::get_length() {
 	return sqrt(x*x+y*y);
 }
 
-float Vector2::get_length_squared() {
+float S2d::get_length_squared() {
 	return x*x+y*y;
 }
 
-Vector2 vec_sum(Vector2 a, Vector2 b) {
-	Vector2 result = Vector2(a.x+b.x, a.y+b.y);
+S2d s2d_sum(S2d a, S2d b) {
+	S2d result = S2d(a.x+b.x, a.y+b.y);
 	return result;
 }
 
-Vector2 vec_dif(Vector2 a, Vector2 b) {
-	Vector2 result = Vector2(a.x-b.x, a.y-b.y);
+S2d s2d_dif(S2d a, S2d b) {
+	S2d result = S2d(a.x-b.x, a.y-b.y);
 	return result;
 }
 
@@ -93,8 +93,8 @@ Arena::Arena(float x, float y, float r) {
 	return;
 }
 
-int Arena::is_inside(Vector2 pos) {
-	if (vec_dif(pos, center).get_length() < radius) {
+int Arena::is_inside(S2d pos) {
+	if (s2d_dif(pos, center).get_length() < radius) {
 		return 1;
 	} else {
 		return 0;
