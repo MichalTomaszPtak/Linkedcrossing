@@ -11,42 +11,19 @@
 struct information {
     int score;
     int nbParticule;
-    std::vector<Node> Particules;
-    std::vector<Node> Faiseurs;
+    std::vector<Particle> Particules;
+    std::vector<Faiseur> Faiseurs;
     int nbFaiseurs;
+    int nbArt;
 
 };
+
+
 
 bool isValid(const std::string& line);
+bool ValidInformation(const information& data);
 information read_file(const std::string& filename);
 
-
-
-information read_file(const std::string& filename){
-    std::ifstream file(filename);
-    if (!file.is_open()){
-
-    }
-    std::string line;
-    getline(file,line);
-    information.score = stoi(line);
-
-
-    file.getline()->nbParicule
-
-    file.close();
-};
-bool isValid(const std::string& line){
-    if (line.empty() || line[0] == '#'){
-        return false;
-    }
-    //std::string ss(line);
-    //int testing_int;
-    //if(!(ss >> testing_int)){
-        //return false;
-    //}
-    return true;
-};
 
 
 

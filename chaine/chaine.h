@@ -4,6 +4,6 @@
 #pragma once
 #ifndef CHAINE_H
 #define CHAINE_H
-class Chaine {}
+class Chaine {};
 
 #endif //CHAINE_H

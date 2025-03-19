@@ -45,6 +45,10 @@ class Particle: Node {
 public:
 	Particle(void);
 	Particle(unsigned int count);
+    int count(){
+        return counter;
+    }
+
 private:
 	unsigned int counter;
 	void init(unsigned int count);
@@ -75,5 +79,6 @@ private:
 	float radius;
 	void init(float x, float y, float r);
 };
+
 
 #endif

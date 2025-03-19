@@ -1,12 +1,16 @@
 //
 // Created by michael on 19/03/25.
 //
-#include <chaine.h>
-#include <../tools/tools.h>
-class Chaine{
+#include <iostream>
+#include "chaine.h"
+#include "../tools/tools.h"
+
+class Chaine {
     public:
 
+
+
     private:
-        vector<Node> chaine;
+        std::vector<s2d> chaine;
 
 };
