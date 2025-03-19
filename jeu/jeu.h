@@ -40,7 +40,14 @@ bool isValid(const std::string& line){
     if (line.empty() || line[0] == '#'){
         return false;
     }
+    //std::string ss(line);
+    //int testing_int;
+    //if(!(ss >> testing_int)){
+        //return false;
+    //}
+    return true;
 };
+
 
 
 

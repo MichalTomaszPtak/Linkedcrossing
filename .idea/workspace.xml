@@ -24,7 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Started defining readfile function">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="working on read_file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jeu/jeu.h" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.h" afterDir="false" />
     </list>
@@ -132,27 +132,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Makefile Target.clean.executor": "Run",
-    "Native Application.all.executor": "Run",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing/constantes",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Makefile Target.clean.executor&quot;: &quot;Run&quot;,
+    &quot;Native Application.all.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing/constantes&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/constantes" />
@@ -204,7 +204,8 @@
       <workItem from="1742306145539" duration="334000" />
       <workItem from="1742306500217" duration="726000" />
       <workItem from="1742307241757" duration="443000" />
-      <workItem from="1742307686038" duration="9319000" />
+      <workItem from="1742307686038" duration="10214000" />
+      <workItem from="1742378985556" duration="394000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -270,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742315995883</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="working on read_file">
+      <option name="closed" value="true" />
+      <created>1742319026012</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742319026013</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +327,7 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="Added constantes.h" />
     <MESSAGE value="Started defining readfile function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started defining readfile function" />
+    <MESSAGE value="working on read_file" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on read_file" />
   </component>
 </project>
