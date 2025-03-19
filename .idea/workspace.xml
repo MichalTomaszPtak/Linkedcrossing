@@ -24,9 +24,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="working on read_file">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Establish chaine file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jeu/jeu.h" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chaine/chaine.cc" beforeDir="false" afterPath="$PROJECT_DIR$/chaine/chaine.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +205,7 @@
       <workItem from="1742306500217" duration="726000" />
       <workItem from="1742307241757" duration="443000" />
       <workItem from="1742307686038" duration="10214000" />
-      <workItem from="1742378985556" duration="394000" />
+      <workItem from="1742378985556" duration="3178000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -279,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742319026013</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Establish chaine file">
+      <option name="closed" value="true" />
+      <created>1742380079336</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742380079336</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,6 +336,7 @@
     <MESSAGE value="Added constantes.h" />
     <MESSAGE value="Started defining readfile function" />
     <MESSAGE value="working on read_file" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on read_file" />
+    <MESSAGE value="Establish chaine file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Establish chaine file" />
   </component>
 </project>
