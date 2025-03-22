@@ -17,6 +17,12 @@ S2d::S2d(float a, float b) {
 	return;
 }
 
+void S2d::set_polar(float r, float angle) {
+	x = r*cos(angle);
+	y = r*sin(angle);
+	return;
+}
+
 void S2d::scale(float factor) {
 	x *= factor;
 	y *= factor;
@@ -41,8 +47,18 @@ void S2d::sub(S2d a) {
 	return;
 }
 
+void S2d::reflect(S2d axis) {
+	scale(2);
+	addscaled(axis, -2*dot(axis)/axis.get_length_squared());
+	return;
+}
+
 float S2d::dot(S2d a) {
 	return (x*a.x + y*a.y);
+}
+
+float S2d::get_angle() {
+	return atan2(y, x);
 }
 
 float S2d::get_length() {
@@ -159,7 +175,6 @@ Faiseur::Faiseur(float posx, float posy, float velx, float vely, float radius, f
 }
 
 // Arena
-
 void Arena::init(float x, float y, float r) {
 	center.x = x;
 	center.y = y;
