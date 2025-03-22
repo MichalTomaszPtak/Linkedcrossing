@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -Wall -std=c++17 -iquote .# `pkg-config --cflags --libs gtkmm-4.0`
-MODULES = main debug message tools jeu
+MODULES = main debug message chaine tools jeu
 OBJECTS = $(foreach mod,$(MODULES),$(mod)/$(mod).o)
 INCLUDE = $(foreach mod,$(MODULES),-I$(mod))
 

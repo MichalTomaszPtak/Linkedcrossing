@@ -8,26 +8,23 @@
 #include <vector>
 #include <string>
 
-
-
-
 struct information {
     int score;
     int nbParticule;
-    std::vector<Node> Particules;
-    std::vector<Node> Faiseurs;
+    std::vector<Particle> Particules;
+    std::vector<Faiseur> Faiseurs;
     int nbFaiseurs;
+    int nbArt;
 
 };
 
-information read_file(const std::string& filename){
-    std::ifstream file(filename);
-    if (+file.is_open()){
-
-    }
 
 
-};
+bool isValid(const std::string& line);
+bool ValidInformation(const information& data);
+information read_file(const std::string& filename);
+
+
 
 
 

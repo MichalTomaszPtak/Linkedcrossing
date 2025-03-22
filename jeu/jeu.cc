@@ -1,3 +1,63 @@
 //
 // Created by michael on 18/03/25.
 //
+#include <debug/debug.h>
+#include "../tools/tools.h"
+#include "../message/message.h"
+#include "jeu.h"
+#include "../constantes/constantes.h"
+#include <vector>
+#include <string>
+#include <iostream>
+
+
+
+
+
+
+
+information read_file(const std::string& filename){
+    std::ifstream file(filename);
+    if (!file.is_open()){
+
+    }
+    std::string line;
+    getline(file,line);
+    information.score = stoi(line);
+
+
+    file.getline()->nbParicule
+
+    file.close();
+};
+
+bool isValid(const std::string& line){
+    if (line.empty() || line[0] == '#'){
+        return false;
+    }
+    //std::string ss(line);
+    //int testing_int;
+    //if(!(ss >> testing_int)){
+    //return false;
+    //}
+    return true;
+};
+
+bool ValidInformation(const information& data){
+    if (!(data.score > 0 && data.score < score_max)){
+        std::cout << message::score_outside(data.score) << std::endl;
+        return false;
+    }
+    if (!(data.nbParticules >= 0 && data.nbParticules < nb_particule_max)){
+        std::cout << message::nb_particule_outside(data.nbParticules) << std::ndl;
+        return false;
+    }
+    for (const auto& Single: data.Particules){
+        if (!(Single.count() > 0 && Single.count() < time_to_split)){
+            std::cout << message::particule_counter(Single.count()) << std::endl;
+            return false;
+        }
+    }
+
+    return true
+};

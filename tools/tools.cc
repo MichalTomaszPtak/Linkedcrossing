@@ -1,4 +1,4 @@
-#include "tools/tools.h"
+#include "tools.h"
 
 // S2d
 void S2d::init(float a, float b) {
