@@ -5,16 +5,20 @@
 #include "jeu.h"
 
 information read_file(const std::string& filename){
+
+    //general declarations
     information info;
     std::ifstream file(filename);
+    std::string line;
+
+    //Opening and getting score
     if (!file.is_open()){
         std::cout << "Error reading \n" << std::endl;
         return info;
     }
-
-    std::string line;
     getline(file,line);
-    information.score = stoi(line);
+    information.score = stoi(line);std::string line;
+
 
     file.getline()->nbParticule
 
@@ -57,22 +61,37 @@ bool ValidInformation(const information& data){
 };
 
 bool ParticleValid(const Particle_info& data){
-    if ((data.position).get_length() > r_max){
-        message::particule_outside(data.position.x, data.position.y);
-        return 0;
+    if (data.position.get_length() > r_max){
+        std::cout << message::particule_outside(data.position.x, data.position.y) << std::endl;
+        return false;
     }
-    if (!(data.displacement > 0 && data.displacement < d_max)){
-        message::mobile_displacement(data.displacement);
-        return 0;
+    if (!(data.displacement >= 0 && data.displacement <= d_max)){
+        std::cout << message::mobile_displacement(data.displacement) << std::endl;
+        return false;
     }
     if (data.counter >= time_to_split){
-        message::particule_counter(data.counter);
-        return 0;
+        std::cout << message::particule_counter(data.counter) << std::endl;
+        return false;
     }
-    return 1;
+    return true;
 };
 bool Faiseur_Valid(const Faiseur_info& data){
-
-
+    if (data.position.get_length() > r_max){
+        std::cout << message::faiseur_outside(data.position.x, data.position.y) << std::endl;
+        return false;
+    }
+    if (!(data.displacement >= 0 && data.displacement <= d_max)){
+        std::cout << message::mobile_displacement(data.displacement) << std::endl;
+        return false;
+    }
+    if (data.number_elements < 0){
+        std::cout << message::faiseur_nbe(data.number_elements) << std::endl;
+        return false;
+    }
+    if (!(data.radius >= r_min_faiseur && data.radius <= r_max_faiseur)){
+        std::cout << message::faiseur_radius(data.radius) << std::endl;
+        return false;
+    }
+    return true;
 };
 
