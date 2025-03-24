@@ -3,16 +3,32 @@
 //
 #include "chaine.h"
 
+Chaine::Chaine(std::vector<S2d> line){
+    articulations = line;
+};
+
+Chaine::Chaine(){
+};
 
 Chaine::~Chaine(){
-
 };
-Chaine::chaine_clear(){
+
+void Chaine::chaine_clear(){
     articulations.clear();
 };
-Chaine::chaine_pop(){
+
+void Chaine::chaine_pop(){
     articulations.pop_back();
 };
-Chaine::chaine_set(std::vector<S2d> Line){
 
-}
+void Chaine::chaine_set(std::vector<S2d> Line){
+    articulations.clear();
+    articulations = Line;
+};
+void Chaine::chaine_push(S2d new_articulation){
+    articulations.push_back(new_articulation);
+};
+int Chaine::chaine_size(){
+    return articulations.size();
+};
+

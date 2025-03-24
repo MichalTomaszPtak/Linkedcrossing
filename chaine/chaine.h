@@ -12,11 +12,15 @@
 class Chaine {
 public:
     Chaine();
+    Chaine(std::vector<S2d>);
+
     ~Chaine();
+
     void chaine_clear();
     void chaine_pop();
     void chaine_push(S2d);
     void chaine_set(std::vector<S2d>);
+    int chaine_size();
 
 
 private:
