@@ -22,7 +22,7 @@ public:
 
 	float dot(S2d a);
 	float get_angle(void);
-	float get_length(void);
+	float get_length(void) const;
 	float get_length_squared(void);
 private:
 	void init(float a, float b);

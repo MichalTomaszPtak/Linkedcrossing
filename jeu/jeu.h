@@ -14,10 +14,11 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 struct Particle_info{
     S2d position;
-    int angle;
+    int angle = 0;
     double displacement;
     unsigned int counter;
 
@@ -25,7 +26,7 @@ struct Particle_info{
 
 struct Faiseur_info{
     S2d position;
-    int angle;
+    int angle = 0;
     double displacement;
     double radius;
     int number_elements;
@@ -47,6 +48,9 @@ struct information {
 bool isValid(const std::string& line);
 bool ValidInformation(const information& data);
 information read_file(const std::string& filename);
+
+bool ParticleValid(const Particle_info& data);
+bool FaiseurValid(const Faiseur_info& data);
 
 
 

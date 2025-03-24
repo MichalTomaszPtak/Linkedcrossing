@@ -61,7 +61,7 @@ float S2d::get_angle() {
 	return atan2(y, x);
 }
 
-float S2d::get_length() {
+float S2d::get_length() const {
 	return sqrt(x*x+y*y);
 }
 

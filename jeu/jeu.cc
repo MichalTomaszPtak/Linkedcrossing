@@ -5,27 +5,33 @@
 #include "jeu.h"
 
 information read_file(const std::string& filename){
+    information info;
     std::ifstream file(filename);
     if (!file.is_open()){
-
+        std::cout << "Error reading \n" << std::endl;
+        return info;
     }
+
     std::string line;
     getline(file,line);
     information.score = stoi(line);
 
+    file.getline()->nbParticule
 
-    file.getline()->nbParicule
 
     file.close();
+    return info;
 };
 
 bool isValid(const std::string& line){
     if (line.empty() || line[0] == '#'){
         return false;
     }
-    //std::string ss(line);
-    //int testing_int;
-    //if(!(ss >> testing_int)){
+    std::string ss(line);
+    std::string token;
+    while(ss >> token){
+
+    };
     //return false;
     //}
     return true;
@@ -49,3 +55,14 @@ bool ValidInformation(const information& data){
 
     return true
 };
+
+bool ParticleValid(const Particle_info& data){
+    if ((data.position).get_length() > r_max){
+
+    }
+
+};
+bool Faiseur_Valid(const Faiseur_info& data){
+
+};
+
