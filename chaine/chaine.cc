@@ -3,12 +3,16 @@
 //
 #include "chaine.h"
 
-class Chaine {
-    public:
 
-
-
-    private:
-        std::vector<s2d> chaine;
+Chaine::~Chaine(){
 
 };
+Chaine::chaine_clear(){
+    articulations.clear();
+};
+Chaine::chaine_pop(){
+    articulations.pop_back();
+};
+Chaine::chaine_set(std::vector<S2d> Line){
+
+}

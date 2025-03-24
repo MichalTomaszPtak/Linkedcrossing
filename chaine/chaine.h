@@ -7,7 +7,21 @@
 
 #include "../tools/tools.h"
 #include <iostream>
+#include <vector>
 
-class Chaine {};
+class Chaine {
+public:
+    Chaine();
+    ~Chaine();
+    void chaine_clear();
+    void chaine_pop();
+    void chaine_push(S2d);
+    void chaine_set(std::vector<S2d>);
+
+
+private:
+    std::vector<S2d> articulations;
+
+};
 
 #endif //CHAINE_H
