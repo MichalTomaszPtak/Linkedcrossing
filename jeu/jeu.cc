@@ -2,19 +2,7 @@
 // Created by michael on 18/03/25.
 //
 #include <debug/debug.h>
-#include "../tools/tools.h"
-#include "../message/message.h"
 #include "jeu.h"
-#include "../constantes/constantes.h"
-#include <vector>
-#include <string>
-#include <iostream>
-
-
-
-
-
-
 
 information read_file(const std::string& filename){
     std::ifstream file(filename);

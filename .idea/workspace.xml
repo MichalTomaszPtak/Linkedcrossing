@@ -24,8 +24,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Working on infromation validation">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="added mobile file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jeu/jeu.cc" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jeu/jeu.h" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,9 +178,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Makefile Target.clean" />
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.main.elf" />
+      <item itemvalue="Makefile Target.clean" />
     </list>
     <recent_temporary>
       <list>
@@ -208,7 +210,7 @@
       <workItem from="1742418807653" duration="816000" />
       <workItem from="1742505188464" duration="1700000" />
       <workItem from="1742667002000" duration="1227000" />
-      <workItem from="1742752415061" duration="578000" />
+      <workItem from="1742752415061" duration="6300000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -314,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742395995276</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added mobile file">
+      <option name="closed" value="true" />
+      <created>1742753168080</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1742753168081</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,6 +377,7 @@
     <MESSAGE value="edited makefile to include chaine as module" />
     <MESSAGE value="fixed some stuff" />
     <MESSAGE value="Working on infromation validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on infromation validation" />
+    <MESSAGE value="added mobile file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added mobile file" />
   </component>
 </project>
