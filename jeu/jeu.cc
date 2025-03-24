@@ -58,11 +58,21 @@ bool ValidInformation(const information& data){
 
 bool ParticleValid(const Particle_info& data){
     if ((data.position).get_length() > r_max){
-
+        message::particule_outside(data.position.x, data.position.y);
+        return 0;
     }
-
+    if (!(data.displacement > 0 && data.displacement < d_max)){
+        message::mobile_displacement(data.displacement);
+        return 0;
+    }
+    if (data.counter >= time_to_split){
+        message::particule_counter(data.counter);
+        return 0;
+    }
+    return 1;
 };
 bool Faiseur_Valid(const Faiseur_info& data){
+
 
 };
 
