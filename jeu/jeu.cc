@@ -50,13 +50,37 @@ information read_file(const std::string& filename){
         return result;
     }
 
+<<<<<<< HEAD
 	// skip empty lines
     do {
         std::getline(file,line);
     } while (isEmpty(line));
 
 	// convert to int
+=======
+    skipEmpty(file, line);
+
+
+	if(!isValid(line, 1)){
+            std::cout << "Invalid input" << std::endl;
+            return result;
+	}
+>>>>>>> cd5275efd1570ee2e233c96fb709aa33f81fde30
     result.score = stoi(line);
+    if (!(result.score > 0 && result.score < score_max)){
+            std::cout << message::score_outside(result.score) << std::endl;
+            return result;
+    }
+
+    skipEmpty(file, line);
+
+    if(!isValid(line, 1)){
+            std::cout << "Invalid input" << std::endl;
+            return result;
+	}
+     result.
+
+
 
 	// skip empty lines again
     do {
@@ -106,7 +130,7 @@ bool ValidInformation(const information& data){
     return true;
 }
 
-bool ParticleValid(const Particle_info& data){
+bool Particle_Valid(const Particle_info& data){
     if (data.position.get_length() > r_max){
         std::cout << message::particule_outside(data.position.x, data.position.y) << std::endl;
         return false;
@@ -177,3 +201,44 @@ void skipEmpty(std::ifstream& file, std::string& line){
           //This line makes sure we don´t accidentally loop forever.
 	}while (isEmpty(line));
 };
+<<<<<<< HEAD
+=======
+
+
+bool readParticles(std::ifstream& file, std::string& line, information& info){
+	Particle_info temp;
+	if(!isValid(line, 1)){
+        return false;
+	};
+    if(!(stoi(line)>=0 && stoi(line)<=nb_particule_max)){
+    	std::cout << message::nb_particule_outside(stoi(line)) << std::endl;
+        return false;
+	};
+    info.nbParticule = stoi(line);
+    for (int i=0; i<info.nbParticule; i++){
+    	if(!isValid(line,5)){
+            return false;
+    	}
+        temp = read_particule(line);
+        if (!Particle_Valid(temp)){
+        	return false;
+        };
+
+
+    }
+
+
+
+
+
+bool readFaiseurs(std::ifstream& file, std::string& line, information& info){
+
+
+};
+
+
+
+
+
+
+>>>>>>> cd5275efd1570ee2e233c96fb709aa33f81fde30
