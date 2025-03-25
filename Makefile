@@ -6,9 +6,9 @@ OBJECTS = $(foreach mod,$(MODULES),$(mod)/$(mod).o)
 
 INC = $(foreach mod,$(INCLUDE),-I$(mod))
 
-all: main.out
+all: projet
 
-main.out: $(OBJECTS)
+projet: $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.cc
@@ -16,4 +16,4 @@ main.out: $(OBJECTS)
 
 clean:
 	rm $(OBJECTS)
-	rm main.out
+	rm projet
