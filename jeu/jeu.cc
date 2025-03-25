@@ -219,7 +219,7 @@ bool readParticles(std::ifstream& file, std::string& line, information& info){
 	};
     info.nbParticule = nbPart;
     for (int i=0; i<info.nbParticule; i++){
-      	getline(file,line);
+      	if (!std::getline(file, line)) return false;
     	if(!isValid(line,5)){
             return false;
     	}
@@ -228,7 +228,6 @@ bool readParticles(std::ifstream& file, std::string& line, information& info){
         	return false;
         };
         info.Particules.push_back(temp);
-        getline(file, line);
     }
 
     return true;
@@ -245,6 +244,7 @@ bool readFaiseurs(std::ifstream& file, std::string& line, information& info){
     ss >> nbFais;
     info.nbFaiseurs = nbFais;
     for (int i=0; i<info.nbFaiseurs; i++){
+        if (!std::getline(file, line)) return false;
     	if(!isValid(line,6)){
             return false;
     	}
@@ -253,7 +253,6 @@ bool readFaiseurs(std::ifstream& file, std::string& line, information& info){
         	return false;
         };
         info.Faiseurs.push_back(temp);
-        getline(file, line);
     }
 
     return true;
