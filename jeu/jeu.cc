@@ -90,18 +90,18 @@ bool ValidInformation(const information& data){
         std::cout << message::score_outside(data.score) << std::endl;
         return false;
     }
-    if (!(data.nbParticules >= 0 && data.nbParticules < nb_particule_max)){
-        std::cout << message::nb_particule_outside(data.nbParticules) << std::ndl;
+    if (!(data.nbParticule >= 0 && data.nbParticule < nb_particule_max)){
+        std::cout << message::nb_particule_outside(data.nbParticule) << std::endl;
         return false;
     }
     for (const auto& Single: data.Particules){
-        if (!(Single.count() > 0 && Single.count() < time_to_split)){
-            std::cout << message::particule_counter(Single.count()) << std::endl;
+        if (!(Single.counter > 0 && Single.counter < time_to_split)){
+            std::cout << message::particule_counter(Single.counter) << std::endl;
             return false;
         }
     }
 
-    return true
+    return true;
 }
 
 bool ParticleValid(const Particle_info& data){
@@ -174,7 +174,7 @@ void skipEmpty(std::ifstream& file, std::string& line){
           if (!std::getline(file, line)) break;
           //This line makes sure we don´t accidentally loop forever.
 	}while (isEmpty(line));
-}
+};
 
 
 

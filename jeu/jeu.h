@@ -16,6 +16,11 @@
 #include <fstream>
 #include <sstream>
 
+enum class GameMode{
+	CONSTRUCTION,
+  	GUIDAGE
+};
+
 struct Particle_info{
     S2d position;
     int angle = 0;
@@ -40,8 +45,12 @@ struct information {
     int nbFaiseurs;
     int nbArt;
     std::vector<S2d> articulations;
+    GameMode mode;
+
 
 };
+
+
 
 void skipEmpty(std::ifstream& file, std::string& line);
 
@@ -59,6 +68,8 @@ Faiseur_info read_faiseur(const std::string& line);
 
 std::vector<Particle_info> process_particles(void);
 std::vector<Faiseur_info> process_faiseurs(void);
+
+GameMode read_game_mode(std::ifstream& file, std::string& line);
 
 
 
