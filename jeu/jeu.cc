@@ -93,13 +93,9 @@ information read_file(const std::string& filename){
         std::getline(file,line);
     } while (isEmpty(line));
 
-    if
-
-
-
-
-
-
+    if(!readMode(file, line, result)){
+    	return result;
+    };
 
 	// convert to int
 
@@ -282,9 +278,20 @@ bool readArticulations(std::ifstream& file, std::string& line, information& info
         info.articulations.push_back(temp);
 
     }
-
-
-
 };
+bool readMode(std::ifstream& file, std::string& line, information& info) {
+    skipEmpty(file, line);  // Skip to mode
+    if (!file) {
+        return false;  // No mode line
+    }
+    if (line == "CONSTRUCTION") {
+        info.mode = Mode::CONSTRUCTION;
+    } else if (line == "GUIDAGE") {
+        info.mode = Mode::GUIDAGE;
+    } else {
+        return false;  // Invalid mode
+    }
+    return true;
+}
 
 
