@@ -210,12 +210,16 @@ bool readParticles(std::ifstream& file, std::string& line, information& info){
 	if(!isValid(line, 1)){
         return false;
 	};
-    if(!(stoi(line)>=0 && stoi(line)<=nb_particule_max)){
+    std::stringstream ss(line);
+    int nbPart;
+    ss >> nbPart;
+    if(!(nbPart>=0 && nbPart <=nb_particule_max)){
     	std::cout << message::nb_particule_outside(stoi(line)) << std::endl;
         return false;
 	};
-    info.nbParticule = stoi(line);
+    info.nbParticule = nbPart;
     for (int i=0; i<info.nbParticule; i++){
+      	getline(file,line);
     	if(!isValid(line,5)){
             return false;
     	}
@@ -236,16 +240,19 @@ bool readFaiseurs(std::ifstream& file, std::string& line, information& info){
 	if(!isValid(line, 1)){
         return false;
 	};
-    info.nbFaiseurs = stoi(line);
+    std::stringstream ss(line);
+    int nbFais;
+    ss >> nbFais;
+    info.nbFaiseurs = nbFais;
     for (int i=0; i<info.nbFaiseurs; i++){
-    	if(!isValid(line,5)){
+    	if(!isValid(line,6)){
             return false;
     	}
-        temp = read_particule(line);
-        if (!Particle_Valid(temp)){
+        temp = read_Faiseur(line);
+        if (!Faiseur_Valid(temp)){
         	return false;
         };
-        info.Particules.push_back(temp);
+        info.Faiseurs.push_back(temp);
         getline(file, line);
     }
 
