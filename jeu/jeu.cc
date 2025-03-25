@@ -8,7 +8,9 @@ bool isEmpty(const std::string& line){
     if (line.empty() || line[0] == '#'){
         return false;
     }
+    return true;
 }
+
 bool isValid(const std::string& line, int Expected_Number){
 
 
@@ -48,9 +50,29 @@ information read_file(const std::string& filename){
 
     while(!isEmpty(line)){
         std::getline(file,line);
+    }
+
+    if(!isValid(line, 1)){
+    	return result;
+    }else{
+    	result.nbParticule = stoi(line);
+    }
+    for(int i=0;i<result.nbParticule;i++){
+    	while(!isEmpty(line)){
+        	std::getline(file,line);
+    	}
+        if(!isValid(line, 5)){
+    		return result;
+    	}else{
+
+
+    	}
+
+
+
+
     };
 
-    if(!
 
 
 
@@ -116,4 +138,33 @@ bool Faiseur_Valid(const Faiseur_info& data){
     }
     return true;
 };
+
+Particle_info read_particule(const std::string& line){
+  	Particle_info result;
+	std::stringstream ss(line);
+    std::string token;
+
+    ss >> token; result.position.x = stod(token);
+    ss >> token; result.position.y = stod(token);
+    ss >> token; result.angle = stod(token);
+    ss >> token; result.displacement = stod(token);
+    ss >> token; result.counter = stod(token);
+
+
+    return result;
+};
+Faiseur_info read_faiseur(const std::string& line){
+	Particle_info result;
+	std::stringstream ss(line);
+    std::string token;
+
+    ss >> token; result.position.x = stod(token);
+    ss >> token; result.position.y = stod(token);
+    ss >> token; result.angle = stod(token);
+    ss >> token; result.displacement = stod(token);
+    ss >> token; result.counter = stod(token);
+
+}
+
+
 

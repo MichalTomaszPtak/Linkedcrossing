@@ -52,6 +52,10 @@ information read_file(const std::string& filename);
 bool ParticleValid(const Particle_info& data);
 bool FaiseurValid(const Faiseur_info& data);
 
+Particle_info read_particule(const std::string& line);
+Faiseur_info read_faiseur(const std::string& line);
+
+
 
 
 
