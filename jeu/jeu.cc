@@ -223,15 +223,33 @@ bool readParticles(std::ifstream& file, std::string& line, information& info){
         if (!Particle_Valid(temp)){
         	return false;
         };
-
-
+        info.Particules.push_back(temp);
+        getline(file, line);
     }
 
+    return true;
 
-
-
+}
 
 bool readFaiseurs(std::ifstream& file, std::string& line, information& info){
+	Faiseur_info temp;
+	if(!isValid(line, 1)){
+        return false;
+	};
+    info.nbFaiseurs = stoi(line);
+    for (int i=0; i<info.nbFaiseurs; i++){
+    	if(!isValid(line,5)){
+            return false;
+    	}
+        temp = read_particule(line);
+        if (!Particle_Valid(temp)){
+        	return false;
+        };
+        info.Particules.push_back(temp);
+        getline(file, line);
+    }
+
+    return true;
 
 
 };
