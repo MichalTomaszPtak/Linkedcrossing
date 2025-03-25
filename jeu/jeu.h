@@ -38,8 +38,8 @@ struct Faiseur_info{
 };
 
 struct information {
-    int score;
-    int nbParticule;
+    unsigned int score;
+    unsigned int nbParticule;
     std::vector<Particle_info> Particules;
     std::vector<Faiseur_info> Faiseurs;
     int nbFaiseurs;

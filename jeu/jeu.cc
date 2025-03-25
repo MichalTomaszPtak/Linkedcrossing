@@ -5,10 +5,18 @@
 #include "jeu.h"
 
 bool isEmpty(const std::string& line){
+	// check if line is commented or empty
     if (line.empty() || line[0] == '#'){
         return true;
     }
-    return false;
+	// check if line contains for non-whitespace characters
+	for (char c : line) {
+		if (c >= 0x20) {
+			return false;
+		}
+	}
+	// if all characters whitespace, string is empty.
+    return true;
 }
 
 bool isValid(const std::string& line, int Expected_Number){
@@ -42,22 +50,26 @@ information read_file(const std::string& filename){
         return result;
     }
 
-    while(!isEmpty(line)){
+	// skip empty lines
+    do {
         std::getline(file,line);
-    };
+    } while (isEmpty(line));
 
+	// convert to int
     result.score = stoi(line);
 
-    while(!isEmpty(line)){
+	// skip empty lines again
+    do {
         std::getline(file,line);
-    }
+    } while (isEmpty(line));
 
+	// TODO fix the rest of this
     if(!isValid(line, 1)){
     	return result;
     }else{
     	result.nbParticule = stoi(line);
     }
-    for(int i=0;i<result.nbParticule;i++){
+    for(unsigned int i = 0; i<result.nbParticule; i++){
     	while(!isEmpty(line)){
         	std::getline(file,line);
     	}
@@ -65,18 +77,8 @@ information read_file(const std::string& filename){
     		return result;
     	}else{
 
-
     	}
-
-
-
-
     };
-
-
-
-
-
     file.close();
     return result;
 }
@@ -175,8 +177,3 @@ void skipEmpty(std::ifstream& file, std::string& line){
           //This line makes sure we don´t accidentally loop forever.
 	}while (isEmpty(line));
 };
-
-
-
-
-
