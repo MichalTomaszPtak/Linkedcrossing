@@ -44,8 +44,8 @@ struct information {
 };
 
 
-
-bool isValid(const std::string& line);
+bool isEmpty(const std::string& line);
+bool isValid(const std::string& line, int Expected_Number);
 bool ValidInformation(const information& data);
 information read_file(const std::string& filename);
 

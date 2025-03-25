@@ -4,42 +4,64 @@
 #include <debug/debug.h>
 #include "jeu.h"
 
+bool isEmpty(const std::string& line){
+    if (line.empty() || line[0] == '#'){
+        return false;
+    }
+}
+bool isValid(const std::string& line, int Expected_Number){
+
+
+    std::stringstream ss(line);
+    std::string token;
+    int count = 0;
+    while(ss >> token){
+        std::stringstream token_ss(token);
+        double num;
+        if (!(token_ss >> num) || !token_ss.eof()) return false;  // Not a number or extra junk
+        count++;
+        //Last 4 Lines were written using help of AI!
+    }
+
+    return (count == Expected_Number);
+}
+
+
 information read_file(const std::string& filename){
 
     //general declarations
-    information info;
+    information result;
     std::ifstream file(filename);
     std::string line;
 
     //Opening and getting score
     if (!file.is_open()){
         std::cout << "Error reading \n" << std::endl;
-        return info;
+        return result;
     }
-    getline(file,line);
-    information.score = stoi(line);std::string line;
+
+    while(!isEmpty(line)){
+        std::getline(file,line);
+    };
+
+    result.score = stoi(line);
+
+    while(!isEmpty(line)){
+        std::getline(file,line);
+    };
+
+    if(!
 
 
-    file.getline()->nbParticule
 
 
     file.close();
-    return info;
-};
+    return result;
+}
 
-bool isValid(const std::string& line){
-    if (line.empty() || line[0] == '#'){
-        return false;
-    }
-    std::string ss(line);
-    std::string token;
-    while(ss >> token){
 
-    };
-    //return false;
-    //}
-    return true;
-};
+
+
 
 bool ValidInformation(const information& data){
     if (!(data.score > 0 && data.score < score_max)){
@@ -58,7 +80,7 @@ bool ValidInformation(const information& data){
     }
 
     return true
-};
+}
 
 bool ParticleValid(const Particle_info& data){
     if (data.position.get_length() > r_max){
