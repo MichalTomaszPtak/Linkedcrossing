@@ -50,60 +50,61 @@ information read_file(const std::string& filename){
         return result;
     }
 
-<<<<<<< HEAD
 	// skip empty lines
     do {
         std::getline(file,line);
     } while (isEmpty(line));
 
-	// convert to int
-=======
-    skipEmpty(file, line);
-
-
-	if(!isValid(line, 1)){
-            std::cout << "Invalid input" << std::endl;
-            return result;
-	}
->>>>>>> cd5275efd1570ee2e233c96fb709aa33f81fde30
     result.score = stoi(line);
-    if (!(result.score > 0 && result.score < score_max)){
-            std::cout << message::score_outside(result.score) << std::endl;
-            return result;
-    }
+    if(!(result.score > 0 && result.score <= score_max)){
+      	std::cout << message::score_outside(result.score) << std::endl;
+    	return result;
+    };
 
-    skipEmpty(file, line);
-
-    if(!isValid(line, 1)){
-            std::cout << "Invalid input" << std::endl;
-            return result;
-	}
-     result.
-
-
-
-	// skip empty lines again
+    // skip empty lines
     do {
         std::getline(file,line);
     } while (isEmpty(line));
 
-	// TODO fix the rest of this
-    if(!isValid(line, 1)){
+    if(!readParticles(file, line, result)){
     	return result;
-    }else{
-    	result.nbParticule = stoi(line);
-    }
-    for(unsigned int i = 0; i<result.nbParticule; i++){
-    	while(!isEmpty(line)){
-        	std::getline(file,line);
-    	}
-        if(!isValid(line, 5)){
-    		return result;
-    	}else{
-
-    	}
     };
+
+    // skip empty lines
+    do {
+        std::getline(file,line);
+    } while (isEmpty(line));
+
+    if(!readFaiseurs(file, line, result)){
+    	return result;
+    };
+
+    // skip empty lines
+    do {
+        std::getline(file,line);
+    } while (isEmpty(line));
+
+    if(!readArticulations(file, line, result)){
+    	return result;
+    };
+
+    // skip empty lines
+    do {
+        std::getline(file,line);
+    } while (isEmpty(line));
+
+    if
+
+
+
+
+
+
+
+	// convert to int
+
     file.close();
+    std::cout << message::success() << std::endl;
     return result;
 }
 
@@ -201,8 +202,7 @@ void skipEmpty(std::ifstream& file, std::string& line){
           //This line makes sure we don´t accidentally loop forever.
 	}while (isEmpty(line));
 };
-<<<<<<< HEAD
-=======
+
 
 
 bool readParticles(std::ifstream& file, std::string& line, information& info){
@@ -248,7 +248,7 @@ bool readFaiseurs(std::ifstream& file, std::string& line, information& info){
     	if(!isValid(line,6)){
             return false;
     	}
-        temp = read_Faiseur(line);
+        temp = read_faiseur(line);
         if (!Faiseur_Valid(temp)){
         	return false;
         };
@@ -257,12 +257,34 @@ bool readFaiseurs(std::ifstream& file, std::string& line, information& info){
 
     return true;
 
+};
+
+bool readArticulations(std::ifstream& file, std::string& line, information& info){
+	S2d temp;
+    if(!isValid(line, 1)){
+        return false;
+	};
+    std::stringstream ss(line);
+    int nbArticulation;
+    ss >> nbArticulation;
+    info.nbArt = nbArticulation;
+    for (int i=0; i<info.nbArt; i++){
+    	if (!std::getline(file, line)) return false;
+
+        if(!isValid(line,2)){
+            return false;
+    	}
+        ss >> temp.x;
+        ss >> temp.y;
+        if(temp.S2d::get_length() > r_max){
+        	message::articulation_outside(temp.x, temp.y);
+        };
+        info.articulations.push_back(temp);
+
+    }
+
+
 
 };
 
 
-
-
-
-
->>>>>>> cd5275efd1570ee2e233c96fb709aa33f81fde30

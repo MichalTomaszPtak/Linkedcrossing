@@ -69,6 +69,7 @@ Mode read_game_mode(std::ifstream& file, std::string& line);
 
 bool readParticles(std::ifstream& file, std::string& line, information& info);
 bool readFaiseurs(std::ifstream& file, std::string& line, information& info);
+bool readArticulations(std::ifstream& file, std::string& line, information& info);
 
 
 

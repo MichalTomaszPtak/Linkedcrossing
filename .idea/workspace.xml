@@ -24,9 +24,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="defined readParticles">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="read Particles + read faiseurs should work since now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jeu/jeu.cc" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jeu/jeu.h" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +219,7 @@
       <workItem from="1742809930799" duration="8157000" />
       <workItem from="1742819454160" duration="4643000" />
       <workItem from="1742844554062" duration="13425000" />
-      <workItem from="1742893109084" duration="18401000" />
+      <workItem from="1742893109084" duration="23289000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -452,7 +453,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742915085652</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="read Particles + read faiseurs should work since now">
+      <option name="closed" value="true" />
+      <created>1742916063835</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1742916063835</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +529,8 @@
     <MESSAGE value="moved areana and node funcitons to mobile" />
     <MESSAGE value="coding readParticles functon" />
     <MESSAGE value="defined readParticles" />
-    <option name="LAST_COMMIT_MESSAGE" value="defined readParticles" />
+    <MESSAGE value="read Particles + read faiseurs should work since now" />
+    <option name="LAST_COMMIT_MESSAGE" value="read Particles + read faiseurs should work since now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
