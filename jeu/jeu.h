@@ -43,6 +43,8 @@ struct information {
 
 };
 
+void skipEmpty(std::ifstream& file, std::string& line);
+
 
 bool isEmpty(const std::string& line);
 bool isValid(const std::string& line, int Expected_Number);
@@ -54,6 +56,9 @@ bool FaiseurValid(const Faiseur_info& data);
 
 Particle_info read_particule(const std::string& line);
 Faiseur_info read_faiseur(const std::string& line);
+
+std::vector<Particle_info> process_particles(void);
+std::vector<Faiseur_info> process_faiseurs(void);
 
 
 

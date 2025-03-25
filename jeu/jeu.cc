@@ -6,9 +6,9 @@
 
 bool isEmpty(const std::string& line){
     if (line.empty() || line[0] == '#'){
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
 bool isValid(const std::string& line, int Expected_Number){
@@ -154,7 +154,7 @@ Particle_info read_particule(const std::string& line){
     return result;
 };
 Faiseur_info read_faiseur(const std::string& line){
-	Particle_info result;
+	Faiseur_info result;
 	std::stringstream ss(line);
     std::string token;
 
@@ -162,8 +162,18 @@ Faiseur_info read_faiseur(const std::string& line){
     ss >> token; result.position.y = stod(token);
     ss >> token; result.angle = stod(token);
     ss >> token; result.displacement = stod(token);
-    ss >> token; result.counter = stod(token);
+    ss >> token; result.radius = stod(token);
+    ss >> token; result.number_elements = stod(token);
 
+    return result;
+
+};
+
+void skipEmpty(std::ifstream& file, std::string& line){
+	do{
+          if (!std::getline(file, line)) break;
+          //This line makes sure we don´t accidentally loop forever.
+	}while (isEmpty(line));
 }
 
 

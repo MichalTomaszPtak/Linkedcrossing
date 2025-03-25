@@ -24,7 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="just need to finish read_file">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="New functions responsible for reading particles and faiseurs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jeu/jeu.cc" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jeu/jeu.h" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.h" afterDir="false" />
@@ -219,7 +219,7 @@
       <workItem from="1742809930799" duration="8157000" />
       <workItem from="1742819454160" duration="4643000" />
       <workItem from="1742844554062" duration="13425000" />
-      <workItem from="1742893109084" duration="2901000" />
+      <workItem from="1742893109084" duration="5104000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -397,7 +397,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742863734684</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="New functions responsible for reading particles and faiseurs">
+      <option name="closed" value="true" />
+      <created>1742898957172</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1742898957173</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,6 +467,7 @@
     <MESSAGE value="ParticleValid" />
     <MESSAGE value="finished articulation validation functions" />
     <MESSAGE value="just need to finish read_file" />
-    <option name="LAST_COMMIT_MESSAGE" value="just need to finish read_file" />
+    <MESSAGE value="New functions responsible for reading particles and faiseurs" />
+    <option name="LAST_COMMIT_MESSAGE" value="New functions responsible for reading particles and faiseurs" />
   </component>
 </project>
