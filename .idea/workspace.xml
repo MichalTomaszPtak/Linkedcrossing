@@ -26,8 +26,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="reading articulations stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jeu/jeu.cc" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jeu/jeu.h" beforeDir="false" afterPath="$PROJECT_DIR$/jeu/jeu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +218,7 @@
       <workItem from="1742809930799" duration="8157000" />
       <workItem from="1742819454160" duration="4643000" />
       <workItem from="1742844554062" duration="13425000" />
-      <workItem from="1742893109084" duration="24277000" />
+      <workItem from="1742893109084" duration="25352000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -469,7 +468,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742921913509</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="reading articulations stuff">
+      <option name="closed" value="true" />
+      <created>1742922826507</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1742922826507</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,15 +547,5 @@
     <MESSAGE value="read Particles + read faiseurs should work since now" />
     <MESSAGE value="reading articulations stuff" />
     <option name="LAST_COMMIT_MESSAGE" value="reading articulations stuff" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main/main.cc</url>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

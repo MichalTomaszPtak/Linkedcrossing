@@ -1,6 +1,6 @@
-#include "debug.h"
-#include "jeu.h"
-#include "constantes.h"
+
+#include "../jeu/jeu.h"
+
 
 static information info;
 
