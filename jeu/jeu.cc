@@ -4,7 +4,7 @@
 #include <debug/debug.h>
 #include "jeu.h"
 
-#define SKIP_EMPTY() do { std::getline(file,line); } while (isEmpty(line))
+#define SKIP_EMPTY() do { if (!std::getline(file,line)) break; } while (isEmpty(line))
 
 bool isEmpty(const std::string &line) {
 	// check if line is commented or empty
@@ -168,13 +168,6 @@ Faiseur_info read_faiseur(const std::string &line) {
 	ss >> token; result.number_elements = stod(token);
 
 	return result;
-}
-
-void skipEmpty(std::ifstream &file, std::string &line) {
-	do {
-		  if (!std::getline(file, line)) break;
-		  //This line makes sure we don´t accidentally loop forever.
-	} while (isEmpty(line));
 }
 
 bool readParticles(std::ifstream &file, std::string &line, information &info) {

@@ -43,8 +43,6 @@ struct information {
 	Mode mode;
 };
 
-void skipEmpty(std::ifstream &file, std::string &line);
-
 bool isEmpty(const std::string &line);
 bool isValid(const std::string &line, int Expected_Number);
 bool ValidInformation(const information &data);
