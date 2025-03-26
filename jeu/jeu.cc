@@ -5,7 +5,9 @@
 #include <debug/debug.h>
 #include "jeu.h"
 
-#define SKIP_EMPTY() do { if (!std::getline(file,line)) break; } while (isEmpty(line))
+#define SKIP_EMPTY()	do { \
+							if (!std::getline(file,line)) break; \
+						} while (isEmpty(line))
 
 namespace Jeu {
 	bool isEmpty(const std::string &line) {
@@ -39,20 +41,15 @@ namespace Jeu {
 	}
 
 	GameInfo read_file(const std::string &filename) {
-
-		//general declarations
 		bool correct = true;
 		GameInfo result;
 		std::ifstream file(filename);
 		std::string line;
 
-		// Opening and getting score
 		if (!file.is_open()) {
 			std::cout << "Error reading \n" << std::endl;
 			return result;
 		}
-
-		// get score
 		SKIP_EMPTY();
 		result.score = stoi(line);
 		if(!(result.score > 0 && result.score <= score_max)) {
@@ -60,29 +57,14 @@ namespace Jeu {
 			return result;
 		};
 
-		// get particles
 		SKIP_EMPTY();
-		if (!readParticles(file, line, result)) {
-			correct = false;
-		}
-
-		// get faiseurs
+		correct = correct && readParticles(file, line, result);
 		SKIP_EMPTY();
-		if (!readFaiseurs(file, line, result)) {
-			correct = false;
-		}
-
-		// get articulations
+		correct = correct && readFaiseurs(file, line, result);
 		SKIP_EMPTY();
-		if (!readArticulations(file, line, result)) {
-			correct = false;
-		}
-
-		// get mode
+		correct = correct && readArticulations(file, line, result);
 		SKIP_EMPTY();
-		if (!readMode(file, line, result)) {
-			correct = false;
-		}
+		correct = correct && readMode(file, line, result);
 
 		file.close();
 		if (correct) std::cout << message::success();
@@ -109,7 +91,8 @@ namespace Jeu {
 
 	bool particleValid(const ParticleInfo &data) {
 		if (data.position.get_length() > r_max) {
-			std::cout << message::particule_outside(data.position.x, data.position.y);
+			std::cout << message::particule_outside(data.position.x,
+													data.position.y);
 			return false;
 		}
 		if (!(data.displacement >= 0 && data.displacement <= d_max)) {
@@ -125,7 +108,8 @@ namespace Jeu {
 
 	bool faiseurValid(const FaiseurInfo &data) {
 		if (data.position.get_length() > r_max - data.radius) {
-			std::cout << message::faiseur_outside(data.position.x, data.position.y);
+			std::cout << message::faiseur_outside(data.position.x,
+												  data.position.y);
 			return false;
 		}
 		if (!(data.displacement >= 0 && data.displacement <= d_max)) {
@@ -243,7 +227,8 @@ namespace Jeu {
 			// check for collisions with faiseurs
 			for (unsigned int fid = 0; fid < i; fid++) {
 				FaiseurInfo finfo = info.faiseurs[fid];
-				if ((finfo.position - temp.position).get_length() <= finfo.radius + temp.radius) {
+				if ((finfo.position - temp.position).get_length()
+					<= finfo.radius + temp.radius) {
 					std::cout << message::faiseur_element_collision(fid, 0, i, 0);
 					return false;
 				}
@@ -253,7 +238,9 @@ namespace Jeu {
 		return true;
 	}
 
-	bool readArticulations(std::ifstream &file, std::string &line, GameInfo &info) {
+	bool readArticulations(std::ifstream &file,
+						   std::string &line,
+						   GameInfo &info) {
 		S2d temp;
 		S2d prev;
 		if (!isValid(line, 1)) return false;
