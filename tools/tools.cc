@@ -23,33 +23,8 @@ void S2d::set_polar(float r, float angle) {
 	return;
 }
 
-void S2d::scale(float factor) {
-	x *= factor;
-	y *= factor;
-	return;
-}
-
-void S2d::add(S2d a) {
-	x += a.x;
-	y += a.y;
-	return;
-}
-
-void S2d::addscaled(S2d a, float factor) {
-	x += factor*a.x;
-	y += factor*a.y;
-	return;
-}
-
-void S2d::sub(S2d a) {
-	x -= a.x;
-	y -= a.y;
-	return;
-}
-
 void S2d::reflect(S2d axis) {
-	scale(2);
-	addscaled(axis, -2*dot(axis)/axis.get_length_squared());
+	*this = (*this * 2) + (axis * (-2 * this->dot(axis) / axis.get_length_squared()));
 	return;
 }
 
@@ -69,15 +44,38 @@ float S2d::get_length_squared() {
 	return x*x+y*y;
 }
 
-S2d s2d_sum(S2d a, S2d b) {
-	S2d result = S2d(a.x+b.x, a.y+b.y);
-	return result;
+S2d S2d::operator+ (const S2d &a) const {
+	return S2d(x+a.x, y+a.y);
 }
 
-S2d s2d_dif(S2d a, S2d b) {
-	S2d result = S2d(a.x-b.x, a.y-b.y);
-	return result;
+S2d S2d::operator- (const S2d &a) const {
+	return S2d(x-a.x, y-a.y);
 }
 
+S2d S2d::operator* (const float k) const {
+	return S2d(x*k, y*k);
+}
 
+void S2d::operator= (const S2d &a) {
+	x = a.x;
+	y = a.y;
+	return;
+}
 
+void S2d::operator+= (const S2d &a) {
+	x += a.x;
+	y += a.y;
+	return;
+}
+
+void S2d::operator-= (const S2d &a) {
+	x -= a.x;
+	y -= a.y;
+	return;
+}
+
+void S2d::operator*= (const float k) {
+	x *= k;
+	y *= k;
+	return;
+}

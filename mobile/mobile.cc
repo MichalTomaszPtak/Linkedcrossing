@@ -1,6 +1,7 @@
 //
 // Created by michael on 23/03/25.
 //
+
 #include "mobile.h"
 
 // Node
@@ -8,11 +9,6 @@
 void Node::init(float posx, float posy, float velx, float vely) {
 	position = S2d(posx, posy);
 	velocity = S2d(velx, vely);
-	/*
-#if DEBUG
-	printf("Node created at (%f, %f)\n", posx, posy);
-#endif
-	*/
 	return;
 }
 
@@ -37,7 +33,7 @@ Node::Node(S2d pos, S2d vel) {
 }
 
 S2d Node::update_position(float delta) {
-	position.addscaled(velocity, delta);
+	position += velocity * delta;
 	return position;
 }
 
@@ -120,7 +116,7 @@ Arena::Arena(float x, float y, float r) {
 }
 
 int Arena::is_inside(S2d pos) {
-	if (s2d_dif(pos, center).get_length() < radius) {
+	if ((pos - center).get_length() < radius) {
 		return 1;
 	} else {
 		return 0;

@@ -1,7 +1,10 @@
 //
 // Created by michael on 18/03/25.
 //
-#pragma once
+
+#ifndef JEU_H
+#define JEU_H
+
 #include <debug/debug.h>
 
 #include "../message/message.h"
@@ -16,50 +19,54 @@
 #include <fstream>
 #include <sstream>
 
-struct Particle_info{
-	S2d position;
-	int angle = 0;
-	double displacement;
-	unsigned int counter;
+namespace Jeu {
+	struct ParticleInfo {
+		S2d position;
+		int angle = 0;
+		double displacement;
+		unsigned int counter;
+	};
 
-};
+	struct FaiseurInfo {
+		S2d position;
+		int angle = 0;
+		double displacement;
+		double radius;
+		unsigned int number_elements;
+	};
 
-struct Faiseur_info{
-	S2d position;
-	int angle = 0;
-	double displacement;
-	double radius;
-	unsigned int number_elements;
-};
+	struct GameInfo {
+		unsigned int score;
+		unsigned int nbParticule;
+		std::vector<ParticleInfo> particles;
+		std::vector<FaiseurInfo> faiseurs;
+		unsigned int nbFaiseurs;
+		unsigned int nbArt;
+		std::vector<S2d> articulations;
+		Mode mode;
+	};
 
-struct information {
-	unsigned int score;
-	unsigned int nbParticule;
-	std::vector<Particle_info> Particules;
-	std::vector<Faiseur_info> Faiseurs;
-	unsigned int nbFaiseurs;
-	unsigned int nbArt;
-	std::vector<S2d> articulations;
-	Mode mode;
-};
+	bool isEmpty(const std::string &line);
+	bool isValid(const std::string &line, int Expected_Number);
+	GameInfo read_file(const std::string &filename);
 
-bool isEmpty(const std::string &line);
-bool isValid(const std::string &line, int Expected_Number);
-bool ValidInformation(const information &data);
-information read_file(const std::string &filename);
+	bool particleValid(const ParticleInfo &data);
+	bool faiseurValid(const FaiseurInfo &data);
+	bool articulationValid(const S2d pos, unsigned int index, GameInfo &info);
+	bool gameValid(const GameInfo &data);
 
-bool ParticleValid(const Particle_info &data);
-bool FaiseurValid(const Faiseur_info &data);
+	ParticleInfo read_particule(const std::string &line);
+	FaiseurInfo read_faiseur(const std::string &line);
 
-Particle_info read_particule(const std::string &line);
-Faiseur_info read_faiseur(const std::string &line);
+	std::vector<ParticleInfo> process_particles(void);
+	std::vector<FaiseurInfo> process_faiseurs(void);
 
-std::vector<Particle_info> process_particles(void);
-std::vector<Faiseur_info> process_faiseurs(void);
+	Mode read_game_mode(std::ifstream &file, std::string &line);
 
-Mode read_game_mode(std::ifstream &file, std::string &line);
+	bool readParticles(std::ifstream &file, std::string &line, GameInfo &info);
+	bool readFaiseurs(std::ifstream &file, std::string &line, GameInfo &info);
+	bool readArticulations(std::ifstream &file, std::string &line, GameInfo &info);
+	bool readMode(std::ifstream &file, std::string &line, GameInfo &info);
+}
 
-bool readParticles(std::ifstream &file, std::string &line, information &info);
-bool readFaiseurs(std::ifstream &file, std::string &line, information &info);
-bool readArticulations(std::ifstream &file, std::string &line, information &info);
-bool readMode(std::ifstream &file, std::string &line, information &info);
+#endif

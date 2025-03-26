@@ -1,7 +1,7 @@
 //
 // Created by michael on 19/03/25.
 //
-#pragma once
+
 #ifndef CHAINE_H
 #define CHAINE_H
 
@@ -11,21 +11,19 @@
 
 class Chaine {
 public:
-    Chaine();
-    Chaine(std::vector<S2d>);
+	Chaine();
+	Chaine(std::vector<S2d>);
 
-    ~Chaine();
+	~Chaine();
 
-    void chaine_clear();
-    void chaine_pop();
-    void chaine_push(S2d);
-    void chaine_set(std::vector<S2d>);
-    int chaine_size();
-
+	void chaine_clear();
+	void chaine_pop();
+	void chaine_push(S2d);
+	void chaine_set(std::vector<S2d>);
+	int chaine_size();
 
 private:
-    std::vector<S2d> articulations;
-
+	std::vector<S2d> articulations;
 };
 
-#endif //CHAINE_H
+#endif
