@@ -8,7 +8,7 @@
 
 bool isEmpty(const std::string &line) {
 	// check if line is commented or empty
-	if (line.empty() || line[0] == '#'){
+	if (line.empty() || line[0] == '#') {
 		return true;
 	}
 	// check if line contains non-whitespace characters
@@ -22,22 +22,21 @@ bool isEmpty(const std::string &line) {
 }
 
 bool isValid(const std::string &line, int Expected_Number) {
-
 	std::stringstream ss(line);
 	std::string token;
 	int count = 0;
 	while (ss >> token) {
 		std::stringstream token_ss(token);
 		double num;
-		if (!(token_ss >> num) || !token_ss.eof()) return false;  // Not a number or extra junk
+		// Not a number or extra junk
+		if (!(token_ss >> num) || !token_ss.eof()) return false; 
 		count++;
 		//Last 4 Lines were written using help of AI!
 	}
 	return (count == Expected_Number);
 }
 
-
-information read_file(const std::string& filename) {
+information read_file(const std::string &filename) {
 
 	//general declarations
 	information result;
@@ -45,7 +44,7 @@ information read_file(const std::string& filename) {
 	std::string line;
 
 	//Opening and getting score
-	if (!file.is_open()){
+	if (!file.is_open()) {
 		std::cout << "Error reading \n" << std::endl;
 		return result;
 	}
@@ -53,32 +52,32 @@ information read_file(const std::string& filename) {
 	// get score
 	SKIP_EMPTY();
 	result.score = stoi(line);
-	if(!(result.score > 0 && result.score <= score_max)){
+	if(!(result.score > 0 && result.score <= score_max)) {
 	  	std::cout << message::score_outside(result.score) << std::endl;
 		return result;
 	};
 
 	// get particles
 	SKIP_EMPTY();
-	if(!readParticles(file, line, result)){
+	if(!readParticles(file, line, result)) {
 		return result;
 	};
 
 	// get faiseurs
 	SKIP_EMPTY();
-	if(!readFaiseurs(file, line, result)){
+	if(!readFaiseurs(file, line, result)) {
 		return result;
 	};
 
 	// get articulations
 	SKIP_EMPTY();
-	if(!readArticulations(file, line, result)){
+	if(!readArticulations(file, line, result)) {
 		return result;
 	};
 
 	// get mode
 	SKIP_EMPTY();
-	if(!readMode(file, line, result)){
+	if(!readMode(file, line, result)) {
 		return result;
 	};
 
@@ -86,10 +85,6 @@ information read_file(const std::string& filename) {
 	std::cout << message::success() << std::endl;
 	return result;
 }
-
-
-
-
 
 bool ValidInformation(const information &data) {
 	if (!(data.score > 0 && data.score < score_max)) {
