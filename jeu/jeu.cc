@@ -122,7 +122,7 @@ bool Particle_Valid(const Particle_info &data) {
 }
 
 bool Faiseur_Valid(const Faiseur_info &data) {
-	if (data.position.get_length() > r_max) {
+	if (data.position.get_length() > r_max - data.radius) {
 		std::cout << message::faiseur_outside(data.position.x, data.position.y);
 		return false;
 	}
@@ -214,6 +214,13 @@ bool readFaiseurs(std::ifstream &file, std::string &line, information &info) {
 		if (!isValid(line, 6)) return false;
 		temp = read_faiseur(line);
 		if (!Faiseur_Valid(temp)) return false;
+		// check for collisions with faiseurs
+		for (unsigned int fid = 0; fid < i; fid++) {
+			Faiseur_info finfo = info.Faiseurs[fid];
+			if (s2d_dif(finfo.position, temp.position).get_length() <= finfo.radius + temp.radius) {
+				std::cout << message::faiseur_element_collision(fid, 0, i, 0);
+			}
+		}
 		info.Faiseurs.push_back(temp);
 	}
 	return true;
@@ -247,6 +254,13 @@ bool readArticulations(std::ifstream &file, std::string &line, information &info
 				std::cout << message::chaine_max_distance(i - 1);
 			}
 		}
+		// check for collisions with faiseurs
+		for (unsigned int fid = 0; fid < info.nbFaiseurs; fid++) {
+			Faiseur_info finfo = info.Faiseurs[fid];
+			if (s2d_dif(finfo.position, temp).get_length() <= finfo.radius) {
+				std::cout << message::chaine_articulation_collision(i, fid, 0);
+			}
+		}
 		info.articulations.push_back(temp);
 		prev = temp;
 	}
@@ -254,13 +268,15 @@ bool readArticulations(std::ifstream &file, std::string &line, information &info
 }
 
 bool readMode(std::ifstream &file, std::string &line, information &info) {
-	skipEmpty(file, line);  // Skip to mode
 	if (!file) {
 		return false;  // No mode line
 	}
-	if (line == "CONSTRUCTION") {
+	std::stringstream ss(line);
+	std::string token;
+	ss >> token;
+	if (token == "CONSTRUCTION") {
 		info.mode = Mode::CONSTRUCTION;
-	} else if (line == "GUIDAGE") {
+	} else if (token == "GUIDAGE") {
 		info.mode = Mode::GUIDAGE;
 	} else {
 		return false;  // Invalid mode
