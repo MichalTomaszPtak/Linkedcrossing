@@ -13,7 +13,7 @@ for input_file in "$PUBLIC_DIR"/t*.txt; do
     if [[ -f "$output_file" ]]; then
         echo "Running test for $input_file..."
         $EXEC "$input_file" \
-            | diff -s - <(cat "$output_file")
+            | diff -s - "$output_file"
     else
         echo "Warning: Output file $output_file does not exist for $input_file"
     fi
