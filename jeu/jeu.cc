@@ -219,6 +219,7 @@ bool readFaiseurs(std::ifstream &file, std::string &line, information &info) {
 			Faiseur_info finfo = info.Faiseurs[fid];
 			if (s2d_dif(finfo.position, temp.position).get_length() <= finfo.radius + temp.radius) {
 				std::cout << message::faiseur_element_collision(fid, 0, i, 0);
+				return false;
 			}
 		}
 		info.Faiseurs.push_back(temp);
@@ -242,16 +243,19 @@ bool readArticulations(std::ifstream &file, std::string &line, information &info
 		ss >> temp.y;
 		if (temp.S2d::get_length() > r_max) {
 			std::cout << message::articulation_outside(temp.x, temp.y);
+			return false;
 		}
 		if (i == 0) {
 			// check if root is close enough to boundary
 			if (r_max - temp.get_length() > r_capture) {
 				std::cout << message::chaine_racine(temp.x, temp.y);
+				return false;
 			}
 		} else {
 			// check articulation length
 			if (s2d_dif(prev, temp).get_length() > r_capture) {
 				std::cout << message::chaine_max_distance(i - 1);
+				return false;
 			}
 		}
 		// check for collisions with faiseurs
@@ -259,6 +263,7 @@ bool readArticulations(std::ifstream &file, std::string &line, information &info
 			Faiseur_info finfo = info.Faiseurs[fid];
 			if (s2d_dif(finfo.position, temp).get_length() <= finfo.radius) {
 				std::cout << message::chaine_articulation_collision(i, fid, 0);
+				return false;
 			}
 		}
 		info.articulations.push_back(temp);
