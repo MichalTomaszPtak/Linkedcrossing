@@ -39,11 +39,12 @@ bool isValid(const std::string &line, int Expected_Number) {
 information read_file(const std::string &filename) {
 
 	//general declarations
+	bool correct = true;
 	information result;
 	std::ifstream file(filename);
 	std::string line;
 
-	//Opening and getting score
+	// Opening and getting score
 	if (!file.is_open()) {
 		std::cout << "Error reading \n" << std::endl;
 		return result;
@@ -53,51 +54,51 @@ information read_file(const std::string &filename) {
 	SKIP_EMPTY();
 	result.score = stoi(line);
 	if(!(result.score > 0 && result.score <= score_max)) {
-	  	std::cout << message::score_outside(result.score) << std::endl;
+	  	std::cout << message::score_outside(result.score);
 		return result;
 	};
 
 	// get particles
 	SKIP_EMPTY();
-	if(!readParticles(file, line, result)) {
-		return result;
-	};
+	if (!readParticles(file, line, result)) {
+		correct = false;
+	}
 
 	// get faiseurs
 	SKIP_EMPTY();
-	if(!readFaiseurs(file, line, result)) {
-		return result;
-	};
+	if (!readFaiseurs(file, line, result)) {
+		correct = false;
+	}
 
 	// get articulations
 	SKIP_EMPTY();
-	if(!readArticulations(file, line, result)) {
-		return result;
-	};
+	if (!readArticulations(file, line, result)) {
+		correct = false;
+	}
 
 	// get mode
 	SKIP_EMPTY();
-	if(!readMode(file, line, result)) {
-		return result;
-	};
+	if (!readMode(file, line, result)) {
+		correct = false;
+	}
 
 	file.close();
-	std::cout << message::success() << std::endl;
+	if (correct) std::cout << message::success();
 	return result;
 }
 
 bool ValidInformation(const information &data) {
 	if (!(data.score > 0 && data.score < score_max)) {
-		std::cout << message::score_outside(data.score) << std::endl;
+		std::cout << message::score_outside(data.score);
 		return false;
 	}
 	if (!(data.nbParticule >= 0 && data.nbParticule < nb_particule_max)) {
-		std::cout << message::nb_particule_outside(data.nbParticule) << std::endl;
+		std::cout << message::nb_particule_outside(data.nbParticule);
 		return false;
 	}
 	for (const auto& Single: data.Particules) {
 		if (!(Single.counter > 0 && Single.counter < time_to_split)) {
-			std::cout << message::particule_counter(Single.counter) << std::endl;
+			std::cout << message::particule_counter(Single.counter);
 			return false;
 		}
 	}
@@ -106,38 +107,39 @@ bool ValidInformation(const information &data) {
 
 bool Particle_Valid(const Particle_info &data) {
 	if (data.position.get_length() > r_max) {
-		std::cout << message::particule_outside(data.position.x, data.position.y) << std::endl;
+		std::cout << message::particule_outside(data.position.x, data.position.y);
 		return false;
 	}
 	if (!(data.displacement >= 0 && data.displacement <= d_max)) {
-		std::cout << message::mobile_displacement(data.displacement) << std::endl;
+		std::cout << message::mobile_displacement(data.displacement);
 		return false;
 	}
 	if (data.counter >= time_to_split) {
-		std::cout << message::particule_counter(data.counter) << std::endl;
+		std::cout << message::particule_counter(data.counter);
 		return false;
 	}
 	return true;
-};
+}
+
 bool Faiseur_Valid(const Faiseur_info &data) {
 	if (data.position.get_length() > r_max) {
-		std::cout << message::faiseur_outside(data.position.x, data.position.y) << std::endl;
+		std::cout << message::faiseur_outside(data.position.x, data.position.y);
 		return false;
 	}
 	if (!(data.displacement >= 0 && data.displacement <= d_max)) {
-		std::cout << message::mobile_displacement(data.displacement) << std::endl;
+		std::cout << message::mobile_displacement(data.displacement);
 		return false;
 	}
-	if (data.number_elements < 0) {
-		std::cout << message::faiseur_nbe(data.number_elements) << std::endl;
+	if (data.number_elements <= 0) {
+		std::cout << message::faiseur_nbe(data.number_elements);
 		return false;
 	}
 	if (!(data.radius >= r_min_faiseur && data.radius <= r_max_faiseur)) {
-		std::cout << message::faiseur_radius(data.radius) << std::endl;
+		std::cout << message::faiseur_radius(data.radius);
 		return false;
 	}
 	return true;
-};
+}
 
 Particle_info read_particule(const std::string &line) {
   	Particle_info result;
@@ -184,7 +186,7 @@ bool readParticles(std::ifstream &file, std::string &line, information &info) {
 	unsigned int nbPart;
 	ss >> nbPart;
 	if (!(nbPart >= 0 && nbPart <= nb_particule_max)) {
-		std::cout << message::nb_particule_outside(stoi(line)) << std::endl;
+		std::cout << message::nb_particule_outside(stoi(line));
 		return false;
 	}
 	info.nbParticule = nbPart;
@@ -204,10 +206,10 @@ bool readFaiseurs(std::ifstream &file, std::string &line, information &info) {
 		return false;
 	}
 	std::stringstream ss(line);
-	int nbFais;
+	unsigned int nbFais;
 	ss >> nbFais;
 	info.nbFaiseurs = nbFais;
-	for (int i = 0; i < info.nbFaiseurs; i++) {
+	for (unsigned int i = 0; i < info.nbFaiseurs; i++) {
 		if (!std::getline(file, line)) return false;
 		if (!isValid(line, 6)) return false;
 		temp = read_faiseur(line);
@@ -219,20 +221,34 @@ bool readFaiseurs(std::ifstream &file, std::string &line, information &info) {
 
 bool readArticulations(std::ifstream &file, std::string &line, information &info) {
 	S2d temp;
+	S2d prev;
 	if (!isValid(line, 1)) return false;
 	std::stringstream ss(line);
-	int nbArticulation;
+	unsigned int nbArticulation;
 	ss >> nbArticulation;
 	info.nbArt = nbArticulation;
-	for (int i = 0; i < info.nbArt; i++) {
+	for (unsigned int i = 0; i < info.nbArt; i++) {
 		if (!std::getline(file, line)) return false;
+		ss = std::stringstream(line);
 		if (!isValid(line, 2)) return false;
 		ss >> temp.x;
 		ss >> temp.y;
 		if (temp.S2d::get_length() > r_max) {
-			message::articulation_outside(temp.x, temp.y);
+			std::cout << message::articulation_outside(temp.x, temp.y);
+		}
+		if (i == 0) {
+			// check if root is close enough to boundary
+			if (r_max - temp.get_length() > r_capture) {
+				std::cout << message::chaine_racine(temp.x, temp.y);
+			}
+		} else {
+			// check articulation length
+			if (s2d_dif(prev, temp).get_length() > r_capture) {
+				std::cout << message::chaine_max_distance(i - 1);
+			}
 		}
 		info.articulations.push_back(temp);
+		prev = temp;
 	}
 	return true;
 }
