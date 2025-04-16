@@ -19,6 +19,13 @@
 #include <fstream>
 #include <sstream>
 
+enum Status
+{
+    ONGOING,
+    WON,
+    LOST
+};
+
 namespace Jeu {
 	struct ParticleInfo {
 		S2d position;
