@@ -9,11 +9,11 @@
 							if (!std::getline(file,line)) break; \
 						} while (isEmpty(line))
 
-enum Status
-{
-	ONGOING,
-	WON,
-	LOST
+class Running_game{
+public:
+Running_game(void){
+
+};
 };
 
 namespace Jeu {
