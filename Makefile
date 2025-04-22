@@ -1,19 +1,19 @@
 CC = g++
-CFLAGS = -Wall -std=c++17 -iquote . `pkg-config --cflags --libs gtkmm-4.0`
-MODULES = projet debug message chaine mobile tools jeu graphic gui
+CFLAGS = -Wall -std=c++17 `pkg-config --cflags gtkmm-4.0`
+LDFLAGS = `pkg-config --libs gtkmm-4.0`
+MODULES = main debug message chaine mobile tools jeu gui graphic
 INCLUDE = $(MODULES) constantes
 OBJECTS = $(foreach mod,$(MODULES),$(mod)/$(mod).o)
-
 INC = $(foreach mod,$(INCLUDE),-I$(mod))
 
 all: projet
 
 projet: $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) -o $@ $^ $(LDFLAGS)
 
-%.o: %.cc
-	$(CC) $(INC) $(CFLAGS) -o $@ -c $<
+$(OBJECTS): %.o: %.cc
+	$(CC) $(INC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm $(OBJECTS)
+	rm -f $(OBJECTS) projet
 
