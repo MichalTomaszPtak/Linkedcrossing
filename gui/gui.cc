@@ -301,6 +301,7 @@ void My_window::set_infos()
 }
 void My_window::update_infos()
 {
+    arena.set_center(S2d(
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 

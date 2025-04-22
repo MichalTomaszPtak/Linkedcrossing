@@ -127,3 +127,13 @@ int Arena::is_inside(Node *n) {
 	return is_inside(n->get_position());
 }
 
+void Arena::set_center(S2d c) {
+	center = c;
+}
+
+void Arena::set_radius(float r) {
+	radius = r;
+}
+
+
+

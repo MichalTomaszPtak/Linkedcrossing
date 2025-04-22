@@ -11,6 +11,7 @@ class My_window : public Gtk::Window
 {
 public:
     My_window(std::string file_name);
+    Arena arena(0,0,0);
 
 private:
     Gtk::Box main_box, panel_box, command_box;
