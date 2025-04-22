@@ -301,7 +301,7 @@ void My_window::set_infos()
 }
 void My_window::update_infos()
 {
-    arena.set_center(S2d(
+    arena.set_center(S2d(My_window.get_width() / 2, My_window.get_height()) / 2);
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
@@ -417,3 +417,6 @@ void My_window::set_jeu(string file_name)
     update_infos();
     drawing.queue_draw();
 }
+override gtkmm::on_size_allocate(){
+
+};

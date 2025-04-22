@@ -62,6 +62,8 @@ public:
 	int is_inside(S2d pos);				// returns 1 if point is inside
 	// arena, 0 otherwise
 	int is_inside(Node *n);
+    void set_center(S2d c);
+    void set_radius(float r);
 private:
 	S2d center;
 	float radius;
