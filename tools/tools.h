@@ -4,6 +4,8 @@
 #include "debug/debug.h"
 #include <math.h>
 
+constexpr double epsil_zero(0.5);
+
 typedef struct S2d {
 public:
 	float x;

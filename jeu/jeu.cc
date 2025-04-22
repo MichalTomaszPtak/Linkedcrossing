@@ -9,6 +9,13 @@
 							if (!std::getline(file,line)) break; \
 						} while (isEmpty(line))
 
+enum Status
+{
+	ONGOING,
+	WON,
+	LOST
+};
+
 namespace Jeu {
 	bool isEmpty(const std::string &line) {
 		// check if line is commented or empty
