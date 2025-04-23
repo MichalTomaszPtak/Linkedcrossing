@@ -56,6 +56,13 @@ My_window::My_window(string file_name)
     set_drawing();
     set_jeu(file_name);
 }
+void My_window::arena_adjust(void){
+	float tempx = get_width() - 100;
+	float tempy = get_height();
+	arena_.set_center(std::S2d{(tempx/2.0) + 100,tempy/2.0)};
+	arena_.set_radius(min(tempx,tempy)/2);
+};  // Adjust Arena size/position
+
 void My_window::set_commands()
 {
     command_frame.set_child(command_box);
@@ -168,6 +175,7 @@ bool My_window::key_pressed(guint keyval, guint keycode, Gdk::ModifierType state
     case '1':
         // remplacer affichage par votre code
 		cout << keyval <<"  " << __func__ << endl;
+		//cout << get_width() <<"  " << get_height() << endl;
 
         return true;
     case 's':
@@ -261,6 +269,7 @@ bool My_window::loop()
     if (activated)
     {
         update();
+		//cout << (arena_.get_center()).x <<"  " << (arena_.get_center()).y << endl;
         return true;
     }
     return false;
@@ -269,9 +278,9 @@ void My_window::update()
 {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
-	
     update_infos();
     drawing.queue_draw();
+
 
     //~ if (appel pour obtenir le statut du jeu !== ON_GOING) // voir jeu.h 
     //~ {
@@ -301,7 +310,6 @@ void My_window::set_infos()
 }
 void My_window::update_infos()
 {
-    arena.set_center(S2d(My_window.get_width() / 2, My_window.get_height()) / 2);
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
@@ -417,6 +425,4 @@ void My_window::set_jeu(string file_name)
     update_infos();
     drawing.queue_draw();
 }
-override gtkmm::on_size_allocate(){
 
-};

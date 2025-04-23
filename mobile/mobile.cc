@@ -134,6 +134,9 @@ void Arena::set_center(S2d c) {
 void Arena::set_radius(float r) {
 	radius = r;
 }
+S2d Arena::get_center(){
+	return center;
+	}
 
 
 

@@ -23,7 +23,7 @@ private:
     std::array<Gtk::Label, 4> info_text, info_value;
     Gtk::DrawingArea drawing;
     std::string previous_file_name;
-
+	Arena arena_;
 	// ajouter un attribut pour accéder au jeu (instance ou pointeur)
 	
     void set_commands();
@@ -59,7 +59,7 @@ private:
     S2d scaled(S2d const &pos) const;
 
     void set_jeu(std::string file_name);
-    void arena_update();
+    void arena_adjust(void);
 };
 
 #endif

@@ -64,6 +64,7 @@ public:
 	int is_inside(Node *n);
     void set_center(S2d c);
     void set_radius(float r);
+	S2d get_center();
 private:
 	S2d center;
 	float radius;

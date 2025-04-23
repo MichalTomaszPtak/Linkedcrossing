@@ -80,3 +80,4 @@ void S2d::operator*= (const float k) {
 	y *= k;
 	return;
 }
+
