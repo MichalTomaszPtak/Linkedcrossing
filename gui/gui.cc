@@ -59,7 +59,7 @@ My_window::My_window(string file_name)
 void My_window::arena_adjust(void){
 	float tempx = get_width() - 100;
 	float tempy = get_height();
-	arena_.set_center(std::S2d{(tempx/2.0) + 100,tempy/2.0)};
+	arena_.set_center(S2d((tempx/2.0) + 100,tempy/2.0));
 	arena_.set_radius(min(tempx,tempy)/2);
 };  // Adjust Arena size/position
 
