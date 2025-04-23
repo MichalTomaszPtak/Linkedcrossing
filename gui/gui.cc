@@ -61,6 +61,8 @@ void My_window::arena_adjust(void){
 	float tempy = get_height();
 	arena_.set_center(S2d((tempx/2.0) + 100,tempy/2.0));
 	arena_.set_radius(min(tempx,tempy)/2);
+    std::cout << "Arena: center=(" << (tempx / 2.0) + 100 << "," << tempy / 2.0 << "), radius=" << arena_.get_radius() << std::endl;
+    drawing.queue_draw();
 };  // Adjust Arena size/position
 
 void My_window::set_commands()
@@ -310,6 +312,7 @@ void My_window::set_infos()
 }
 void My_window::update_infos()
 {
+
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
@@ -336,6 +339,9 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
     double side(min(width, height));
     cr->translate(width / 2, height / 2);
     cr->scale(side / (2 * r_max), -side / (2 * r_max));
+
+
+
 
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
@@ -423,6 +429,12 @@ void My_window::set_jeu(string file_name)
         //~ }
     //~ }
     update_infos();
+    drawing.queue_draw();
+}
+
+void My_window::on_size_allocate(Gtk::Allocation& allocation) {
+
+    arena_adjust();
     drawing.queue_draw();
 }
 

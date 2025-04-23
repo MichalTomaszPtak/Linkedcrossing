@@ -13,6 +13,17 @@ void graphic_set_context(const Cairo::RefPtr<Cairo::Context> &cr)
 {
     ptcr = &cr;
 }
+void draw_circle(double x_pos, double y_pos, double radius, Color color, bool filled = false, double thickness = 3.0){
+    (*ptcr)->set_line_width(thickness);
+    set_color(color);
+    (*ptcr)->arc(x_pos, y_pos, radius, 0, 2 * M_PI);
+
+    if (filled){
+        (*ptcr)->fill();
+    }else{
+        (*ptcr)->stroke();
+    }
+};
 // à compléter pour effectuer des dessins élémentaires: trait, cercle, ...
 
 

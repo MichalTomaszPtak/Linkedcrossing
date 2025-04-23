@@ -65,6 +65,7 @@ public:
     void set_center(S2d c);
     void set_radius(float r);
 	S2d get_center();
+    float get_radius();
 private:
 	S2d center;
 	float radius;

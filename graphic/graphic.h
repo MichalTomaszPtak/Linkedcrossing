@@ -14,4 +14,7 @@ enum Color
     CYAN
 };
 
+void draw_circle(double x_pos, double y_pos, double radius, Color color, bool filled = false, double thickness = 3.0);
+static void set_color(Color color);
+
 #endif
