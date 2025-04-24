@@ -352,8 +352,13 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
-	//arena_adjust();
 	draw_circle(0, 0, r_max, GREEN, false, 1);
+	for (Particle particle : game_info_.particles) {
+		particle.draw();
+	}
+	for (Faiseur faiseur : game_info_.faiseurs) {
+		faiseur.draw();
+	}
 	drawing.queue_draw();
 }
 
@@ -406,8 +411,7 @@ void My_window::set_jeu(string file_name) {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
-    //~ if (à compléter pour cas d'échec de lecture)
-    {
+    if (gameValid(game_info_)) {
         buttons[2].set_sensitive(false);
         buttons[4].set_sensitive(false);
         buttons[5].set_sensitive(false);
@@ -415,24 +419,21 @@ void My_window::set_jeu(string file_name) {
         checks[0].set_sensitive(false);
         checks[1].set_sensitive(false);
         // éventuelle mise à jour de l'attribut jeu
+    } else { // cas de succès de lecture
+        buttons[2].set_sensitive(true);
+        buttons[4].set_sensitive(true);
+        buttons[5].set_sensitive(true);
+        checks[0].set_sensitive(true);
+        checks[1].set_sensitive(true);
+        switch (game_info_.mode) { // voir jeu.h
+        case CONSTRUCTION:
+			checks[0].set_active(true);
+			break;
+        case GUIDAGE:
+			checks[1].set_active(true);
+			break;
+        }
     }
-    //~ else // cas de succès de lecture
-    //~ {
-        //~ buttons[2].set_sensitive(true);
-        //~ buttons[4].set_sensitive(true);
-        //~ buttons[5].set_sensitive(true);
-        //~ checks[0].set_sensitive(true);
-        //~ checks[1].set_sensitive(true);
-        //~ switch (appel pour obtenir le statut du jeu ) // voir jeu.h
-        //~ {
-        //~ case CONSTRUCTION:
-            //~ checks[0].set_active(true);
-            //~ break;
-        //~ case GUIDAGE:
-            //~ checks[1].set_active(true);
-            //~ break;
-        //~ }
-    //~ }
     update_infos();
     drawing.queue_draw();
 }
