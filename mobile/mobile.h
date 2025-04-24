@@ -15,6 +15,10 @@
 #include <iostream>
 
 #define PARTICLE_RADIUS 2
+#define PARTICLE_COLOR GREEN
+#define FAISEUR_COLOR BLUE
+#define FAISEUR_FILL false
+#define FAISEUR_THICKNESS 1
 
 class Node {
 public:

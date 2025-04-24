@@ -73,7 +73,7 @@ void Particle::print(void) {
 
 void Particle::draw(void) {
     S2d pos = get_position();
-    draw_circle(pos.x, pos.y, PARTICLE_RADIUS, GREEN, true, 0);
+    draw_circle(pos.x, pos.y, PARTICLE_RADIUS, PARTICLE_COLOR, true, 0);
 	}
 
 // Faiseur
@@ -97,7 +97,12 @@ void Faiseur::set_segments(unsigned int s) {
 
 void Faiseur::draw(void) {
 	S2d pos = get_position();
-	draw_circle(pos.x, pos.y, radius);
+	draw_circle(pos.x,
+				pos.y,
+				radius,
+				FAISEUR_COLOR,
+				FAISEUR_FILL,
+				FAISEUR_THICKNESS);
 	return;
 }
 
