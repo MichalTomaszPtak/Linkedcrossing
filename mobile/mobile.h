@@ -23,6 +23,7 @@ public:
 	S2d get_velocity(void);
 	void set_position(S2d pos);
 	void set_velocity(S2d vel);
+	virtual void draw(void);
 private:
 	S2d position;
 	S2d velocity;
@@ -33,6 +34,7 @@ class Particle: Node {
 public:
 	Particle(void);
 	Particle(unsigned int count);
+	override void draw(void);
 	int count(){
 		return counter;
 	}
@@ -47,6 +49,7 @@ public:
 	Faiseur(void);
 	Faiseur(S2d pos, S2d vel, float radius, float length, int segments);
 	Faiseur(float posx, float posy, float velx, float vely, float radius, float length, int segments);
+	override void draw(void);
 private:
 	float radius;
 	float length;
@@ -66,6 +69,7 @@ public:
     void set_radius(float r);
 	S2d get_center();
     float get_radius();
+	void draw(void);
 private:
 	S2d center;
 	float radius;
