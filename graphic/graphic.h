@@ -26,6 +26,12 @@ void draw_rect(double x,
 			   Color color = BLACK,
 			   bool filled = false,
 			   double thickness = 1.0);
+void draw_segment(double baseX,
+				  double baseY,
+				  double endX,
+				  double endY,
+				  Color color = BLACK,
+				  double thickness = 1.0);
 static void set_color(Color color);
 
 #endif
