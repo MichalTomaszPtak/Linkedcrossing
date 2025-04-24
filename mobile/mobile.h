@@ -5,8 +5,9 @@
 #ifndef MOBILE_H
 #define MOBILE_H
 
-#include "../tools/tools.h"
-#include "../message/message.h"
+#include "tools.h"
+#include "message.h"
+#include "graphic.h"
 
 #include <vector>
 #include <string>
