@@ -340,11 +340,11 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
     cr->translate(width / 2, height / 2);
     cr->scale(side / (2 * r_max), -side / (2 * r_max));
 
-
-
-
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
+
+	arena_adjust();
+	drawing.queue_draw();
 }
 
 void My_window::set_mouse_controller()
@@ -431,10 +431,3 @@ void My_window::set_jeu(string file_name)
     update_infos();
     drawing.queue_draw();
 }
-
-void My_window::on_size_allocate(Gtk::Allocation& allocation) {
-
-    arena_adjust();
-    drawing.queue_draw();
-}
-

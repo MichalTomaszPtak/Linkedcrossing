@@ -12,7 +12,7 @@ class My_window : public Gtk::Window
 public:
     My_window(std::string file_name);
 protected:
-    void My_window::on_size_allocate(Gtk::Allocation& allocation) override;
+    // void My_window::on_size_allocate(Gtk::Allocation& allocation);
 private:
     Gtk::Box main_box, panel_box, command_box;
     Gtk::Frame command_frame, info_frame;
