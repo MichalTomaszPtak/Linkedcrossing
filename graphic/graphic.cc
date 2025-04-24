@@ -57,7 +57,6 @@ void draw_segment(double baseX,
 }
 // à compléter pour effectuer des dessins élémentaires: trait, cercle, ...
 
-
 // local function
 static void set_color(color_t color) {
     (*ptcr)->set_source_rgb(color.r, color.g, color.b);
