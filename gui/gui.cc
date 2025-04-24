@@ -360,7 +360,6 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	draw_circle(0, 0, r_max, GREEN, false, 1);
 	for (Particle &particle : Jeu::game_info_.particles) {
 		particle.draw();
-		particle.print();
 	}
 	for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
 		faiseur.draw();
