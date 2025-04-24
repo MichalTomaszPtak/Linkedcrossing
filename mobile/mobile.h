@@ -20,42 +20,48 @@ public:
 	Node(S2d pos, S2d vel);
 	Node(float posx, float posy, float velx, float vely);
 	S2d update_position(float delta);	// advance the node's position
-	S2d get_position(void);
-	S2d get_velocity(void);
+	S2d get_position(void) const;
+	S2d get_velocity(void) const;
+	float get_displacement(void) const;
 	void set_position(S2d pos);
 	void set_velocity(S2d vel);
+	void set_velocity_polar(float r, float angle);
+	void set_displacement(float d);
 	virtual void draw(void);
+protected:
+	double displacement;
 private:
 	S2d position;
 	S2d velocity;
 	void init(float posx, float posy, float velx, float vely);
 };
 
-class Particle: Node {
+class Particle: public Node {
 public:
 	Particle(void);
 	Particle(unsigned int count);
-	override void draw(void);
-	int count(){
-		return counter;
-	}
-
+	unsigned int get_counter(void) const;
+	void set_counter(unsigned int c);
 private:
 	unsigned int counter;
 	void init(unsigned int count);
 };
 
-class Faiseur: Node {
+class Faiseur: public Node {
 public:
 	Faiseur(void);
 	Faiseur(S2d pos, S2d vel, float radius, float length, int segments);
 	Faiseur(float posx, float posy, float velx, float vely, float radius, float length, int segments);
-	override void draw(void);
+	float get_radius(void) const;
+	unsigned int get_segments(void) const;
+	void set_radius(float r);
+	void set_segments(unsigned int s);
+	void draw(void) override;
 private:
 	float radius;
 	float length;
-	int segments;
-	void init(float radius, float length, int segments);
+	unsigned int segments;
+	void init(float radius, float length, unsigned int segments);
 };
 
 class Arena {

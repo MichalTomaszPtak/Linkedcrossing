@@ -47,12 +47,31 @@ void Node::set_velocity(S2d vel) {
 	return;
 }
 
-S2d Node::get_position(void) {
+void Node::set_velocity_polar(float r, float angle) {
+	velocity.set_polar(r, angle);
+	return;
+}
+
+S2d Node::get_position(void) const {
 	return position;
 }
 
-S2d Node::get_velocity(void) {
+S2d Node::get_velocity(void) const {
 	return velocity;
+}
+
+float Node::get_displacement(void) const {
+	return displacement;
+}
+
+void Node::set_displacement(float d) {
+	displacement = d;
+	return;
+}
+
+void Node::draw(void) {
+	draw_circle(position.x, position.y, 1, BLACK, true, 0);
+	return;
 }
 
 // Particle
@@ -68,8 +87,17 @@ Particle::Particle(unsigned int count) {
 	init(count);
 }
 
+unsigned int Particle::get_counter(void) const {
+	return counter;
+}
+
+void Particle::set_counter(unsigned int c) {
+	counter = c;
+	return;
+}
+
 // Faiseur
-void Faiseur::init(float r, float l, int s) {
+void Faiseur::init(float r, float l, unsigned int s) {
 	radius = r;
 	length = l;
 	segments = s;
@@ -91,6 +119,30 @@ Faiseur::Faiseur(S2d pos, S2d vel, float radius, float length, int segments) {
 Faiseur::Faiseur(float posx, float posy, float velx, float vely, float radius, float length, int segments) {
 	Node(posx, posy, velx, vely);
 	init(radius, length, segments);
+	return;
+}
+
+float Faiseur::get_radius(void) const {
+	return radius;
+}
+
+unsigned int Faiseur::get_segments(void) const {
+	return segments;
+}
+
+void Faiseur::set_radius(float r) {
+	radius = r;
+	return;
+}
+
+void Faiseur::set_segments(unsigned int s) {
+	segments = s;
+	return;
+}
+
+void Faiseur::draw(void) {
+	S2d pos = get_position();
+	draw_circle(pos.x, pos.y, radius);
 	return;
 }
 
