@@ -6,32 +6,6 @@
 
 // Node
 
-void Node::init(float posx, float posy, float velx, float vely) {
-	position = S2d(posx, posy);
-	velocity = S2d(velx, vely);
-	return;
-}
-
-Node::Node() {
-	init(0, 0, 0, 0);
-	return;
-}
-
-Node::Node(float posx, float posy) {
-	init(posx, posy, 0, 0);
-	return;
-}
-
-Node::Node(float posx, float posy, float velx, float vely) {
-	init(posx, posy, velx, vely);
-	return;
-}
-
-Node::Node(S2d pos, S2d vel) {
-	init(pos.x, pos.y, vel.x, vel.y);
-	return;
-}
-
 S2d Node::update_position(float delta) {
 	position += velocity * delta;
 	return position;
@@ -47,54 +21,90 @@ void Node::set_velocity(S2d vel) {
 	return;
 }
 
-S2d Node::get_position(void) {
+void Node::set_velocity_polar(float r, float angle) {
+	velocity.set_polar(r, angle);
+	return;
+}
+
+S2d Node::get_position(void) const {
 	return position;
 }
 
-S2d Node::get_velocity(void) {
+S2d Node::get_velocity(void) const {
 	return velocity;
 }
 
+void Node::draw(void) {
+	draw_circle(position.x, position.y, 1, BLACK, true, 0);
+	return;
+}
+
+void Node::print(void) {
+	std::cout << "Node: pos: (" << position.x << ", " << position.y << "), ";
+	std::cout << "vel: (" << velocity.x << ", " << velocity.y << ")\n";
+}
+
+// DisplacementObject
+void DisplacementObject::set_displacement(float d) {
+	displacement = d;
+	return;
+}
+
+float DisplacementObject::get_displacement(void) const {
+	return displacement;
+}
+
 // Particle
-void Particle::init(unsigned int count) {
-	counter = count;
+unsigned int Particle::get_counter(void) const {
+	return counter;
 }
 
-Particle::Particle(void) {
-	init(0);
+void Particle::set_counter(unsigned int c) {
+	counter = c;
+	return;
 }
 
-Particle::Particle(unsigned int count) {
-	init(count);
+void Particle::print(void) {
+	std::cout << "Particle: pos: (" << position.x << ", " << position.y;
+	std::cout << "), vel: (" << velocity.x << ", " << velocity.y << "), ";
+	std::cout << "displacement: " << displacement << ", counter: " << counter;
+	std::cout << "\n";
 }
 
 // Faiseur
-void Faiseur::init(float r, float l, int s) {
+float Faiseur::get_radius(void) const {
+	return radius;
+}
+
+unsigned int Faiseur::get_segments(void) const {
+	return segments;
+}
+
+void Faiseur::set_radius(float r) {
 	radius = r;
-	length = l;
+	return;
+}
+
+void Faiseur::set_segments(unsigned int s) {
 	segments = s;
 	return;
 }
 
-Faiseur::Faiseur(void) {
-	Node(0, 0, 0, 0);
-	init(0, 0, 0);
+void Faiseur::draw(void) {
+	S2d pos = get_position();
+	draw_circle(pos.x, pos.y, radius);
 	return;
 }
 
-Faiseur::Faiseur(S2d pos, S2d vel, float radius, float length, int segments) {
-	Node(pos, vel);
-	init(radius, length, segments);
-	return;
-}
-
-Faiseur::Faiseur(float posx, float posy, float velx, float vely, float radius, float length, int segments) {
-	Node(posx, posy, velx, vely);
-	init(radius, length, segments);
-	return;
+void Faiseur::print(void) {
+	std::cout << "Faiseur: pos: (" << position.x << ", " << position.y << "), ";
+	std::cout << "vel: (" << velocity.x << ", " << velocity.y << "), ";
+	std::cout << "displacement: " << displacement << ", radius: " << radius;
+	std::cout << ", segments: " << segments << "\n";
 }
 
 // Arena
+/*
 void Arena::init(float x, float y, float r) {
 	center.x = x;
 	center.y = y;
@@ -140,6 +150,6 @@ S2d Arena::get_center(){
 float Arena::get_radius(){
     return radius;
 }
-
+*/
 
 

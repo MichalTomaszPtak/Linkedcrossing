@@ -3,6 +3,7 @@
 
 #include "debug/debug.h"
 #include <math.h>
+#include <iostream>
 
 constexpr double epsil_zero(0.5);
 
@@ -30,6 +31,8 @@ public:
 	void operator+= (const S2d &a);
 	void operator-= (const S2d &a);
 	void operator*= (const float k);
+	
+	void print(void);
 private:
 	void init(float a, float b);
 } S2d;

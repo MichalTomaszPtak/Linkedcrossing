@@ -5,55 +5,84 @@
 #ifndef MOBILE_H
 #define MOBILE_H
 
-#include "../tools/tools.h"
-#include "../message/message.h"
+#include "tools.h"
+#include "message.h"
+#include "graphic.h"
 
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iostream>
 
 class Node {
 public:
-	Node(void);
-	Node(float posx, float posy);
-	Node(S2d pos, S2d vel);
-	Node(float posx, float posy, float velx, float vely);
+	Node(S2d pos, S2d vel) : position(pos), velocity(vel) {}
+	Node(float posx = 0, float posy = 0, float velx = 0, float vely = 0) :
+		position(S2d(posx, posy)), velocity(S2d(velx, vely)) {}
 	S2d update_position(float delta);	// advance the node's position
-	S2d get_position(void);
-	S2d get_velocity(void);
+	S2d get_position(void) const;
+	S2d get_velocity(void) const;
 	void set_position(S2d pos);
 	void set_velocity(S2d vel);
-private:
+	void set_velocity_polar(float r, float angle);
+	virtual void draw(void);
+	virtual void print(void);
+protected:
 	S2d position;
 	S2d velocity;
-	void init(float posx, float posy, float velx, float vely);
 };
 
-class Particle: Node {
+class DisplacementObject {
 public:
-	Particle(void);
-	Particle(unsigned int count);
-	int count(){
-		return counter;
-	}
+	DisplacementObject(float d) : displacement(d) {}
+	void set_displacement(float d);
+	float get_displacement(void) const;
+protected:
+	float displacement;
+};
 
+class Particle: public Node, public DisplacementObject {
+public:
+	Particle(S2d pos, S2d vel, float d, unsigned int c) :
+		Node(pos, vel), DisplacementObject(d), counter(c) {}
+	unsigned int get_counter(void) const;
+	void set_counter(unsigned int c);
+	void print(void) override;
 private:
 	unsigned int counter;
-	void init(unsigned int count);
 };
 
-class Faiseur: Node {
+class Faiseur: public Node, public DisplacementObject {
 public:
-	Faiseur(void);
-	Faiseur(S2d pos, S2d vel, float radius, float length, int segments);
-	Faiseur(float posx, float posy, float velx, float vely, float radius, float length, int segments);
+	Faiseur(S2d pos, S2d vel, float d = 0, float r = 0, unsigned int s = 0) : 
+			Node(pos, vel),
+			DisplacementObject(displacement),
+			radius(r),
+			segments(s) {}
+	Faiseur(float posx = 0,
+			float posy = 0,
+			float velx = 0,
+			float vely = 0,
+			float d = 0,
+			float r = 0,
+			int s = 0) :
+			Node(S2d(posx, posy), S2d(velx, vely)),
+			DisplacementObject(d),
+			radius(r),
+			segments(s) {}
+	float get_radius(void) const;
+	unsigned int get_segments(void) const;
+	void set_radius(float r);
+	void set_segments(unsigned int s);
+	void draw(void) override;
+	void print(void) override;
 private:
+	float displacement;
 	float radius;
-	float length;
-	int segments;
-	void init(float radius, float length, int segments);
+	unsigned int segments;
 };
 
+/*
 class Arena {
 public:
 	Arena(void);						// constructor
@@ -66,10 +95,12 @@ public:
     void set_radius(float r);
 	S2d get_center();
     float get_radius();
+	void draw(void);
 private:
 	S2d center;
 	float radius;
 	void init(float x, float y, float r);
 };
+*/
 
 #endif

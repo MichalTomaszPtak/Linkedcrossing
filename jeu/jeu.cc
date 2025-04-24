@@ -2,13 +2,19 @@
 // Created by michael on 18/03/25.
 //
 
-#include "debug.h"
+#include <debug/debug.h>
 #include "jeu.h"
 
 #define SKIP_EMPTY()	do { \
 							if (!std::getline(file,line)) break; \
 						} while (isEmpty(line))
 
+class Running_game{
+public:
+Running_game(void){
+
+};
+};
 
 namespace Jeu {
 	bool isEmpty(const std::string &line) {
@@ -82,47 +88,55 @@ namespace Jeu {
 			return false;
 		}
 		for (const auto& Single: data.particles) {
-			if (!(Single.counter > 0 && Single.counter < time_to_split)) {
-				std::cout << message::particule_counter(Single.counter);
+			unsigned int counter = Single.get_counter();
+			if (!(counter > 0 && counter < time_to_split)) {
+				std::cout << message::particule_counter(counter);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	bool particleValid(const ParticleInfo &data) {
-		if (data.position.get_length() > r_max) {
-			std::cout << message::particule_outside(data.position.x,
-													data.position.y);
+	bool particleValid(const Particle *particle) {
+		S2d pos = particle->get_position();
+		if (pos.get_length() > r_max) {
+			std::cout << message::particule_outside(pos.x,
+													pos.y);
 			return false;
 		}
-		if (!(data.displacement >= 0 && data.displacement <= d_max)) {
-			std::cout << message::mobile_displacement(data.displacement);
+		float displacement = particle->get_displacement();
+		if (!(displacement >= 0 && displacement <= d_max)) {
+			std::cout << message::mobile_displacement(displacement);
 			return false;
 		}
-		if (data.counter >= time_to_split) {
-			std::cout << message::particule_counter(data.counter);
+		unsigned int counter = particle->get_counter();
+		if (counter >= time_to_split) {
+			std::cout << message::particule_counter(counter);
 			return false;
 		}
 		return true;
 	}
 
-	bool faiseurValid(const FaiseurInfo &data) {
-		if (data.position.get_length() > r_max - data.radius) {
-			std::cout << message::faiseur_outside(data.position.x,
-												  data.position.y);
+	bool faiseurValid(const Faiseur *faiseur) {
+		S2d position = faiseur->get_position();
+		float radius = faiseur->get_radius();
+		if (position.get_length() > r_max - radius) {
+			std::cout << message::faiseur_outside(position.x,
+												  position.y);
 			return false;
 		}
-		if (!(data.displacement >= 0 && data.displacement <= d_max)) {
-			std::cout << message::mobile_displacement(data.displacement);
+		float displacement = faiseur->get_displacement();
+		if (!(displacement >= 0 && displacement <= d_max)) {
+			std::cout << message::mobile_displacement(displacement);
 			return false;
 		}
-		if (data.number_elements <= 0) {
-			std::cout << message::faiseur_nbe(data.number_elements);
+		unsigned int segments = faiseur->get_segments();
+		if (segments <= 0) {
+			std::cout << message::faiseur_nbe(segments);
 			return false;
 		}
-		if (!(data.radius >= r_min_faiseur && data.radius <= r_max_faiseur)) {
-			std::cout << message::faiseur_radius(data.radius);
+		if (!(radius >= r_min_faiseur && radius <= r_max_faiseur)) {
+			std::cout << message::faiseur_radius(radius);
 			return false;
 		}
 		return true;
@@ -149,8 +163,8 @@ namespace Jeu {
 		}
 		// check for collisions with faiseurs
 		for (unsigned int fid = 0; fid < info.nbFaiseurs; fid++) {
-			FaiseurInfo finfo = info.faiseurs[fid];
-			if ((finfo.position - pos).get_length() <= finfo.radius) {
+			Faiseur f = info.faiseurs[fid];
+			if ((f.get_position() - pos).get_length() <= f.get_radius()) {
 				std::cout << message::chaine_articulation_collision(i, fid, 0);
 				return false;
 			}
@@ -159,37 +173,50 @@ namespace Jeu {
 		return true;
 	}
 
-	ParticleInfo read_particule(const std::string &line) {
-		ParticleInfo result;
+	Particle *read_particule(const std::string &line) {
 		std::stringstream ss(line);
 		std::string token;
 
-		ss >> token; result.position.x = stod(token);
-		ss >> token; result.position.y = stod(token);
-		ss >> token; result.angle = stod(token);
-		ss >> token; result.displacement = stod(token);
-		ss >> token; result.counter = stod(token);
+		S2d pos;
+		ss >> token; pos.x = stod(token);
+		ss >> token; pos.y = stod(token);
 
-		return result;
+		S2d vel;
+		ss >> token;
+		vel.set_polar(1, stod(token)); // TODO determine magnitude
+
+		float displacement;
+		ss >> token; displacement = stod(token);
+		unsigned int counter;
+		ss >> token; counter = stod(token);
+
+		return new Particle(pos, vel, displacement, counter);
 	}
 
-	FaiseurInfo read_faiseur(const std::string &line) {
-		FaiseurInfo result;
+	Faiseur *read_faiseur(const std::string &line) {
 		std::stringstream ss(line);
 		std::string token;
 
-		ss >> token; result.position.x = stod(token);
-		ss >> token; result.position.y = stod(token);
-		ss >> token; result.angle = stod(token);
-		ss >> token; result.displacement = stod(token);
-		ss >> token; result.radius = stod(token);
-		ss >> token; result.number_elements = stod(token);
+		S2d pos;
+		ss >> token; pos.x = stod(token);
+		ss >> token; pos.y = stod(token);
 
-		return result;
+		S2d vel;
+		ss >> token;
+		vel.set_polar(1, stod(token)); // TODO determine magnitude
+
+		float displacement;
+		ss >> token; displacement = stod(token);
+		float radius;
+		ss >> token; radius = stod(token);
+		unsigned int segments;
+		ss >> token; segments = stod(token);
+
+		return new Faiseur(pos, vel, displacement, radius, segments);
 	}
 
 	bool readParticles(std::ifstream &file, std::string &line, GameInfo &info) {
-		ParticleInfo temp;
+		Particle *temp;
 		if (!isValid(line, 1)) {
 			return false;
 		}
@@ -206,13 +233,13 @@ namespace Jeu {
 			if (!isValid(line, 5)) return false;
 			temp = read_particule(line);
 			if (!particleValid(temp)) return false;
-			info.particles.push_back(temp);
+			info.particles.push_back(*temp);
 		}
 		return true;
 	}
 
 	bool readFaiseurs(std::ifstream &file, std::string &line, GameInfo &info) {
-		FaiseurInfo temp;
+		Faiseur *temp;
 		if (!isValid(line, 1)) {
 			return false;
 		}
@@ -227,14 +254,14 @@ namespace Jeu {
 			if (!faiseurValid(temp)) return false;
 			// check for collisions with faiseurs
 			for (unsigned int fid = 0; fid < i; fid++) {
-				FaiseurInfo finfo = info.faiseurs[fid];
-				if ((finfo.position - temp.position).get_length()
-					<= finfo.radius + temp.radius) {
+				Faiseur f = info.faiseurs[fid];
+				if ((f.get_position() - temp->get_position()).get_length()
+					<= f.get_radius() + temp->get_radius()) {
 					std::cout << message::faiseur_element_collision(fid, 0, i, 0);
 					return false;
 				}
 			}
-			info.faiseurs.push_back(temp);
+			info.faiseurs.push_back(*temp);
 		}
 		return true;
 	}
