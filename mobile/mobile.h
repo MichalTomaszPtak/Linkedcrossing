@@ -11,7 +11,7 @@
 
 #include <vector>
 #include <string>
-#include <queue>
+#include <list>
 #include <fstream>
 #include <iostream>
 
@@ -32,6 +32,7 @@ public:
 	void set_position(S2d pos);
 	void set_velocity(S2d vel);
 	void set_velocity_polar(float r, float angle);
+	void move(void);
 	virtual void draw(void);
 	virtual void print(void);
 	virtual void update(void);
@@ -90,7 +91,7 @@ private:
 	float displacement;
 	float radius;
 	unsigned int segments;
-	queue<S2d> tail;
+	std::list<S2d> tail;
 };
 
 #endif
