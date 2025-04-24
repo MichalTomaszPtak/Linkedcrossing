@@ -12,6 +12,7 @@ class My_window : public Gtk::Window
 public:
     My_window(std::string file_name);
 private:
+	Jeu::GameInfo game_info_;
     Gtk::Box main_box, panel_box, command_box;
     Gtk::Frame command_frame, info_frame;
     Gtk::Grid info_grid;
@@ -23,7 +24,6 @@ private:
     Gtk::DrawingArea drawing;
     std::string previous_file_name;
 	Arena arena_;
-	Jeu::GameInfo game_info_;
 	// ajouter un attribut pour accéder au jeu (instance ou pointeur)
 	
     void set_commands();

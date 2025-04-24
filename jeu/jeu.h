@@ -43,12 +43,12 @@ namespace Jeu {
 	};
 
 	struct GameInfo {
-		unsigned int score;
-		unsigned int nbParticule;
+		unsigned int score = 4000;
+		unsigned int nbParticule = 0;
 		std::vector<ParticleInfo> particles;
 		std::vector<FaiseurInfo> faiseurs;
-		unsigned int nbFaiseurs;
-		unsigned int nbArt;
+		unsigned int nbFaiseurs = 0;
+		unsigned int nbArt = 0;
 		std::vector<S2d> articulations;
 		Mode mode;
 	};

@@ -52,6 +52,10 @@ My_window::My_window(string file_name)
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
 
 {
+	cout << game_info_.score << endl;
+    cout << game_info_.nbParticule << endl;
+    cout << game_info_.nbFaiseurs << endl;
+    cout << game_info_.nbArt << endl;
     set_title("Linked-Crossing Challenge");
     set_child(main_box);
     main_box.append(panel_box);
@@ -277,6 +281,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 bool My_window::loop() {
     if (activated)
     {
+
         update();
 		//cout << (arena_.get_center()).x <<"  " << (arena_.get_center()).y << endl;
         return true;
