@@ -9,30 +9,46 @@ static const Cairo::RefPtr<Cairo::Context> *ptcr(nullptr);
 // local prototypes
 static void set_color(Color color);
 // graphic_gui.h
-void graphic_set_context(const Cairo::RefPtr<Cairo::Context> &cr)
-{
+
+void graphic_set_context(const Cairo::RefPtr<Cairo::Context> &cr) {
     ptcr = &cr;
 }
-void draw_circle(double x_pos, double y_pos, double radius, Color color, bool filled, double thickness){
+
+void draw_circle(double x,
+				 double y,
+				 double radius,
+				 Color color,
+				 bool filled,
+				 double thickness) {
     (*ptcr)->set_line_width(thickness);
     set_color(color);
-    (*ptcr)->arc(x_pos, y_pos, radius, 0, 2 * M_PI);
-
-    if (filled){
-        (*ptcr)->fill();
-    }else{
-        (*ptcr)->stroke();
-    }
+    (*ptcr)->arc(x, y, radius, 0, 2 * M_PI);
+    if (filled) (*ptcr)->fill();
+    else 		(*ptcr)->stroke();
+	return;
 };
+
+void draw_rect(double x,
+			   double y,
+			   double width,
+			   double height,
+			   Color color,
+			   bool filled,
+			   double thickness) {
+    (*ptcr)->set_line_width(thickness);
+    set_color(color);
+	(*ptcr)->rectangle(x, y, width, height);
+    if (filled) (*ptcr)->fill();
+    else 		(*ptcr)->stroke();
+	return;
+}
 // à compléter pour effectuer des dessins élémentaires: trait, cercle, ...
 
 
 // local function
-static void set_color(Color color)
-{
+static void set_color(Color color) {
     double r(0.), g(0.), b(0.);
-    switch (color)
-    {
+    switch (color) {
     case WHITE:
         r = g = b = 1;
         break;

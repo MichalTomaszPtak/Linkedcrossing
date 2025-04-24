@@ -56,6 +56,7 @@ My_window::My_window(string file_name)
     set_drawing();
     set_jeu(file_name);
 }
+
 void My_window::arena_adjust(void){
 	float tempx = get_width() - 100;
 	float tempy = get_height();
@@ -63,18 +64,15 @@ void My_window::arena_adjust(void){
 	arena_.set_radius(min(tempx,tempy)/2);
     std::cout << "Arena: center=(" << (tempx / 2.0) + 100 << "," << tempy / 2.0 << "), radius=" << arena_.get_radius() << std::endl;
     drawing.queue_draw();
-};  // Adjust Arena size/position
+}  // Adjust Arena size/position
 
-void My_window::set_commands()
-{
+void My_window::set_commands() {
     command_frame.set_child(command_box);
-    for (auto &button : buttons)
-    {
+    for (auto &button : buttons) {
         command_box.append(button);
         button.set_margin(1);
     }
-    for (auto &check : checks)
-    {
+    for (auto &check : checks) {
         command_box.append(check);
         check.set_margin(1);
     }
@@ -99,31 +97,29 @@ void My_window::set_commands()
                                                      &My_window::guide_clicked));
 }
 
-void My_window::exit_clicked()
-{
+void My_window::exit_clicked() {
     hide();
 }
-void My_window::open_clicked()
-{
+
+void My_window::open_clicked() {
     auto dialog = new Gtk::FileChooserDialog("Choose a text file",
                                              Gtk::FileChooserDialog::Action::OPEN);
     set_dialog(dialog);
 }
-void My_window::save_clicked()
-{
+
+void My_window::save_clicked() {
     auto dialog = new Gtk::FileChooserDialog("Choose a text file",
                                              Gtk::FileChooserDialog::Action::SAVE);
     set_dialog(dialog);
 }
-void My_window::restart_clicked()
-{
+
+void My_window::restart_clicked() {
     // remplacer affichage par votre code
     cout << __func__ << endl;
 }
-void My_window::start_clicked()
-{
-    if (activated) // variable d'état: true si le jeu est en cours
-    {
+
+void My_window::start_clicked() {
+    if (activated) { // variable d'état: true si le jeu est en cours
         loop_conn.disconnect();
         activated = false;
         buttons[B_EXIT].set_sensitive(true);
@@ -132,9 +128,7 @@ void My_window::start_clicked()
         buttons[B_RESTART].set_sensitive(true);
         buttons[B_START].set_label("start");
         buttons[B_STEP].set_sensitive(true);
-    }
-    else // if (appel pour obtenir le statut du jeu !== ON_GOING) // voir jeu.h
-    {
+    } else { // if (appel pour obtenir le statut du jeu !== ON_GOING) // voir jeu.h
         loop_conn = Glib::signal_timeout().connect(sigc::mem_fun(*this,
                                                                  &My_window::loop),
                                                    25);
@@ -147,33 +141,34 @@ void My_window::start_clicked()
         buttons[B_STEP].set_sensitive(false);
     }
 }
-void My_window::step_clicked()
-{
+
+void My_window::step_clicked() {
     // remplacer affichage par votre code
     cout << __func__ << endl;
 }
-void My_window::build_clicked()
-{
+
+void My_window::build_clicked() {
     // remplacer affichage par votre code
     cout << __func__ << endl;
 }
-void My_window::guide_clicked()
-{
+
+void My_window::guide_clicked() {
     // remplacer affichage par votre code
     cout << __func__ << endl;
 }
-void My_window::set_key_controller()
-{
+
+void My_window::set_key_controller() {
     auto contr = Gtk::EventControllerKey::create();
-    contr->signal_key_pressed().connect(sigc::mem_fun(*this, &My_window::key_pressed),
-                                        false);
+    contr->signal_key_pressed().connect(sigc::mem_fun(*this,
+													  &My_window::key_pressed),
+													  false);
     add_controller(contr);
 }
-bool My_window::key_pressed(guint keyval, guint keycode, Gdk::ModifierType state)
-{
+bool My_window::key_pressed(guint keyval,
+							guint keycode,
+							Gdk::ModifierType state) {
 
-    switch (keyval)
-    {
+    switch (keyval) {
     case '1':
         // remplacer affichage par votre code
 		cout << keyval <<"  " << __func__ << endl;
@@ -196,8 +191,7 @@ bool My_window::key_pressed(guint keyval, guint keycode, Gdk::ModifierType state
     return false;
 }
 
-void My_window::set_dialog(Gtk::FileChooserDialog *dialog)
-{
+void My_window::set_dialog(Gtk::FileChooserDialog *dialog) {
     dialog->set_modal(true);
     dialog->set_transient_for(*this);
     dialog->set_select_multiple(false);
@@ -229,19 +223,18 @@ void My_window::set_dialog(Gtk::FileChooserDialog *dialog)
 
     dialog->show();
 }
-void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog)
-{
+
+void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
     string file_name = "";
-    if (dialog->get_file())
-    {
+    if (dialog->get_file()) {
         file_name = dialog->get_file()->get_path();
-        if (file_name.size() < 4 or file_name.substr(file_name.size() - 4) != ".txt")
-        {
+        if (file_name.size() < 4 or
+			file_name.substr(file_name.size() - 4) != ".txt")
+		{
             file_name = "";
         }
     }
-    switch (response)
-    {
+    switch (response) {
     case CANCEL:
         dialog->hide();
         break;
@@ -266,8 +259,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog)
     }
 }
 
-bool My_window::loop()
-{
+bool My_window::loop() {
     if (activated)
     {
         update();
@@ -276,8 +268,8 @@ bool My_window::loop()
     }
     return false;
 }
-void My_window::update()
-{
+
+void My_window::update() {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
     update_infos();
@@ -296,8 +288,7 @@ void My_window::update()
 	//~ }   
 }
 
-void My_window::set_infos()
-{
+void My_window::set_infos() {
     info_frame.set_child(info_grid);
     info_grid.set_column_homogeneous(true);
     for (size_t i(0); i < info_text.size(); ++i)
@@ -310,31 +301,25 @@ void My_window::set_infos()
         info_value[i].set_margin(3);
     }
 }
-void My_window::update_infos()
-{
 
+void My_window::update_infos() {
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
-
-    {
-        for (auto &value : info_value)
-        {
-            value.set_text("0");
-        }
-    }
+	for (auto &value : info_value) {
+		value.set_text("0");
+	}
 }
 
-void My_window::set_drawing()
-{
+void My_window::set_drawing() {
     drawing.set_content_width(taille_dessin);
     drawing.set_content_height(taille_dessin);
     drawing.set_expand();
     drawing.set_draw_func(sigc::mem_fun(*this, &My_window::on_draw));
 }
-void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
-                        int width, int height)
-{
 
+void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
+                        int width,
+						int height) {
     graphic_set_context(cr);
     double side(min(width, height));
     cr->translate(width / 2, height / 2);
@@ -343,12 +328,12 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
-	arena_adjust();
+	//arena_adjust();
+	draw_circle(0, 0, r_max, GREEN);
 	drawing.queue_draw();
 }
 
-void My_window::set_mouse_controller()
-{
+void My_window::set_mouse_controller() {
     auto left_click = Gtk::GestureClick::create();
     auto right_click = Gtk::GestureClick::create();
     auto move = Gtk::EventControllerMotion::create();
@@ -370,8 +355,7 @@ void My_window::set_mouse_controller()
 
 // cette fonction convertit l'entrée pos contenant les coordonnées (x,y) de la souris 
 // dans l'espace GTKmm vers l'espace du Modèle => sortie de la fonction.
-S2d My_window::scaled(S2d const &pos) const
-{
+S2d My_window::scaled(S2d const &pos) const {
     int width = drawing.get_width();
     int height = drawing.get_height();
     double ratio((2 * r_max) / min(width, height));
@@ -379,25 +363,22 @@ S2d My_window::scaled(S2d const &pos) const
             ratio * (height / 2 - pos.y)};
 }
 
-void My_window::on_drawing_left_click(int n_press, double x, double y)
-{
-	// remplacer affichage par votre code
-	cout <<  __func__ << endl;
-}
-void My_window::on_drawing_right_click(int n_press, double x, double y)
-{
-	// remplacer affichage par votre code
-	cout <<  __func__ << endl;
-}
-void My_window::on_drawing_move(double x, double y)
-{
+void My_window::on_drawing_left_click(int n_press, double x, double y) {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 }
 
+void My_window::on_drawing_right_click(int n_press, double x, double y) {
+	// remplacer affichage par votre code
+	cout <<  __func__ << endl;
+}
 
-void My_window::set_jeu(string file_name)
-{
+void My_window::on_drawing_move(double x, double y) {
+	// remplacer affichage par votre code
+	cout <<  __func__ << endl;
+}
+
+void My_window::set_jeu(string file_name) {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
