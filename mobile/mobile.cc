@@ -3,7 +3,6 @@
 //
 
 #include "mobile.h"
-#include <../constantes/constantes.h>
 
 // Node
 
@@ -45,17 +44,6 @@ void Node::print(void) {
 	std::cout << "vel: (" << velocity.x << ", " << velocity.y << ")\n";
 }
 
-void Node::move(void) {
-	if ((this->get_position()).get_length() < r_max) {
-		this->set_position(this->get_position() + this->get_velocity());
-    }else{
-		S2d tempvel = this->get_velocity();
-		tempvel.reflect(this->get_position());
-		this->set_velocity(tempvel);
-    }
-
-}
-
 // DisplacementObject
 void DisplacementObject::set_displacement(float d) {
 	displacement = d;
@@ -85,11 +73,8 @@ void Particle::print(void) {
 
 void Particle::draw(void) {
     S2d pos = get_position();
-    draw_circle(pos.x, pos.y, 4 , GREEN, true, 1);
+    draw_circle(pos.x, pos.y, PARTICLE_RADIUS, PARTICLE_COLOR, true, 0);
 	}
-void Particle::move(void){
-
-}
 
 // Faiseur
 float Faiseur::get_radius(void) const {
@@ -112,12 +97,13 @@ void Faiseur::set_segments(unsigned int s) {
 
 void Faiseur::draw(void) {
 	S2d pos = get_position();
-	draw_circle(pos.x, pos.y, radius);
+	draw_circle(pos.x,
+				pos.y,
+				radius,
+				FAISEUR_COLOR,
+				FAISEUR_FILL,
+				FAISEUR_THICKNESS);
 	return;
-}
-
-void Node::draw_Articulation(S2d pos){
-	draw_circle(x, y, 0.03, YELLOW, TRUE, 1)
 }
 
 void Faiseur::print(void) {
@@ -126,58 +112,3 @@ void Faiseur::print(void) {
 	std::cout << "displacement: " << displacement << ", radius: " << radius;
 	std::cout << ", segments: " << segments << "\n";
 }
-
-void Faiseur::move(void){
-
-};
-
-// Arena
-/*
-void Arena::init(float x, float y, float r) {
-	center.x = x;
-	center.y = y;
-	radius = r;
-#if DEBUG
-	printf("Arena object created at (%f, %f) with radius %f\n", x, y, radius);
-#endif
-	return;
-}
-
-Arena::Arena() {
-	init(0, 0, 0);
-	return;
-}
-
-Arena::Arena(float x, float y, float r) {
-	init(x, y, r);
-	return;
-}
-
-int Arena::is_inside(S2d pos) {
-	if ((pos - center).get_length() < radius) {
-		return 1;
-	} else {
-		return 0;
-	}
-}
-
-int Arena::is_inside(Node *n) {
-	return is_inside(n->get_position());
-}
-
-void Arena::set_center(S2d c) {
-	center = c;
-}
-
-void Arena::set_radius(float r) {
-	radius = r;
-}
-S2d Arena::get_center(){
-	return center;
-}
-float Arena::get_radius(){
-    return radius;
-}
-*/
-
-

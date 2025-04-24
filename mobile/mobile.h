@@ -11,14 +11,18 @@
 
 #include <vector>
 #include <string>
+#include <queue>
 #include <fstream>
 #include <iostream>
 
 #define PARTICLE_RADIUS 2
+#define PARTICLE_COLOR GREEN
+#define FAISEUR_COLOR BLUE
+#define FAISEUR_FILL false
+#define FAISEUR_THICKNESS 1
 
 class Node {
 public:
-	static draw_Articulation(S2d pos);
 	Node(S2d pos, S2d vel) : position(pos), velocity(vel) {}
 	Node(float posx = 0, float posy = 0, float velx = 0, float vely = 0) :
 		position(S2d(posx, posy)), velocity(S2d(velx, vely)) {}
@@ -30,7 +34,7 @@ public:
 	void set_velocity_polar(float r, float angle);
 	virtual void draw(void);
 	virtual void print(void);
-	virtual void move(void);
+	virtual void update(void);
 protected:
 	S2d position;
 	S2d velocity;
@@ -53,7 +57,6 @@ public:
 	void set_counter(unsigned int c);
 	void print(void) override;
     void draw(void) override;
-	void move(void);
 private:
 	unsigned int counter;
 };
@@ -82,34 +85,12 @@ public:
 	void set_segments(unsigned int s);
 	void draw(void) override;
 	void print(void) override;
-    void move(void);
+	void update(void) override;
 private:
 	float displacement;
 	float radius;
 	unsigned int segments;
+	queue<S2d> tail;
 };
-
-
-
-/*
-class Arena {
-public:
-	Arena(void);						// constructor
-	Arena(float x, float y, float r);	// constructor
-
-	int is_inside(S2d pos);				// returns 1 if point is inside
-	// arena, 0 otherwise
-	int is_inside(Node *n);
-    void set_center(S2d c);
-    void set_radius(float r);
-	S2d get_center();
-    float get_radius();
-	void draw(void);
-private:
-	S2d center;
-	float radius;
-	void init(float x, float y, float r);
-};
-*/
 
 #endif
