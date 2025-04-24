@@ -48,7 +48,6 @@ My_window::My_window(string file_name)
       previous_file_name(file_name)
 
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
-
 {
 	info_value[0].set_text(std::to_string(Jeu::game_info_.score));
     info_value[1].set_text(std::to_string(Jeu::game_info_.nbParticule));
@@ -74,17 +73,6 @@ My_window::My_window(string file_name)
     set_drawing();
     set_jeu(file_name);
 }
-
-/*
-void My_window::arena_adjust(void){
-	float tempx = get_width() - 100;
-	float tempy = get_height();
-	arena_.set_center(S2d((tempx/2.0) + 100,tempy/2.0));
-	arena_.set_radius(min(tempx,tempy)/2);
-    std::cout << "Arena: center=(" << (tempx / 2.0) + 100 << "," << tempy / 2.0 << "), radius=" << arena_.get_radius() << std::endl;
-    drawing.queue_draw();
-}  // Adjust Arena size/position
-*/
 
 void My_window::set_commands() {
     command_frame.set_child(command_box);
@@ -192,8 +180,6 @@ bool My_window::key_pressed(guint keyval,
     case '1':
         // remplacer affichage par votre code
 		cout << keyval <<"  " << __func__ << endl;
-		//cout << get_width() <<"  " << get_height() << endl;
-
         return true;
     case 's':
         // remplacer affichage par votre code
@@ -286,9 +272,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 bool My_window::loop() {
     if (activated)
     {
-
         update();
-		//cout << (arena_.get_center()).x <<"  " << (arena_.get_center()).y << endl;
         return true;
     }
     return false;
@@ -357,10 +341,13 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
+	// draw arena
 	draw_circle(0, 0, r_max, GREEN, false, 1);
+
 	for (Particle &particle : Jeu::game_info_.particles) {
 		particle.draw();
 	}
+
 	for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
 		faiseur.draw();
 	}
