@@ -39,16 +39,14 @@ My_window::My_window(string file_name)
                  Gtk::Label("particules:"),
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
+
       game_info_(Jeu::read_file(file_name)),
 
       previous_file_name(file_name),
-        info_value({Gtk::Label(std::to_string(game_info_.score)),
-        Gtk::Label(std::to_string(game_info_.nbParticule)),
-        Gtk::Label(std::to_string(game_info_.nbFaiseurs)),
-        Gtk::Label(std::to_string(game_info_.nbArt))})
-
-
-
+	  info_value({Gtk::Label(std::to_string(game_info_.score)),
+                  Gtk::Label(std::to_string(game_info_.nbParticule)),
+                  Gtk::Label(std::to_string(game_info_.nbFaiseurs)),
+                  Gtk::Label(std::to_string(game_info_.nbArt))})
 
 
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
@@ -61,7 +59,7 @@ My_window::My_window(string file_name)
     panel_box.append(command_frame);
     panel_box.append(info_frame);
 
-	cout << game_info_.score << endl;
+
     set_commands();
     set_key_controller();
     set_mouse_controller();
@@ -318,9 +316,13 @@ void My_window::set_infos() {
 void My_window::update_infos() {
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
-	for (auto &value : info_value) {
-		value.set_text("0");
-	}
+	info_value[0].set_text(std::to_string(game_info_.score));
+    info_value[1].set_text(std::to_string(game_info_.nbParticule));
+    info_value[2].set_text(std::to_string(game_info_.nbFaiseurs));
+    info_value[3].set_text(std::to_string(game_info_.nbArt));
+	//for (auto &value : info_value) {
+		//value.set_text("0");
+	//}
 }
 
 void My_window::set_drawing() {
