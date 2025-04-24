@@ -42,6 +42,12 @@ void Node::draw(void) {
 void Node::print(void) {
 	std::cout << "Node: pos: (" << position.x << ", " << position.y << "), ";
 	std::cout << "vel: (" << velocity.x << ", " << velocity.y << ")\n";
+	return;
+}
+
+void Node::update(void) {
+	move();
+	return;
 }
 
 // DisplacementObject
@@ -97,12 +103,16 @@ void Faiseur::set_segments(unsigned int s) {
 
 void Faiseur::draw(void) {
 	S2d pos = get_position();
-	draw_circle(pos.x,
-				pos.y,
-				radius,
+	draw_circle(pos.x, pos.y, radius,
 				FAISEUR_COLOR,
 				FAISEUR_FILL,
 				FAISEUR_THICKNESS);
+	for (S2d &p : tail) {
+		draw_circle(p.x, p.y, radius,
+					FAISEUR_COLOR,
+					FAISEUR_FILL,
+					FAISEUR_THICKNESS);
+	}
 	return;
 }
 
@@ -111,4 +121,11 @@ void Faiseur::print(void) {
 	std::cout << "vel: (" << velocity.x << ", " << velocity.y << "), ";
 	std::cout << "displacement: " << displacement << ", radius: " << radius;
 	std::cout << ", segments: " << segments << "\n";
+}
+
+void Faiseur::update(void) {
+	tail.push_front(position);
+	move();
+	if (tail.size() >= segments) tail.pop_back();
+	return;
 }
