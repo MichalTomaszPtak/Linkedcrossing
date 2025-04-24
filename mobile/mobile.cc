@@ -3,6 +3,7 @@
 //
 
 #include "mobile.h"
+#include <../constantes/constantes.h>
 
 // Node
 
@@ -45,10 +46,12 @@ void Node::print(void) {
 }
 
 void Node::move(void) {
-	if (this->get_position().get_length() < r_max) {
-		this->set_position((this->get_position() + this->get_velocity());
+	if ((this->get_position()).get_length() < r_max) {
+		this->set_position(this->get_position() + this->get_velocity());
     }else{
-		this->
+		S2d tempvel = this->get_velocity();
+		tempvel.reflect(this->get_position());
+		this->set_velocity(tempvel);
     }
 
 }
@@ -84,7 +87,7 @@ void Particle::draw(void) {
     S2d pos = get_position();
     draw_circle(pos.x, pos.y, 4 , GREEN, true, 1);
 	}
-void Partricle::move(void){
+void Particle::move(void){
 
 }
 
@@ -120,7 +123,7 @@ void Faiseur::print(void) {
 	std::cout << ", segments: " << segments << "\n";
 }
 
-void Faiseurmove(void){
+void Faiseur::move(void){
 
 };
 
