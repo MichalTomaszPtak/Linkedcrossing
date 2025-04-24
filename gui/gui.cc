@@ -26,7 +26,6 @@ enum ButtonName
 constexpr unsigned taille_dessin(500);
 
 My_window::My_window(string file_name)
-    //game_info_ = read_file(file_name);
     : main_box(Gtk::Orientation::HORIZONTAL),
       panel_box(Gtk::Orientation::VERTICAL),
       command_box(Gtk::Orientation::VERTICAL),
@@ -40,14 +39,7 @@ My_window::My_window(string file_name)
                  Gtk::Label("particules:"),
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
-      game_info_(Jeu::read_file(file_name)),
-
-      previous_file_name(file_name),
-        info_value({Gtk::Label(std::to_string(game_info_.score)),
-        Gtk::Label(std::to_string(game_info_.nbParticule)),
-        Gtk::Label(std::to_string(game_info_.nbFaiseurs)),
-        Gtk::Label(std::to_string(game_info_.nbArt))})
-
+      previous_file_name(file_name)
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
 {
     set_title("Linked-Crossing Challenge");
@@ -56,10 +48,6 @@ My_window::My_window(string file_name)
     main_box.append(drawing);
     panel_box.append(command_frame);
     panel_box.append(info_frame);
-    std::cout << "My_window: score=" << game_info_.score
-              << ", particles=" << game_info_.nbParticule
-              << ", faiseurs=" << game_info_.nbFaiseurs
-              << ", articulations=" << game_info_.nbArt << std::endl;
 
     set_commands();
     set_key_controller();
@@ -67,10 +55,6 @@ My_window::My_window(string file_name)
     set_infos();
     set_drawing();
     set_jeu(file_name);
-    std::cout << "My_window: score=" << game_info_.score
-              << ", particles=" << game_info_.nbParticule
-              << ", faiseurs=" << game_info_.nbFaiseurs
-              << ", articulations=" << game_info_.nbArt << std::endl;
 }
 void My_window::arena_adjust(void){
 	float tempx = get_width() - 100;
@@ -80,11 +64,6 @@ void My_window::arena_adjust(void){
     std::cout << "Arena: center=(" << (tempx / 2.0) + 100 << "," << tempy / 2.0 << "), radius=" << arena_.get_radius() << std::endl;
     drawing.queue_draw();
 };  // Adjust Arena size/position
-
-void My_window::print_arena(void){
-    draw_circle(arena_.get_center().x, arena_.get_center().y, arena_.get_radius(), GREEN, false, 10);
-
-}
 
 void My_window::set_commands()
 {
@@ -128,7 +107,6 @@ void My_window::open_clicked()
 {
     auto dialog = new Gtk::FileChooserDialog("Choose a text file",
                                              Gtk::FileChooserDialog::Action::OPEN);
-
     set_dialog(dialog);
 }
 void My_window::save_clicked()
@@ -139,9 +117,6 @@ void My_window::save_clicked()
 }
 void My_window::restart_clicked()
 {
-    game_info_ = Jeu::read_file(file_name);
-    update_infos();
-
     // remplacer affichage par votre code
     cout << __func__ << endl;
 }
@@ -273,10 +248,6 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog)
     case OPEN:
         if (file_name != "")
         {
-            game_info_ = Jeu::read_file(file_name);
-            previous_file_name = file_name;
-            update_infos();
-
 	        // remplacer affichage par votre code
 			cout << file_name <<"  " << __func__ << endl;
             dialog->hide();
@@ -338,20 +309,18 @@ void My_window::set_infos()
         info_text[i].set_margin(3);
         info_value[i].set_margin(3);
     }
-
 }
 void My_window::update_infos()
 {
+
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
+
     {
-        info_value[0].set_text(std::to_string(game_info_.score));
-        info_value[1].set_text(std::to_string(game_info_.nbParticule));
-        info_value[2].set_text(std::to_string(game_info_.nbFaiseurs));
-        info_value[3].set_text(std::to_string(game_info_.nbArt));
-        //changing the value of game_info_
-
-
+        for (auto &value : info_value)
+        {
+            value.set_text("0");
+        }
     }
 }
 
@@ -371,12 +340,11 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
     cr->translate(width / 2, height / 2);
     cr->scale(side / (2 * r_max), -side / (2 * r_max));
 
-
-
-
-
-
+	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
+
+	arena_adjust();
+	drawing.queue_draw();
 }
 
 void My_window::set_mouse_controller()
@@ -463,12 +431,3 @@ void My_window::set_jeu(string file_name)
     update_infos();
     drawing.queue_draw();
 }
-
-void My_window::on_size_allocate(Gtk::Allocation& allocation) {
-    //Gtk::Window::on_size_allocate(allocation);
-    cout << "on_size_allocate" << endl;
-
-    arena_adjust();
-    drawing.queue_draw();
-}
-

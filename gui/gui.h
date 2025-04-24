@@ -12,7 +12,7 @@ class My_window : public Gtk::Window
 public:
     My_window(std::string file_name);
 protected:
-    void on_size_allocate(Gtk::Allocation& allocation);
+    // void My_window::on_size_allocate(Gtk::Allocation& allocation);
 private:
     Gtk::Box main_box, panel_box, command_box;
     Gtk::Frame command_frame, info_frame;
@@ -25,7 +25,6 @@ private:
     Gtk::DrawingArea drawing;
     std::string previous_file_name;
 	Arena arena_;
-    Jeu::GameInfo game_info_;
 	// ajouter un attribut pour accéder au jeu (instance ou pointeur)
 	
     void set_commands();
@@ -62,7 +61,6 @@ private:
 
     void set_jeu(std::string file_name);
     void arena_adjust(void);
-    void print_arena(void);
 
 };
 
