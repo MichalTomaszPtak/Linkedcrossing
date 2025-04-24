@@ -39,14 +39,20 @@ My_window::My_window(string file_name)
                  Gtk::Label("particules:"),
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
-      previous_file_name(file_name)
+      game_info_(Jeu::read_file(file_name)),
+
+      previous_file_name(file_name),
+        info_value({Gtk::Label(std::to_string(game_info_.score)),
+        Gtk::Label(std::to_string(game_info_.nbParticule)),
+        Gtk::Label(std::to_string(game_info_.nbFaiseurs)),
+        Gtk::Label(std::to_string(game_info_.nbArt))})
 
 
 
 
 
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
-		game_info_ = read_file(file_name);
+
 {
     set_title("Linked-Crossing Challenge");
     set_child(main_box);
@@ -55,7 +61,7 @@ My_window::My_window(string file_name)
     panel_box.append(command_frame);
     panel_box.append(info_frame);
 
-
+	cout << game_info_.score << endl;
     set_commands();
     set_key_controller();
     set_mouse_controller();
