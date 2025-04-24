@@ -36,6 +36,5 @@ void draw_segment(double baseX,
 				  double endY,
 				  color_t color = BLACK,
 				  double thickness = 1.0);
-static void set_color(color_t color);
 
 #endif
