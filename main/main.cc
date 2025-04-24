@@ -1,7 +1,7 @@
 #include <gtkmm/application.h>
 #include <string>
-#include "gui.h"
-#include "jeu.h"
+#include "../gui/gui.h"
+#include "../jeu/jeu.h"
 
 using namespace std;
 
