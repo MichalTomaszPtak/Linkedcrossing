@@ -250,8 +250,12 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
         dialog->hide();
         break;
     case OPEN:
+
         if (file_name != "")
         {
+			game_info_ = Jeu::read_file(file_name);
+			update_infos();
+
 	        // remplacer affichage par votre code
 			cout << file_name <<"  " << __func__ << endl;
             dialog->hide();
