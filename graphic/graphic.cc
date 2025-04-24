@@ -42,6 +42,15 @@ void draw_rect(double x,
     else 		(*ptcr)->stroke();
 	return;
 }
+
+void draw_segment(double baseX, double baseY, double endX, double endY, double thickness, Color color) {
+    (*ptcr)->set_line_width(thickness);
+    set_color(color);
+
+    (*ptcr)->move_to(baseX, baseY);
+    (*ptcr)->line_to(endX, endY);
+    (*ptcr)->stroke();
+}
 // à compléter pour effectuer des dessins élémentaires: trait, cercle, ...
 
 

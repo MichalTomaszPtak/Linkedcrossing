@@ -40,7 +40,13 @@ My_window::My_window(string file_name)
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
       previous_file_name(file_name)
+
+
+
+
+
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
+		game_info_ = read_file(file_name);
 {
     set_title("Linked-Crossing Challenge");
     set_child(main_box);
@@ -48,6 +54,7 @@ My_window::My_window(string file_name)
     main_box.append(drawing);
     panel_box.append(command_frame);
     panel_box.append(info_frame);
+
 
     set_commands();
     set_key_controller();
