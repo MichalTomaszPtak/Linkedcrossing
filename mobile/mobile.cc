@@ -72,37 +72,6 @@ void Particle::print(void) {
 }
 
 // Faiseur
-void Faiseur::init(float r, float d, unsigned int s) {
-	radius = r;
-	displacement = d;
-	segments = s;
-	return;
-}
-
-Faiseur::Faiseur(void) {
-	Node(0, 0, 0, 0);
-	init(0, 0, 0);
-	return;
-}
-
-Faiseur::Faiseur(S2d pos, S2d vel, float radius, float displacement, unsigned int segments) {
-	Node(pos, vel);
-	init(radius, displacement, segments);
-	return;
-}
-
-Faiseur::Faiseur(float posx,
-				 float posy,
-				 float velx,
-				 float vely,
-				 float radius,
-				 float displacement,
-				 int segments) {
-	Node(posx, posy, velx, vely);
-	init(radius, displacement, segments);
-	return;
-}
-
 float Faiseur::get_radius(void) const {
 	return radius;
 }

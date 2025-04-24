@@ -50,20 +50,26 @@ public:
 	void print(void) override;
 private:
 	unsigned int counter;
-	void init(unsigned int count);
 };
 
 class Faiseur: public Node, public DisplacementObject {
 public:
-	Faiseur(void);
-	Faiseur(S2d pos, S2d vel, float radius, float displacement, unsigned int segments);
-	Faiseur(float posx,
-			float posy,
-			float velx,
-			float vely,
-			float radius,
-			float displacement,
-			int segments);
+	Faiseur(S2d pos, S2d vel, float d = 0, float r = 0, unsigned int s = 0) : 
+			Node(pos, vel),
+			DisplacementObject(displacement),
+			radius(r),
+			segments(s) {}
+	Faiseur(float posx = 0,
+			float posy = 0,
+			float velx = 0,
+			float vely = 0,
+			float d = 0,
+			float r = 0,
+			int s = 0) :
+			Node(S2d(posx, posy), S2d(velx, vely)),
+			DisplacementObject(d),
+			radius(r),
+			segments(s) {}
 	float get_radius(void) const;
 	unsigned int get_segments(void) const;
 	void set_radius(float r);
@@ -74,7 +80,6 @@ private:
 	float displacement;
 	float radius;
 	unsigned int segments;
-	void init(float radius, float displacement, unsigned int segments);
 };
 
 /*
