@@ -12,7 +12,7 @@ class My_window : public Gtk::Window
 public:
     My_window(std::string file_name);
 private:
-	Jeu::GameInfo game_info_;
+
     Gtk::Box main_box, panel_box, command_box;
     Gtk::Frame command_frame, info_frame;
     Gtk::Grid info_grid;

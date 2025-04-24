@@ -23,12 +23,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Working on arena_adjust function">
-      <change afterPath="$PROJECT_DIR$/t01.txt" afterDir="false" />
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="reading + open button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphic/graphic.cc" beforeDir="false" afterPath="$PROJECT_DIR$/graphic/graphic.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/gui.cc" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/gui.h" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,12 +96,12 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing/jeu/jeu.cc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing/jeu/jeu.cc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jeu/jeu.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/message/message.cc" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/message/message.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/mobile/mobile.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -224,7 +220,7 @@
       <workItem from="1744818832205" duration="2043000" />
       <workItem from="1745392714437" duration="9978000" />
       <workItem from="1745408678515" duration="4636000" />
-      <workItem from="1745500935583" duration="671000" />
+      <workItem from="1745500935583" duration="3794000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -522,7 +518,55 @@
       <option name="project" value="LOCAL" />
       <updated>1745408380154</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Working on arena_adjust function">
+      <option name="closed" value="true" />
+      <created>1745502026880</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1745502026880</updated>
+    </task>
+    <task id="LOCAL-00039" summary="added game_info_ type">
+      <option name="closed" value="true" />
+      <created>1745502350770</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1745502350770</updated>
+    </task>
+    <task id="LOCAL-00040" summary="working on file reading">
+      <option name="closed" value="true" />
+      <created>1745503078498</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1745503078498</updated>
+    </task>
+    <task id="LOCAL-00041" summary="working on file reading">
+      <option name="closed" value="true" />
+      <created>1745503903755</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1745503903755</updated>
+    </task>
+    <task id="LOCAL-00042" summary="reading file works in half">
+      <option name="closed" value="true" />
+      <created>1745504166739</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1745504166739</updated>
+    </task>
+    <task id="LOCAL-00043" summary="reading + open button">
+      <option name="closed" value="true" />
+      <created>1745505119552</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1745505119552</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,10 +611,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Establish chaine file" />
-    <MESSAGE value="edited makefile to include chaine as module" />
-    <MESSAGE value="fixed some stuff" />
-    <MESSAGE value="Working on infromation validation" />
     <MESSAGE value="added mobile file" />
     <MESSAGE value="Got all dependencies straight" />
     <MESSAGE value="Moved node definitions to mobile.h" />
@@ -592,24 +632,28 @@
     <MESSAGE value="Makefile works dont touch" />
     <MESSAGE value="working on circle printing" />
     <MESSAGE value="Working on arena_adjust function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on arena_adjust function" />
+    <MESSAGE value="added game_info_ type" />
+    <MESSAGE value="working on file reading" />
+    <MESSAGE value="reading file works in half" />
+    <MESSAGE value="reading + open button" />
+    <option name="LAST_COMMIT_MESSAGE" value="reading + open button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/gui/gui.cc</url>
-          <line>263</line>
+          <line>239</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/gui/gui.cc</url>
-          <line>276</line>
+          <line>251</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/gui/gui.cc</url>
-          <line>58</line>
+          <line>51</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

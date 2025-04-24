@@ -40,22 +40,22 @@ My_window::My_window(string file_name)
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
 
-      game_info_(Jeu::read_file(file_name)),
+      Jeu::game = (Jeu::read_file(file_name)),
 
       previous_file_name(file_name),
-	  info_value({Gtk::Label(std::to_string(game_info_.score)),
-                  Gtk::Label(std::to_string(game_info_.nbParticule)),
-                  Gtk::Label(std::to_string(game_info_.nbFaiseurs)),
-                  Gtk::Label(std::to_string(game_info_.nbArt))})
+	  info_value({Gtk::Label(std::to_string(Jeu::game.score)),
+                  Gtk::Label(std::to_string(Jeu::game.nbParticule)),
+                  Gtk::Label(std::to_string(Jeu::game.nbFaiseurs)),
+                  Gtk::Label(std::to_string(Jeu::game.nbArt)});
 
 
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
 
 {
-	cout << game_info_.score << endl;
-    cout << game_info_.nbParticule << endl;
-    cout << game_info_.nbFaiseurs << endl;
-    cout << game_info_.nbArt << endl;
+	cout << Jeu::game.score << endl;
+    cout << Jeu::game.nbParticule << endl;
+    cout << Jeu::game.nbFaiseurs << endl;
+    cout << Jeu::game.nbArt << endl;
     set_title("Linked-Crossing Challenge");
     set_child(main_box);
     main_box.append(panel_box);
@@ -257,7 +257,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 
         if (file_name != "")
         {
-			game_info_ = Jeu::read_file(file_name);
+			Jeu::game = Jeu::read_file(file_name);
 			update_infos();
 
 	        // remplacer affichage par votre code
@@ -325,10 +325,10 @@ void My_window::set_infos() {
 void My_window::update_infos() {
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
-	info_value[0].set_text(std::to_string(game_info_.score));
-    info_value[1].set_text(std::to_string(game_info_.nbParticule));
-    info_value[2].set_text(std::to_string(game_info_.nbFaiseurs));
-    info_value[3].set_text(std::to_string(game_info_.nbArt));
+	info_value[0].set_text(std::to_string(Jeu::game.score));
+    info_value[1].set_text(std::to_string(Jeu::game.nbParticule));
+    info_value[2].set_text(std::to_string(Jeu::game.nbFaiseurs));
+    info_value[3].set_text(std::to_string(Jeu::game.nbArt));
 	//for (auto &value : info_value) {
 		//value.set_text("0");
 	//}

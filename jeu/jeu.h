@@ -26,7 +26,10 @@ enum Status
     LOST
 };
 
+
+
 namespace Jeu {
+
 	struct ParticleInfo {
 		S2d position;
 		int angle = 0;
@@ -53,6 +56,8 @@ namespace Jeu {
 		Mode mode;
 	};
 
+	static GameInfo game;
+
 	bool isEmpty(const std::string &line);
 	bool isValid(const std::string &line, int Expected_Number);
 	GameInfo read_file(const std::string &filename);
@@ -74,6 +79,7 @@ namespace Jeu {
 	bool readFaiseurs(std::ifstream &file, std::string &line, GameInfo &info);
 	bool readArticulations(std::ifstream &file, std::string &line, GameInfo &info);
 	bool readMode(std::ifstream &file, std::string &line, GameInfo &info);
-}
+};
+
 
 #endif
