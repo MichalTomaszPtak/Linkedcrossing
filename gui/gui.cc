@@ -40,12 +40,12 @@ My_window::My_window(string file_name)
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
 
-      previous_file_name(file_name),
 	  info_value({Gtk::Label(std::to_string(Jeu::game_info_.score)),
                   Gtk::Label(std::to_string(Jeu::game_info_.nbParticule)),
                   Gtk::Label(std::to_string(Jeu::game_info_.nbFaiseurs)),
-                  Gtk::Label(std::to_string(Jeu::game_info_.nbArt))})
+                  Gtk::Label(std::to_string(Jeu::game_info_.nbArt))}),
 
+      previous_file_name(file_name)
 
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
 
@@ -393,9 +393,9 @@ void My_window::set_mouse_controller() {
 S2d My_window::scaled(S2d const &pos) const {
     int width = drawing.get_width();
     int height = drawing.get_height();
-    double ratio((2 * r_max) / min(width, height));
-    return {ratio * (-width / 2 + pos.x),
-            ratio * (height / 2 - pos.y)};
+    float ratio((2 * (float)r_max) / min(width, height));
+    return {ratio * (-(float)width / 2 + pos.x),
+            ratio * ((float)height / 2 - pos.y)};
 }
 
 void My_window::on_drawing_left_click(int n_press, double x, double y) {
