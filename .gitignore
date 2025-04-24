@@ -1,3 +1,6 @@
 .idea
+.idea/**/*
+*.txt
+projet
 tags
 **/*.o
