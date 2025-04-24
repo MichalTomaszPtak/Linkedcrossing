@@ -23,10 +23,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Added particle.draw override">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Added articulation draw function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/gui.cc" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/mobile.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/mobile.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -609,7 +607,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745537205281</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Added articulation draw function">
+      <option name="closed" value="true" />
+      <created>1745537976861</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1745537976861</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -654,7 +660,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="starting to work on chaine structure. Will be finished soon" />
     <MESSAGE value="finished the Chain structure" />
     <MESSAGE value="Changed the get_length to const and working still on reading files" />
     <MESSAGE value="ParticleValid" />
@@ -679,7 +684,8 @@
     <MESSAGE value="Added game as static member" />
     <MESSAGE value="Added game as static member" />
     <MESSAGE value="Added particle.draw override" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added particle.draw override" />
+    <MESSAGE value="Added articulation draw function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added articulation draw function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
