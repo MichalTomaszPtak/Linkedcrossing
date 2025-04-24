@@ -44,6 +44,15 @@ void Node::print(void) {
 	std::cout << "vel: (" << velocity.x << ", " << velocity.y << ")\n";
 }
 
+void Node::move(void) {
+	if (this->get_position().get_length() < r_max) {
+		this->set_position((this->get_position() + this->get_velocity());
+    }else{
+		this->
+    }
+
+}
+
 // DisplacementObject
 void DisplacementObject::set_displacement(float d) {
 	displacement = d;
@@ -73,8 +82,11 @@ void Particle::print(void) {
 
 void Particle::draw(void) {
     S2d pos = get_position();
-    draw_circle(pos.x, pos.y,  , GREEN, true, 1);
+    draw_circle(pos.x, pos.y, 4 , GREEN, true, 1);
 	}
+void Partricle::move(void){
+
+}
 
 // Faiseur
 float Faiseur::get_radius(void) const {
@@ -107,6 +119,10 @@ void Faiseur::print(void) {
 	std::cout << "displacement: " << displacement << ", radius: " << radius;
 	std::cout << ", segments: " << segments << "\n";
 }
+
+void Faiseurmove(void){
+
+};
 
 // Arena
 /*

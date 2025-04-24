@@ -3,6 +3,7 @@
 #include "graphic_gui.h"
 #include "gui.h"
 
+
 using namespace std;
 
 enum Response
@@ -134,6 +135,7 @@ void My_window::save_clicked() {
 }
 
 void My_window::restart_clicked() {
+
     // remplacer affichage par votre code
     cout << __func__ << endl;
 }
@@ -358,13 +360,15 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	cout <<  __func__ << endl;
 
 	draw_circle(0, 0, r_max, GREEN, false, 1);
+
 	for (Particle &particle : Jeu::game_info_.particles) {
 		particle.draw();
-		particle.print();
 	}
 	for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
 		faiseur.draw();
 	}
+
+
 	drawing.queue_draw();
 }
 

@@ -27,6 +27,7 @@ public:
 	void set_velocity_polar(float r, float angle);
 	virtual void draw(void);
 	virtual void print(void);
+	virtual void move(void);
 protected:
 	S2d position;
 	S2d velocity;
@@ -49,6 +50,7 @@ public:
 	void set_counter(unsigned int c);
 	void print(void) override;
     void draw(void) override;
+	void move(void);
 private:
 	unsigned int counter;
 };
@@ -77,6 +79,7 @@ public:
 	void set_segments(unsigned int s);
 	void draw(void) override;
 	void print(void) override;
+    void move(void);
 private:
 	float displacement;
 	float radius;
