@@ -367,6 +367,9 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
 		faiseur.draw();
 	}
+	for (Articulation &articulation : Jeu::game_info_.articulations) {
+    articulation.draw();
+    }
 
 
 	drawing.queue_draw();

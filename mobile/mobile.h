@@ -18,6 +18,7 @@
 
 class Node {
 public:
+	static draw_Articulation(S2d pos);
 	Node(S2d pos, S2d vel) : position(pos), velocity(vel) {}
 	Node(float posx = 0, float posy = 0, float velx = 0, float vely = 0) :
 		position(S2d(posx, posy)), velocity(S2d(velx, vely)) {}

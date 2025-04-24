@@ -116,6 +116,10 @@ void Faiseur::draw(void) {
 	return;
 }
 
+void Node::draw_Articulation(S2d pos){
+	draw_circle(x, y, 0.03, YELLOW, TRUE, 1)
+}
+
 void Faiseur::print(void) {
 	std::cout << "Faiseur: pos: (" << position.x << ", " << position.y << "), ";
 	std::cout << "vel: (" << velocity.x << ", " << velocity.y << "), ";

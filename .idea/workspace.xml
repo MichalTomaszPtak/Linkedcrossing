@@ -24,6 +24,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Added particle.draw override">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/gui.cc" beforeDir="false" afterPath="$PROJECT_DIR$/gui/gui.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile/mobile.cc" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/mobile.cc" afterDir="false" />
     </list>
@@ -600,7 +601,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745531651026</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Added particle.draw override">
+      <option name="closed" value="true" />
+      <created>1745537205281</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1745537205281</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,6 +698,11 @@
           <url>file://$PROJECT_DIR$/gui/gui.cc</url>
           <line>49</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/jeu/jeu.cc</url>
+          <line>4</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
