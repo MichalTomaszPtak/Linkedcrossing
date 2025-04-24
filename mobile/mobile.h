@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <string>
+#include <queue>
 #include <fstream>
 #include <iostream>
 
@@ -33,6 +34,7 @@ public:
 	void set_velocity_polar(float r, float angle);
 	virtual void draw(void);
 	virtual void print(void);
+	virtual void update(void);
 protected:
 	S2d position;
 	S2d velocity;
@@ -83,33 +85,12 @@ public:
 	void set_segments(unsigned int s);
 	void draw(void) override;
 	void print(void) override;
+	void update(void) override;
 private:
 	float displacement;
 	float radius;
 	unsigned int segments;
+	queue<S2d> tail;
 };
-
-
-
-/*
-class Arena {
-public:
-	Arena(void);						// constructor
-	Arena(float x, float y, float r);	// constructor
-
-	int is_inside(S2d pos);				// returns 1 if point is inside
-	// arena, 0 otherwise
-	int is_inside(Node *n);
-    void set_center(S2d c);
-    void set_radius(float r);
-	S2d get_center();
-    float get_radius();
-	void draw(void);
-private:
-	S2d center;
-	float radius;
-	void init(float x, float y, float r);
-};
-*/
 
 #endif
