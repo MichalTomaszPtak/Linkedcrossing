@@ -81,3 +81,7 @@ void S2d::operator*= (const float k) {
 	return;
 }
 
+void S2d::print(void) {
+	std::cout << "S2d: (" << x << ", " << y << ")\n";
+	return;
+}
