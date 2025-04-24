@@ -14,6 +14,8 @@
 #include <fstream>
 #include <iostream>
 
+#define PARTICLE_RADIUS 2
+
 class Node {
 public:
 	Node(S2d pos, S2d vel) : position(pos), velocity(vel) {}
@@ -57,7 +59,7 @@ class Faiseur: public Node, public DisplacementObject {
 public:
 	Faiseur(S2d pos, S2d vel, float d = 0, float r = 0, unsigned int s = 0) : 
 			Node(pos, vel),
-			DisplacementObject(displacement),
+			DisplacementObject(d),
 			radius(r),
 			segments(s) {}
 	Faiseur(float posx = 0,

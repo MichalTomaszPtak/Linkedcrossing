@@ -73,7 +73,7 @@ void Particle::print(void) {
 
 void Particle::draw(void) {
     S2d pos = get_position();
-    draw_circle(pos.x, pos.y,  , GREEN, true, 1);
+    draw_circle(pos.x, pos.y, PARTICLE_RADIUS, GREEN, true, 0);
 	}
 
 // Faiseur
