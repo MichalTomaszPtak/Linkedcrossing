@@ -40,22 +40,25 @@ My_window::My_window(string file_name)
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
 
-      Jeu::game = (Jeu::read_file(file_name)),
-
       previous_file_name(file_name),
-	  info_value({Gtk::Label(std::to_string(Jeu::game.score)),
-                  Gtk::Label(std::to_string(Jeu::game.nbParticule)),
-                  Gtk::Label(std::to_string(Jeu::game.nbFaiseurs)),
-                  Gtk::Label(std::to_string(Jeu::game.nbArt)});
+	  info_value({Gtk::Label(std::to_string(Jeu::game_info_.score)),
+                  Gtk::Label(std::to_string(Jeu::game_info_.nbParticule)),
+                  Gtk::Label(std::to_string(Jeu::game_info_.nbFaiseurs)),
+                  Gtk::Label(std::to_string(Jeu::game_info_.nbArt))})
 
 
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
 
 {
-	cout << Jeu::game.score << endl;
-    cout << Jeu::game.nbParticule << endl;
-    cout << Jeu::game.nbFaiseurs << endl;
-    cout << Jeu::game.nbArt << endl;
+	info_value[0].set_text(std::to_string(Jeu::game_info_.score));
+    info_value[1].set_text(std::to_string(Jeu::game_info_.nbParticule));
+    info_value[2].set_text(std::to_string(Jeu::game_info_.nbFaiseurs));
+    info_value[3].set_text(std::to_string(Jeu::game_info_.nbArt));
+	Jeu::game_info_ = (Jeu::read_file(file_name));
+	cout << Jeu::game_info_.score << endl;
+    cout << Jeu::game_info_.nbParticule << endl;
+    cout << Jeu::game_info_.nbFaiseurs << endl;
+    cout << Jeu::game_info_.nbArt << endl;
     set_title("Linked-Crossing Challenge");
     set_child(main_box);
     main_box.append(panel_box);
@@ -259,7 +262,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 
         if (file_name != "")
         {
-			Jeu::game = Jeu::read_file(file_name);
+			Jeu::game_info_ = Jeu::read_file(file_name);
 			update_infos();
 
 	        // remplacer affichage par votre code
@@ -327,10 +330,10 @@ void My_window::set_infos() {
 void My_window::update_infos() {
  	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
-	info_value[0].set_text(std::to_string(Jeu::game.score));
-    info_value[1].set_text(std::to_string(Jeu::game.nbParticule));
-    info_value[2].set_text(std::to_string(Jeu::game.nbFaiseurs));
-    info_value[3].set_text(std::to_string(Jeu::game.nbArt));
+	info_value[0].set_text(std::to_string(Jeu::game_info_.score));
+    info_value[1].set_text(std::to_string(Jeu::game_info_.nbParticule));
+    info_value[2].set_text(std::to_string(Jeu::game_info_.nbFaiseurs));
+    info_value[3].set_text(std::to_string(Jeu::game_info_.nbArt));
 	//for (auto &value : info_value) {
 		//value.set_text("0");
 	//}
@@ -355,10 +358,11 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	cout <<  __func__ << endl;
 
 	draw_circle(0, 0, r_max, GREEN, false, 1);
-	for (Particle &particle : game_info_.particles) {
+	for (Particle &particle : Jeu::game_info_.particles) {
 		particle.draw();
+		particle.print();
 	}
-	for (Faiseur &faiseur : game_info_.faiseurs) {
+	for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
 		faiseur.draw();
 	}
 	drawing.queue_draw();
@@ -413,7 +417,7 @@ void My_window::set_jeu(string file_name) {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
-    if (gameValid(game_info_)) {
+    if (Jeu::gameValid(Jeu::game_info_)) {
         buttons[2].set_sensitive(false);
         buttons[4].set_sensitive(false);
         buttons[5].set_sensitive(false);
@@ -427,7 +431,7 @@ void My_window::set_jeu(string file_name) {
         buttons[5].set_sensitive(true);
         checks[0].set_sensitive(true);
         checks[1].set_sensitive(true);
-        switch (game_info_.mode) { // voir jeu.h
+        switch (Jeu::game_info_.mode) { // voir jeu.h
         case CONSTRUCTION:
 			checks[0].set_active(true);
 			break;

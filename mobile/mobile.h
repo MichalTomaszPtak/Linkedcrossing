@@ -48,6 +48,7 @@ public:
 	unsigned int get_counter(void) const;
 	void set_counter(unsigned int c);
 	void print(void) override;
+    void draw(void) override;
 private:
 	unsigned int counter;
 };
@@ -81,6 +82,8 @@ private:
 	float radius;
 	unsigned int segments;
 };
+
+
 
 /*
 class Arena {

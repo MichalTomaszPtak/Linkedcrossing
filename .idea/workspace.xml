@@ -23,7 +23,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="reading + open button">
+    <list default="true" id="6459a275-0202-48af-b0e0-6c403a322413" name="Changes" comment="Added game as static member">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +125,7 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing/gui&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/michael/Bureau/Projects/C++/ICC_Project/linkedcrossing/jeu&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -137,11 +137,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/jeu" />
       <recent name="$PROJECT_DIR$/gui" />
       <recent name="$PROJECT_DIR$/Graphics" />
       <recent name="$PROJECT_DIR$/chaine" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/constantes" />
     </key>
   </component>
   <component name="RunManager" selected="Native Application.all">
@@ -168,10 +168,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Makefile Target.all" />
-      <item itemvalue="Makefile Target.clean" />
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.main.elf" />
+      <item itemvalue="Makefile Target.all" />
+      <item itemvalue="Makefile Target.clean" />
     </list>
     <recent_temporary>
       <list>
@@ -220,7 +220,7 @@
       <workItem from="1744818832205" duration="2043000" />
       <workItem from="1745392714437" duration="9978000" />
       <workItem from="1745408678515" duration="4636000" />
-      <workItem from="1745500935583" duration="3794000" />
+      <workItem from="1745500935583" duration="10625000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -566,7 +566,31 @@
       <option name="project" value="LOCAL" />
       <updated>1745505119552</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="changed jeu.cc file">
+      <option name="closed" value="true" />
+      <created>1745506564287</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1745506564287</updated>
+    </task>
+    <task id="LOCAL-00045" summary="changed jeu.cc file">
+      <option name="closed" value="true" />
+      <created>1745508772541</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1745508772541</updated>
+    </task>
+    <task id="LOCAL-00046" summary="changed jeu.cc file">
+      <option name="closed" value="true" />
+      <created>1745511940616</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1745511940616</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,8 +635,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added mobile file" />
-    <MESSAGE value="Got all dependencies straight" />
     <MESSAGE value="Moved node definitions to mobile.h" />
     <MESSAGE value="starting to work on chaine structure. Will be finished soon" />
     <MESSAGE value="finished the Chain structure" />
@@ -636,19 +658,21 @@
     <MESSAGE value="working on file reading" />
     <MESSAGE value="reading file works in half" />
     <MESSAGE value="reading + open button" />
-    <option name="LAST_COMMIT_MESSAGE" value="reading + open button" />
+    <MESSAGE value="Added game as static member" />
+    <MESSAGE value="Added game as static member" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added game as static member" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/gui/gui.cc</url>
-          <line>239</line>
+          <line>246</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/gui/gui.cc</url>
-          <line>251</line>
+          <line>262</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">

@@ -71,6 +71,11 @@ void Particle::print(void) {
 	std::cout << "\n";
 }
 
+void Particle::draw(void) {
+    S2d pos = get_position();
+    draw_circle(pos.x, pos.y,  , GREEN, true, 1);
+	}
+
 // Faiseur
 float Faiseur::get_radius(void) const {
 	return radius;

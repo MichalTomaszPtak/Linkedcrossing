@@ -55,6 +55,8 @@ namespace Jeu {
 		Mode mode;
 	};
 
+	GameInfo static game_info_;
+
 	// game loading
 	bool isEmpty(const std::string &line);
 	bool isValid(const std::string &line, int Expected_Number);
