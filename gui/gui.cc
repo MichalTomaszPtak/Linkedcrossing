@@ -72,6 +72,7 @@ My_window::My_window(string file_name)
     set_jeu(file_name);
 }
 
+/*
 void My_window::arena_adjust(void){
 	float tempx = get_width() - 100;
 	float tempy = get_height();
@@ -80,6 +81,7 @@ void My_window::arena_adjust(void){
     std::cout << "Arena: center=(" << (tempx / 2.0) + 100 << "," << tempy / 2.0 << "), radius=" << arena_.get_radius() << std::endl;
     drawing.queue_draw();
 }  // Adjust Arena size/position
+*/
 
 void My_window::set_commands() {
     command_frame.set_child(command_box);
@@ -353,10 +355,10 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	cout <<  __func__ << endl;
 
 	draw_circle(0, 0, r_max, GREEN, false, 1);
-	for (Particle particle : game_info_.particles) {
+	for (Particle &particle : game_info_.particles) {
 		particle.draw();
 	}
-	for (Faiseur faiseur : game_info_.faiseurs) {
+	for (Faiseur &faiseur : game_info_.faiseurs) {
 		faiseur.draw();
 	}
 	drawing.queue_draw();

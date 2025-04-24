@@ -60,13 +60,13 @@ namespace Jeu {
 	bool isValid(const std::string &line, int Expected_Number);
 	GameInfo read_file(const std::string &filename);
 
-	bool particleValid(const Particle &data);
-	bool faiseurValid(const Faiseur &data);
+	bool particleValid(const Particle *particle);
+	bool faiseurValid(const Faiseur *faiseur);
 	bool articulationValid(const S2d pos, unsigned int index, GameInfo &info);
 	bool gameValid(const GameInfo &data);
 
-	Particle read_particule(const std::string &line);
-	Faiseur read_faiseur(const std::string &line);
+	Particle *read_particule(const std::string &line);
+	Faiseur *read_faiseur(const std::string &line);
 
 	Mode read_game_mode(std::ifstream &file, std::string &line);
 
@@ -77,7 +77,6 @@ namespace Jeu {
 
 	// game runtime
 	void drawGame(const GameInfo &data);
-	
 }
 
 #endif
