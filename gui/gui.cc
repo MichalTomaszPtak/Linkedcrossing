@@ -348,7 +348,7 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	cout <<  __func__ << endl;
 
 	//arena_adjust();
-	draw_circle(0, 0, r_max, GREEN);
+	draw_circle(0, 0, r_max, GREEN, false, 1);
 	drawing.queue_draw();
 }
 

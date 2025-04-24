@@ -2,19 +2,12 @@
 // Created by michael on 18/03/25.
 //
 
-#include <debug/debug.h>
+#include "debug.h"
 #include "jeu.h"
 
 #define SKIP_EMPTY()	do { \
 							if (!std::getline(file,line)) break; \
 						} while (isEmpty(line))
-
-class Running_game{
-public:
-Running_game(void){
-
-};
-};
 
 namespace Jeu {
 	bool isEmpty(const std::string &line) {
