@@ -312,6 +312,8 @@ void My_window::update() {
 
 
 
+
+
 	cout <<  __func__ << endl;
 
 	Jeu::update();

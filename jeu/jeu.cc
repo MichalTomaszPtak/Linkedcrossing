@@ -314,6 +314,9 @@ namespace Jeu {
 	void update(void) {
 		for (Particle &p: game_info_.particles) {
 			update_particle(p);
+			if (p.get_counter == time_to_split) {
+				game_info_.particles.push_back(p.split());
+			}
 		}
 		for (Faiseur &f: Jeu::game_info_.faiseurs) {
 			update_faiseur(f);
