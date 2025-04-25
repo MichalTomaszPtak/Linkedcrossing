@@ -49,8 +49,8 @@ namespace Jeu {
 	bool articulationValid(const S2d pos, unsigned int index, GameInfo &info);
 	bool gameValid(const GameInfo &info);
 
-	Particle &read_particule(const std::string &line);
-	Faiseur &read_faiseur(const std::string &line);
+	Particle read_particule(const std::string &line);
+	Faiseur read_faiseur(const std::string &line);
 
 	Mode read_game_mode(std::ifstream &file, std::string &line);
 

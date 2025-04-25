@@ -175,7 +175,7 @@ namespace Jeu {
 		return true;
 	}
 
-	Particle &read_particule(const std::string &line) {
+	Particle read_particule(const std::string &line) {
 		std::stringstream ss(line);
 		std::string token;
 
@@ -194,12 +194,10 @@ namespace Jeu {
 
 		vel.set_polar(displacement, angle);
 
-		Particle p = Particle(pos, vel, displacement, counter);
-		Particle &pref = p;
-		return pref;
+		return Particle(pos, vel, displacement, counter);
 	}
 
-	Faiseur &read_faiseur(const std::string &line) {
+	Faiseur read_faiseur(const std::string &line) {
 		std::stringstream ss(line);
 		std::string token;
 
@@ -220,9 +218,7 @@ namespace Jeu {
 
 		vel.set_polar(displacement, angle);
 
-		Faiseur f = Faiseur(pos, vel, displacement, radius, segments);
-		Faiseur &fref = f;
-		return fref;
+		return Faiseur(pos, vel, displacement, radius, segments);
 	}
 
 	bool readParticles(std::ifstream &file, std::string &line, GameInfo &info) {
