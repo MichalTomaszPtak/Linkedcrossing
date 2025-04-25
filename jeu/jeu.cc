@@ -312,13 +312,23 @@ namespace Jeu {
 	}
 
 	void update(void) {
-		for (Particle &particle : game_info_.particles) {
-			particle.update();
+		for (Particle &p: game_info_.particles) {
+			update_particle(p);
 		}
-		for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
-			faiseur.update();
+		for (Faiseur &f: Jeu::game_info_.faiseurs) {
+			update_faiseur(f);
 		}
 	}
+
+	void update_particle(Particle &p) {
+		p.update();
+		// TODO code for splitting 
+	}
+
+	void update_faiseur(Faiseur &f) {
+		f.update();
+	}
+
 	void draw_Chaine(const std::vector<S2d>& articulation){
 		for (unsigned int i = 0; i < articulation.size(); i++) {
 			draw_circle(articulation[i].x,articulation[i].y, 2 , RED, true , 1);
