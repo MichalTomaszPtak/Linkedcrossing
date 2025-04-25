@@ -276,6 +276,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
     case SAVE:
         if (file_name != "")
         {
+            Jeu::save_game_info(file_name);
 	        // remplacer affichage par votre code
 			cout << file_name <<"  " << __func__ << endl;
             dialog->hide();
