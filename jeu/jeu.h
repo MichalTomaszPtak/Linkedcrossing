@@ -35,6 +35,7 @@ namespace Jeu {
 		unsigned int nbArt = 0;
 		std::vector<S2d> articulations;
 		Mode mode;
+		S2d target_point = S2d(0,0);
 	};
 
 	extern GameInfo game_info_;
