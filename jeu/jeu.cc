@@ -312,18 +312,7 @@ namespace Jeu {
 	}
 
 	void update(void) {
-		for(unsigned int i = 0; i < game_info_.particles.size(); i++){
-			update_particle(game_info_.particles[i]);
-			if (game_info_.particles[i].get_counter() == time_to_split) {
-				if (game_info_.particles.size() == nb_particule_max){
-					game_info_.particles.erase(game_info_.particles.begin()+i);
-				}else{
-					(game_info_.particles).push_back(game_info_.particles[i].split());
-					game_info_.nbParticule++;
-				}
 
-			}
-		}
 		for (Particle &p: game_info_.particles) {
 			update_particle(p);
 
@@ -335,6 +324,20 @@ namespace Jeu {
 
 	void update_particle(Particle &p) {
 		p.update();
+		for(unsigned int i = 0; i < game_info_.particles.size(); i++){
+			update_particle(game_info_.particles[i]);
+			if (game_info_.particles[i].get_counter() == time_to_split) {
+				if (game_info_.particles.size() == nb_particule_max){
+					game_info_.particles.erase(game_info_.particles.begin()+i);
+				}else{
+					(game_info_.particles).push_back(game_info_.particles[i].split());
+					game_info_.nbParticule++;
+				}
+
+			}
+			game_info_.particles[i].augment_counter();
+
+		}
 		// TODO code for splitting 
 	}
 

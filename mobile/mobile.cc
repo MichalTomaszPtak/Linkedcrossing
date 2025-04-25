@@ -107,6 +107,10 @@ Particle Particle::split(void){
 	return Particle(position, second_vel, new_displacement, 0);
 }
 
+void Particle::augment_counter(void){
+	counter++;
+}
+
 // Faiseur
 float Faiseur::get_radius(void) const {
 	return radius;

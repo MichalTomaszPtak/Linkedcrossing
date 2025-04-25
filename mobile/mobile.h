@@ -56,6 +56,7 @@ public:
 	Particle(S2d pos = {0,0}, S2d vel = {0,0}, float d = 0, unsigned int c = 0) :
 		Node(pos, vel), DisplacementObject(d), counter(c) {}
 	unsigned int get_counter(void) const;
+	void augment_counter(void);
 	void set_counter(unsigned int c);
 	void print(void) override;
     void draw(void) override;
