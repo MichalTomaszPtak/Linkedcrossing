@@ -33,7 +33,7 @@ public:
 	void set_position(S2d pos);
 	void set_velocity(S2d vel);
 	void set_velocity_polar(float r, float angle);
-	void move(void);
+	virtual void move(void);
 	virtual void draw(void);
 	virtual void print(void);
 	virtual void update(void);
@@ -85,6 +85,7 @@ public:
 	unsigned int get_segments(void) const;
 	void set_radius(float r);
 	void set_segments(unsigned int s);
+	void move(void) override;
 	void draw(void) override;
 	void print(void) override;
 	void update(void) override;

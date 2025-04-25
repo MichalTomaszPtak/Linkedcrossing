@@ -130,6 +130,13 @@ void Faiseur::print(void) {
 	std::cout << ", segments: " << segments << "\n";
 }
 
+void Faiseur::move(void) {
+	if ((position + velocity).get_length() >= r_max - radius)
+		velocity.reflect(position);
+	position += velocity;
+	return;
+}
+
 void Faiseur::update(void) {
 	tail.push_front(position);
 	move();
