@@ -319,11 +319,14 @@ namespace Jeu {
 			faiseur.update();
 		}
 	}
-	void draw_Chaine(const vector<S2d> &articulation){
-		for (unsigned int i = 0; i < articulation.size()-1; i++) {
-			draw_line(articulation[i].x, articulation[i].y, articulation[i+1].x, articulation[i+1].y, RED, 1);
+	void draw_Chaine(const std::vector<S2d>& articulation){
+		for (unsigned int i = 0; i < articulation.size(); i++) {
+			draw_circle(articulation[i].x,articulation[i].y, 2 , RED, true , 1);
 		}
-		draw_circle(articulation[i].x,articulation[i].y, r_capture, RED, false, 1);
+		for (unsigned int i = 0; i < articulation.size()-1; i++) {
+			draw_segment(articulation[i].x, articulation[i].y, articulation[i+1].x, articulation[i+1].y, RED, 1);
+		}
+		draw_circle(articulation[articulation.size()-1].x,articulation[articulation.size()-1].y, r_capture, RED, false, 1);
 
 	}
 	
