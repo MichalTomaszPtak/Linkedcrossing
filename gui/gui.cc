@@ -419,6 +419,8 @@ void My_window::on_drawing_left_click(int n_press, double x, double y) {
 }
 
 void My_window::on_drawing_right_click(int n_press, double x, double y) {
+    Jeu::game_info_.mode = (Mode::GUIDAGE);
+    checks[0].set_active(true);
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 }
