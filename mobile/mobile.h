@@ -59,6 +59,7 @@ public:
 	void set_counter(unsigned int c);
 	void print(void) override;
     void draw(void) override;
+	Particle split(void);
 private:
 	unsigned int counter;
 };

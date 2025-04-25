@@ -89,6 +89,12 @@ void Particle::draw(void) {
     draw_circle(pos.x, pos.y, PARTICLE_RADIUS, PARTICLE_COLOR, true, 0);
 }
 
+Particle Particle::split(void){
+	this->
+
+
+}
+
 // Faiseur
 float Faiseur::get_radius(void) const {
 	return radius;
