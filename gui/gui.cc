@@ -167,6 +167,7 @@ void My_window::start_clicked() {
 void My_window::step_clicked() {
     // remplacer affichage par votre code
     cout << __func__ << endl;
+	update();
 }
 
 void My_window::build_clicked() {
@@ -288,7 +289,6 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 bool My_window::loop() {
     if (activated)
     {
-
         update();
 		//cout << (arena_.get_center()).x <<"  " << (arena_.get_center()).y << endl;
         return true;
@@ -299,9 +299,10 @@ bool My_window::loop() {
 void My_window::update() {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
+
+	Jeu::update();
     update_infos();
     drawing.queue_draw();
-
 
     //~ if (appel pour obtenir le statut du jeu !== ON_GOING) // voir jeu.h 
     //~ {
@@ -359,17 +360,12 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
-	draw_circle(0, 0, r_max, GREEN, false, 1);
-
-	for (Particle &particle : Jeu::game_info_.particles) {
-		particle.draw();
-	}
-	for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
-		faiseur.draw();
-	}
+	Jeu::drawScene();
+	/*
 	for (Articulation &articulation : Jeu::game_info_.articulations) {
     articulation.draw();
     }
+	*/
 
 
 	drawing.queue_draw();

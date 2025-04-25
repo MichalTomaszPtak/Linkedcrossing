@@ -19,31 +19,13 @@
 #include <fstream>
 #include <sstream>
 
-enum Status
-{
+enum Status {
     ONGOING,
     WON,
     LOST
 };
 
 namespace Jeu {
-	/*
-	struct ParticleInfo {
-		S2d position;
-		int angle = 0;
-		double displacement;
-		unsigned int counter;
-	};
-
-	struct FaiseurInfo {
-		S2d position;
-		int angle = 0;
-		double displacement;
-		double radius;
-		unsigned int number_elements;
-	};
-	*/
-
 	struct GameInfo {
 		unsigned int score = 4000;
 		unsigned int nbParticule = 0;
@@ -55,17 +37,17 @@ namespace Jeu {
 		Mode mode;
 	};
 
-	GameInfo static game_info_;
+	extern GameInfo game_info_;
 
 	// game loading
 	bool isEmpty(const std::string &line);
 	bool isValid(const std::string &line, int Expected_Number);
-	GameInfo read_file(const std::string &filename);
+	GameInfo &read_file(const std::string &filename);
 
 	bool particleValid(const Particle *particle);
 	bool faiseurValid(const Faiseur *faiseur);
 	bool articulationValid(const S2d pos, unsigned int index, GameInfo &info);
-	bool gameValid(const GameInfo &data);
+	bool gameValid(const GameInfo &info);
 
 	Particle *read_particule(const std::string &line);
 	Faiseur *read_faiseur(const std::string &line);
@@ -78,7 +60,8 @@ namespace Jeu {
 	bool readMode(std::ifstream &file, std::string &line, GameInfo &info);
 
 	// game runtime
-	void drawGame(const GameInfo &data);
+	void update(void);
+	void drawScene(void);
 }
 
 #endif

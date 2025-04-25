@@ -17,6 +17,8 @@ Running_game(void){
 };
 
 namespace Jeu {
+	GameInfo game_info_;
+
 	bool isEmpty(const std::string &line) {
 		// check if line is commented or empty
 		if (line.empty() || line[0] == '#') {
@@ -47,9 +49,9 @@ namespace Jeu {
 		return (count == Expected_Number);
 	}
 
-	GameInfo read_file(const std::string &filename) {
+	GameInfo &read_file(const std::string &filename) {
 		bool correct = true;
-		GameInfo result;
+		GameInfo &result = game_info_; // use local game_info_
 		std::ifstream file(filename);
 		std::string line;
 
@@ -78,16 +80,16 @@ namespace Jeu {
 		return result;
 	}
 
-	bool gameValid(const GameInfo &data) {
-		if (!(data.score > 0 && data.score < score_max)) {
-			std::cout << message::score_outside(data.score);
+	bool gameValid(const GameInfo &info) {
+		if (!(info.score > 0 && info.score < score_max)) {
+			std::cout << message::score_outside(info.score);
 			return false;
 		}
-		if (!(data.nbParticule >= 0 && data.nbParticule < nb_particule_max)) {
-			std::cout << message::nb_particule_outside(data.nbParticule);
+		if (!(info.nbParticule >= 0 && info.nbParticule < nb_particule_max)) {
+			std::cout << message::nb_particule_outside(info.nbParticule);
 			return false;
 		}
-		for (const auto& Single: data.particles) {
+		for (const auto& Single: info.particles) {
 			unsigned int counter = Single.get_counter();
 			if (!(counter > 0 && counter < time_to_split)) {
 				std::cout << message::particule_counter(counter);
@@ -182,13 +184,15 @@ namespace Jeu {
 		ss >> token; pos.y = stod(token);
 
 		S2d vel;
-		ss >> token;
-		vel.set_polar(1, stod(token)); // TODO determine magnitude
+		float angle;
+		ss >> token; angle = stod(token);
 
 		float displacement;
 		ss >> token; displacement = stod(token);
 		unsigned int counter;
 		ss >> token; counter = stod(token);
+
+		vel.set_polar(displacement, angle);
 
 		return new Particle(pos, vel, displacement, counter);
 	}
@@ -202,8 +206,8 @@ namespace Jeu {
 		ss >> token; pos.y = stod(token);
 
 		S2d vel;
-		ss >> token;
-		vel.set_polar(1, stod(token)); // TODO determine magnitude
+		float angle;
+		ss >> token; angle = stod(token);
 
 		float displacement;
 		ss >> token; displacement = stod(token);
@@ -211,6 +215,8 @@ namespace Jeu {
 		ss >> token; radius = stod(token);
 		unsigned int segments;
 		ss >> token; segments = stod(token);
+
+		vel.set_polar(displacement, angle);
 
 		return new Faiseur(pos, vel, displacement, radius, segments);
 	}
@@ -303,5 +309,24 @@ namespace Jeu {
 			return false;  // Invalid mode
 		}
 		return true;
+	}
+
+	void update(void) {
+		for (Particle &particle : game_info_.particles) {
+			particle.update();
+		}
+		for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
+			faiseur.update();
+		}
+	}
+	
+	void drawScene(void) {
+		draw_circle(0, 0, r_max, GREEN, false, 1);
+		for (Particle &particle : Jeu::game_info_.particles) {
+			particle.draw();
+		}
+		for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
+			faiseur.draw();
+		}
 	}
 }
