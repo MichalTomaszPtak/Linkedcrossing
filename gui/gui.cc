@@ -309,7 +309,7 @@ bool My_window::loop() {
 void My_window::update() {
 	// remplacer affichage par votre code
     --(Jeu::game_info_.score);
-    cout << Jeu::game_info_.score << endl;
+
 
 
 	cout <<  __func__ << endl;

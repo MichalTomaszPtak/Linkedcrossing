@@ -89,6 +89,24 @@ void Particle::draw(void) {
     draw_circle(pos.x, pos.y, PARTICLE_RADIUS, PARTICLE_COLOR, true, 0);
 }
 
+Particle Particle::split(void){
+	double temp_angle = velocity.get_angle();
+
+	double new_displacement = displacement * coef_split;
+
+	S2d first_vel, second_vel;
+	first_vel.set_polar(new_displacement, temp_angle + delta_split);
+
+	second_vel.set_polar(new_displacement, temp_angle - delta_split);
+
+	displacement = new_displacement;
+	set_velocity(first_vel);
+
+	set_counter(0);
+
+	return Particle(position, second_vel, new_displacement, 0);
+}
+
 // Faiseur
 float Faiseur::get_radius(void) const {
 	return radius;
