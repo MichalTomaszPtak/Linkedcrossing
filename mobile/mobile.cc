@@ -90,9 +90,23 @@ void Particle::draw(void) {
 }
 
 Particle Particle::split(void){
-	this->
+	//constexpr double delta_split(0.5);
+	double temp_angle = velocity.get_angle();
 
+//	double delta_split = 0.5;
+	double new_displacement = displacement * coef_split;
 
+	S2d first_vel(0,0);
+	first_vel.set_polar(displacement, temp_angle + delta_split);
+    S2d second_vel(0,0);
+	second_vel.set_polar(displacement, temp_angle - delta_split);
+
+	displacement = new_displacement;
+	set_velocity(first_vel);
+
+	set_counter(0);
+
+	return Particle(position, second_vel, new_displacement, 0);
 }
 
 // Faiseur
