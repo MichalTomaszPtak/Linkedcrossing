@@ -275,6 +275,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
         {
 			Jeu::game_info_ = Jeu::read_file(file_name);
 			update_infos();
+            previous_file_name = file_name =;
 
 	        // remplacer affichage par votre code
 			cout << file_name <<"  " << __func__ << endl;
