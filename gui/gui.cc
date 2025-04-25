@@ -308,6 +308,10 @@ bool My_window::loop() {
 
 void My_window::update() {
 	// remplacer affichage par votre code
+    --(Jeu::game_info_.score);
+    cout << Jeu::game_info_.score << endl;
+
+
 	cout <<  __func__ << endl;
 
 	Jeu::update();
@@ -420,7 +424,7 @@ void My_window::on_drawing_left_click(int n_press, double x, double y) {
 
 void My_window::on_drawing_right_click(int n_press, double x, double y) {
     if (Jeu::game_info_.mode == Mode::GUIDAGE) {
-        Jeu::game_info_.target_point = scaled((S2d(x,y));
+        Jeu::game_info_.target_point = scaled((S2d(x,y)));
     }
     Jeu::game_info_.mode = (Mode::GUIDAGE);
     checks[1].set_active(true);
