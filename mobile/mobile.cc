@@ -94,10 +94,10 @@ Particle Particle::split(void){
 
 	double new_displacement = displacement * coef_split;
 
-	S2d first_vel(0,0);
-	first_vel.set_polar(displacement, temp_angle + delta_split);
-    S2d second_vel(0,0);
-	second_vel.set_polar(displacement, temp_angle - delta_split);
+	S2d first_vel, second_vel;
+	first_vel.set_polar(new_displacement, temp_angle + delta_split);
+
+	second_vel.set_polar(new_displacement, temp_angle - delta_split);
 
 	displacement = new_displacement;
 	set_velocity(first_vel);
