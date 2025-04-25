@@ -333,6 +333,7 @@ namespace Jeu {
 		for (Faiseur &f: Jeu::game_info_.faiseurs) {
 			update_faiseur(f);
 		}
+	game_info_.nbParticule = game_info_.particles.size();
 	}
 
 	void update_particle(Particle &p) {
