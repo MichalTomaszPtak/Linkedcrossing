@@ -138,9 +138,10 @@ void My_window::save_clicked() {
 void My_window::restart_clicked() {
 
     Jeu::game_info_ = (Jeu::read_file(previous_file_name));
-
     update_infos();
     drawing.queue_draw();
+    //Debug:
+    cout << "Restart with file:" << previous_file_name << endl;
 
     // remplacer affichage par votre code
     cout << __func__ << endl;
