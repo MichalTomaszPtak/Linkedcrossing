@@ -90,10 +90,8 @@ void Particle::draw(void) {
 }
 
 Particle Particle::split(void){
-	//constexpr double delta_split(0.5);
 	double temp_angle = velocity.get_angle();
 
-//	double delta_split = 0.5;
 	double new_displacement = displacement * coef_split;
 
 	S2d first_vel(0,0);
