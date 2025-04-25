@@ -319,6 +319,13 @@ namespace Jeu {
 			faiseur.update();
 		}
 	}
+	void draw_Chaine(const vector<S2d> &articulation){
+		for (unsigned int i = 0; i < articulation.size()-1; i++) {
+			draw_line(articulation[i].x, articulation[i].y, articulation[i+1].x, articulation[i+1].y, RED, 1);
+		}
+		draw_circle(articulation[i].x,articulation[i].y, r_capture, RED, false, 1);
+
+	}
 	
 	void drawScene(void) {
 		draw_circle(0, 0, r_max, GREEN, false, 1);

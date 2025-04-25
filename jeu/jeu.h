@@ -64,6 +64,9 @@ namespace Jeu {
 	void drawScene(void);
 	// Saving file
 	void save_game_info(const std::string &filename);
+
+	void add_articulation(
+	void draw_Chaine(const vector<S2d> &articulations);
 }
 
 #endif
