@@ -166,6 +166,7 @@ void My_window::start_clicked() {
 }
 
 void My_window::step_clicked() {
+
     // remplacer affichage par votre code
     cout << __func__ << endl;
 	update();
@@ -404,6 +405,7 @@ S2d My_window::scaled(S2d const &pos) const {
 }
 
 void My_window::on_drawing_left_click(int n_press, double x, double y) {
+    Jeu::game_info_.mode = (Mode::CONSTRUCTION);
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 }
