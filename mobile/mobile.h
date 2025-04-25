@@ -16,7 +16,7 @@
 #include <fstream>
 #include <iostream>
 
-#define PARTICLE_RADIUS 2
+#define PARTICLE_RADIUS 1
 #define PARTICLE_COLOR GREEN
 #define FAISEUR_COLOR BLUE
 #define FAISEUR_FILL false
@@ -53,7 +53,7 @@ protected:
 
 class Particle: public Node, public DisplacementObject {
 public:
-	Particle(S2d pos, S2d vel, float d, unsigned int c) :
+	Particle(S2d pos = {0,0}, S2d vel = {0,0}, float d = 0, unsigned int c = 0) :
 		Node(pos, vel), DisplacementObject(d), counter(c) {}
 	unsigned int get_counter(void) const;
 	void set_counter(unsigned int c);
@@ -85,7 +85,6 @@ public:
 	unsigned int get_segments(void) const;
 	void set_radius(float r);
 	void set_segments(unsigned int s);
-	unsigned int get_segments();
 	void move(void) override;
 	void draw(void) override;
 	void print(void) override;
