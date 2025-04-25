@@ -56,6 +56,7 @@ My_window::My_window(string file_name)
     info_value[2].set_text(std::to_string(Jeu::game_info_.nbFaiseurs));
     info_value[3].set_text(std::to_string(Jeu::game_info_.nbArt));
 	Jeu::game_info_ = (Jeu::read_file(file_name));
+
 	cout << Jeu::game_info_.score << endl;
     cout << Jeu::game_info_.nbParticule << endl;
     cout << Jeu::game_info_.nbFaiseurs << endl;

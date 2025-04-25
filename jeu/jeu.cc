@@ -343,7 +343,7 @@ namespace Jeu {
 		}
 		file << tempinfo.nbFaiseurs << "\n";
 		for (const auto& Single: tempinfo.faiseurs) {
-			file << Single.get_position().x << " " << Single.get_position().y << " " << Single.get_velocity().get_angle() << " " << Single.get_displacement() << " " << Single.get_radius() << Single.get_segments() << "\n";
+			file << Single.get_position().x << " " << Single.get_position().y << " " << Single.get_velocity().get_angle() << " " << Single.get_displacement() << " " << Single.get_radius() << " " <<Single.get_segments() << "\n";
 
 		}
 		file << tempinfo.nbArt << "\n";
