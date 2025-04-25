@@ -406,6 +406,7 @@ S2d My_window::scaled(S2d const &pos) const {
 
 void My_window::on_drawing_left_click(int n_press, double x, double y) {
     Jeu::game_info_.mode = (Mode::CONSTRUCTION);
+    checks[1].set_active(true);
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 }
