@@ -34,6 +34,13 @@ S2d Node::get_velocity(void) const {
 	return velocity;
 }
 
+void Node::move(void) {
+	if ((position + velocity).get_length() >= r_max)
+		velocity.reflect(position);
+	position += velocity;
+	return;
+}
+
 void Node::draw(void) {
 	draw_circle(position.x, position.y, 1, BLACK, true, 0);
 	return;
@@ -80,7 +87,7 @@ void Particle::print(void) {
 void Particle::draw(void) {
     S2d pos = get_position();
     draw_circle(pos.x, pos.y, PARTICLE_RADIUS, PARTICLE_COLOR, true, 0);
-	}
+}
 
 // Faiseur
 float Faiseur::get_radius(void) const {

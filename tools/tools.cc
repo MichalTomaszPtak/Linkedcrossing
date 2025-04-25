@@ -24,8 +24,7 @@ void S2d::set_polar(float r, float angle) {
 }
 
 void S2d::reflect(S2d axis) {
-	*this = (*this * 2) \
-		  + (axis * (-2 * this->dot(axis) / axis.get_length_squared()));
+	*this -= (axis * (this->dot(axis) * 2 / axis.get_length_squared()));
 	return;
 }
 

@@ -5,6 +5,7 @@
 #ifndef MOBILE_H
 #define MOBILE_H
 
+#include "constantes.h"
 #include "tools.h"
 #include "message.h"
 #include "graphic.h"
