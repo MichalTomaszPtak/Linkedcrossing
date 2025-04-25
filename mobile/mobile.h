@@ -85,6 +85,7 @@ public:
 	unsigned int get_segments(void) const;
 	void set_radius(float r);
 	void set_segments(unsigned int s);
+	unsigned int get_segments();
 	void move(void) override;
 	void draw(void) override;
 	void print(void) override;

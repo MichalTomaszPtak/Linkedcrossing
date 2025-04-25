@@ -62,6 +62,8 @@ namespace Jeu {
 	// game runtime
 	void update(void);
 	void drawScene(void);
+	// Saving file
+	void save_game_info(const std::string &filename);
 }
 
 #endif

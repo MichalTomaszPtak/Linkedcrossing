@@ -143,3 +143,7 @@ void Faiseur::update(void) {
 	if (tail.size() >= segments) tail.pop_back();
 	return;
 }
+
+unsigned int Faiseur::get_segments(void){
+	return segments;
+}

@@ -329,4 +329,37 @@ namespace Jeu {
 			faiseur.draw();
 		}
 	}
+	void save_game_info(const std::string &filename) {
+	std::ofstream file(filename);
+	if(!file.is_open()) {
+		std::cout << "Error opening file for save \n" << std::endl;
+		return void;
+	}
+	Jeu::GameInfo tempinfo = Jeu::game_info_;
+	file << tempinfo.score << "\n";
+	file << tempinfo.nbParticule << "\n";
+    for (const auto& Single: tempinfo.particules) {
+		file << Single.get_position().x << " " << Single.get_position().y << " " << Single.get_velocity().get_angle() << " " << Single.get_displacement() << " " << Single.get_counter() << "\n";
+	}
+	file << tempinfo.nbFaiseurs << "\n";
+	for (const auto& Single: tempinfo.Faiseurs) {
+		file << Single.get_position().x << " " << Single.get_position().y << " " << Single.get_velocity().get_angle() << " " << Single.get_displacement() << " " << Single.get_radius() << Single.get:segments() << "\n";
+
+	}
+	file << tempinfo.nbArt << "\n";
+	for (const auto& Single: tempinfo.articulations) {
+		file << Single.get_position().x << " " << Single.get_position().y << "\n";
+
+	}
+
+	if (tempinfo.mode == Mode::CONSTRUCTION) {
+		file << "CONSTRUCTION\n";
+	}else{
+		file << "GUIDAGE\n";
+	}
+	return;
+
+
+
+}
 }
