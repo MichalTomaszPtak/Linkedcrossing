@@ -312,11 +312,21 @@ namespace Jeu {
 	}
 
 	void update(void) {
+		for(unsigned int i = 0; i < game_info_.particles.size(); i++){
+			update_particle(game_info_.particles[i]);
+			if (game_info_.particles[i].get_counter() == time_to_split) {
+				if (game_info_.particles.size() == nb_particule_max){
+					game_info_.particles.erase(game_info_.particles.begin()+i);
+				}else{
+					(game_info_.particles).push_back(game_info_.particles[i].split());
+					game_info_.nbParticule++;
+				}
+
+			}
+		}
 		for (Particle &p: game_info_.particles) {
 			update_particle(p);
-			if (p.get_counter() == time_to_split) {
-				game_info_.particles.push_back(p.split());
-			}
+
 		}
 		for (Faiseur &f: Jeu::game_info_.faiseurs) {
 			update_faiseur(f);
