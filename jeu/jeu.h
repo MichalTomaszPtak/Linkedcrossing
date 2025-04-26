@@ -25,6 +25,8 @@ enum Status {
     LOST
 };
 
+#test
+
 namespace Jeu {
 	struct GameInfo {
 		unsigned int score = 4000;
