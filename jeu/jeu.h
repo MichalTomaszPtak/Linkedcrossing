@@ -64,8 +64,6 @@ namespace Jeu {
 
 	// game runtime
 	void update(void);
-	void update_particle(Particle &p);
-	void update_faiseur(Faiseur &f);
 	void drawScene(void);
 	void clear_info(void);
 	// Saving file

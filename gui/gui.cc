@@ -77,17 +77,6 @@ My_window::My_window(string file_name)
     set_jeu(file_name);
 }
 
-/*
-void My_window::arena_adjust(void){
-	float tempx = get_width() - 100;
-	float tempy = get_height();
-	arena_.set_center(S2d((tempx/2.0) + 100,tempy/2.0));
-	arena_.set_radius(min(tempx,tempy)/2);
-    std::cout << "Arena: center=(" << (tempx / 2.0) + 100 << "," << tempy / 2.0 << "), radius=" << arena_.get_radius() << std::endl;
-    drawing.queue_draw();
-}  // Adjust Arena size/position
-*/
-
 void My_window::set_commands() {
     command_frame.set_child(command_box);
     for (auto &button : buttons) {
