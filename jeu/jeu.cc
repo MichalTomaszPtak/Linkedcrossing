@@ -372,6 +372,7 @@ namespace Jeu {
 		for (Faiseur &faiseur : Jeu::game_info_.faiseurs) {
 			faiseur.draw();
 		}
+		draw_Chaine(game_info_.articulations);
 	}
 	void save_game_info(const std::string &filename) {
 		std::ofstream file(filename);
