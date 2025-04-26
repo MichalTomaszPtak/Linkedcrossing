@@ -316,7 +316,6 @@ namespace Jeu {
 	void update(void) {
 		for (auto p = game_info_.particles.begin();
 			 p != game_info_.particles.end(); ) {
-			std::cout << p->get_counter() << "\n";
 			if (p->get_counter() >= time_to_split) {
 				if (game_info_.particles.size() < nb_particule_max) {
 					p = game_info_.particles.insert(p, p->split());
