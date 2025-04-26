@@ -170,3 +170,12 @@ void Faiseur::update(void) {
 	if (tail.size() >= segments) tail.pop_back();
 	return;
 }
+
+// returns true if moving would result in a collision with f.
+bool Faiseur::try_collision(Faiseur f) {
+	if ((position - f.position).get_length() < radius + f.radius) return true;
+	for (S2d p : f.tail) {
+		if ((position - p).get_length() < radius + f.radius) return true;
+	}
+	return false;
+}

@@ -92,6 +92,7 @@ public:
 	void draw(void) override;
 	void print(void) override;
 	void update(void) override;
+	bool try_collision(Faiseur f);
 private:
 	float displacement;
 	float radius;

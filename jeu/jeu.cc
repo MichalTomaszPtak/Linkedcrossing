@@ -328,9 +328,18 @@ namespace Jeu {
 		game_info_.nbParticule = game_info_.particles.size();
 
 		for (auto f = game_info_.faiseurs.begin();
-			 f <= game_info_.faiseurs.end();
+			 f < game_info_.faiseurs.end();
 			 f++) {
-			f->update();
+			bool collision = false;
+			for (auto f2 = game_info_.faiseurs.begin();
+				 f2 < game_info_.faiseurs.end();
+				 f2++) {
+				if (f != f2 && f->try_collision(*f2)) {
+					collision = true;
+					break;
+				}
+			}
+			if (!collision) f->update();
 		}
 	}
 
@@ -341,8 +350,7 @@ namespace Jeu {
 		game_info_.faiseurs.clear();
 		game_info_.nbFaiseurs = 0;
 		game_info_.nbArt = 0;
-		game_info_.articulation.clear();
-
+		game_info_.articulations.clear();
 	}
 
 	void draw_Chaine(const std::vector<S2d>& articulation){
