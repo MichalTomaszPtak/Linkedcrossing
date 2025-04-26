@@ -81,17 +81,17 @@ namespace Jeu {
 	}
 
 	bool gameValid(const GameInfo &info) {
-		if (!(info.score > 0 && info.score < score_max)) {
+		if (!(info.score >= 0 && info.score <= score_max)) {
 			std::cout << message::score_outside(info.score);
 			return false;
 		}
-		if (!(info.nbParticule >= 0 && info.nbParticule < nb_particule_max)) {
+		if (!(info.nbParticule >= 0 && info.nbParticule <= nb_particule_max)) {
 			std::cout << message::nb_particule_outside(info.nbParticule);
 			return false;
 		}
 		for (const auto& Single: info.particles) {
 			unsigned int counter = Single.get_counter();
-			if (!(counter > 0 && counter < time_to_split)) {
+			if (!(counter >= 0 && counter < time_to_split)) {
 				std::cout << message::particule_counter(counter);
 				return false;
 			}

@@ -435,7 +435,7 @@ void My_window::set_jeu(string file_name) {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
-    if (Jeu::gameValid(Jeu::game_info_)) {
+    if (!Jeu::gameValid(Jeu::game_info_)) {
         buttons[2].set_sensitive(false);
         buttons[4].set_sensitive(false);
         buttons[5].set_sensitive(false);
