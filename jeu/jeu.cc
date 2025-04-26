@@ -341,6 +341,16 @@ namespace Jeu {
 
 		// TODO code for splitting 
 	}
+	void clear_info(void){
+		game_info_.score = 4000;
+		game_info_.nbParticule = 0;
+		game_info_.particles.clear();
+		game_info_.faiseurs.clear();
+		game_info_.nbFaiseurs = 0;
+		game_info_.nbArt = 0;
+		game_info_.articulation.clear();
+
+	}
 
 	void update_faiseur(Faiseur &f) {
 		f.update();

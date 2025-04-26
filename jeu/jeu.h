@@ -65,6 +65,7 @@ namespace Jeu {
 	void update_particle(Particle &p);
 	void update_faiseur(Faiseur &f);
 	void drawScene(void);
+	void clear_info(void);
 	// Saving file
 	void save_game_info(const std::string &filename);
 
