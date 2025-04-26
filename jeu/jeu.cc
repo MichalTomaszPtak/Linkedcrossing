@@ -359,7 +359,11 @@ namespace Jeu {
 				draw_segment(a->x, a->y, (a+1)->x, (a+1)->y, RED, 1);
 			}
 		}
-		draw_circle(articulation.back().x,articulation.back().y, r_capture, RED, false, 1);
+		if (articulation.size()) {
+			draw_circle(articulation.back().x,
+						articulation.back().y,
+						r_capture, RED, false, 1);
+		}
 
 	}
 	
