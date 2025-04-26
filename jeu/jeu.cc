@@ -312,7 +312,6 @@ namespace Jeu {
 	}
 
 	void update(void) {
-
 		for (auto p = game_info_.particles.begin();
 			 p < game_info_.particles.end();
 			 p++) {
@@ -354,13 +353,13 @@ namespace Jeu {
 	}
 
 	void draw_Chaine(const std::vector<S2d>& articulation){
-		for (unsigned int i = 0; i < articulation.size(); i++) {
-			draw_circle(articulation[i].x,articulation[i].y, 2 , RED, true , 1);
+		for (auto a = articulation.begin(); a < articulation.end(); a++) {
+			draw_circle(a->x, a->y, 2 , RED, true , 1);
+			if (a+1 != articulation.end()) {
+				draw_segment(a->x, a->y, (a+1)->x, (a+1)->y, RED, 1);
+			}
 		}
-		for (unsigned int i = 0; i < articulation.size()-1; i++) {
-			draw_segment(articulation[i].x, articulation[i].y, articulation[i+1].x, articulation[i+1].y, RED, 1);
-		}
-		draw_circle(articulation[articulation.size()-1].x,articulation[articulation.size()-1].y, r_capture, RED, false, 1);
+		draw_circle(articulation.back().x,articulation.back().y, r_capture, RED, false, 1);
 
 	}
 	
@@ -403,6 +402,5 @@ namespace Jeu {
 			file << "GUIDAGE\n";
 		}
 		return;
-
-}
+	}
 }
