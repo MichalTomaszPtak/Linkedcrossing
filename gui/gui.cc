@@ -125,6 +125,7 @@ void My_window::save_clicked() {
 }
 
 void My_window::restart_clicked() {
+	Jeu::clear_info();
 
     Jeu::game_info_ = (Jeu::read_file(previous_file_name));
     update_infos();

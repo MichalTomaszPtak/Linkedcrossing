@@ -25,6 +25,8 @@ enum Status {
     LOST
 };
 
+//test
+
 namespace Jeu {
 	struct GameInfo {
 		unsigned int score = 4000;
@@ -63,6 +65,7 @@ namespace Jeu {
 	// game runtime
 	void update(void);
 	void drawScene(void);
+	void clear_info(void);
 	// Saving file
 	void save_game_info(const std::string &filename);
 

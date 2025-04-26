@@ -334,6 +334,17 @@ namespace Jeu {
 		}
 	}
 
+	void clear_info(void){
+		game_info_.score = 4000;
+		game_info_.nbParticule = 0;
+		game_info_.particles.clear();
+		game_info_.faiseurs.clear();
+		game_info_.nbFaiseurs = 0;
+		game_info_.nbArt = 0;
+		game_info_.articulation.clear();
+
+	}
+
 	void draw_Chaine(const std::vector<S2d>& articulation){
 		for (unsigned int i = 0; i < articulation.size(); i++) {
 			draw_circle(articulation[i].x,articulation[i].y, 2 , RED, true , 1);
