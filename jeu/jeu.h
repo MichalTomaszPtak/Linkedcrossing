@@ -29,6 +29,7 @@ enum Status {
 
 namespace Jeu {
 	struct GameInfo {
+		bool valid = false;
 		unsigned int score = 4000;
 		unsigned int nbParticule = 0;
 		std::vector<Particle> particles;
@@ -50,7 +51,7 @@ namespace Jeu {
 	bool particleValid(const Particle &particle);
 	bool faiseurValid(const Faiseur &faiseur);
 	bool articulationValid(const S2d pos, unsigned int index, GameInfo &info);
-	bool gameValid(const GameInfo &info);
+	//bool gameValid(GameInfo &info);
 
 	Particle read_particule(const std::string &line);
 	Faiseur read_faiseur(const std::string &line);

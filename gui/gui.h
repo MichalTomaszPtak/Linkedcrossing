@@ -23,7 +23,7 @@ private:
     std::array<Gtk::Label, 4> info_text, info_value;
     Gtk::DrawingArea drawing;
     std::string previous_file_name;
-	// Arena arena_;
+
 	// ajouter un attribut pour accéder au jeu (instance ou pointeur)
 	
     void set_commands();

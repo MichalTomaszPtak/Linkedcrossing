@@ -75,11 +75,14 @@ namespace Jeu {
 		SKIP_EMPTY();
 		correct = correct && readMode(file, line, result);
 
+		result.valid = correct;
+
 		file.close();
 		if (correct) std::cout << message::success();
 		return result;
 	}
 
+	/*
 	bool gameValid(const GameInfo &info) {
 		if (!(info.score >= 0 && info.score <= score_max)) {
 			std::cout << message::score_outside(info.score);
@@ -90,7 +93,6 @@ namespace Jeu {
 			return false;
 		}
 		for (const auto& Single: info.particles) {
-			unsigned int counter = Single.get_counter();
 			if (!(counter >= 0 && counter < time_to_split)) {
 				std::cout << message::particule_counter(counter);
 				return false;
@@ -98,12 +100,12 @@ namespace Jeu {
 		}
 		return true;
 	}
+	*/
 
 	bool particleValid(const Particle &particle) {
 		S2d pos = particle.get_position();
 		if (pos.get_length() > r_max) {
-			std::cout << message::particule_outside(pos.x,
-													pos.y);
+			std::cout << message::particule_outside(pos.x, pos.y);
 			return false;
 		}
 		float displacement = particle.get_displacement();
@@ -368,6 +370,7 @@ namespace Jeu {
 	}
 	
 	void drawScene(void) {
+		if (!game_info_.valid) return;
 		draw_circle(0, 0, r_max, GREEN, false, 1);
 		for (Particle &particle : Jeu::game_info_.particles) {
 			particle.draw();
@@ -376,6 +379,7 @@ namespace Jeu {
 			faiseur.draw();
 		}
 		draw_Chaine(game_info_.articulations);
+		return;
 	}
 	void save_game_info(const std::string &filename) {
 		std::ofstream file(filename);

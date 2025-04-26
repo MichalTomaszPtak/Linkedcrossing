@@ -55,12 +55,8 @@ My_window::My_window(string file_name)
     info_value[1].set_text(std::to_string(Jeu::game_info_.nbParticule));
     info_value[2].set_text(std::to_string(Jeu::game_info_.nbFaiseurs));
     info_value[3].set_text(std::to_string(Jeu::game_info_.nbArt));
-	Jeu::game_info_ = (Jeu::read_file(file_name));
 
-	cout << Jeu::game_info_.score << endl;
-    cout << Jeu::game_info_.nbParticule << endl;
-    cout << Jeu::game_info_.nbFaiseurs << endl;
-    cout << Jeu::game_info_.nbArt << endl;
+
     set_title("Linked-Crossing Challenge");
     set_child(main_box);
     main_box.append(panel_box);
@@ -68,13 +64,17 @@ My_window::My_window(string file_name)
     panel_box.append(command_frame);
     panel_box.append(info_frame);
 
-
     set_commands();
     set_key_controller();
     set_mouse_controller();
     set_infos();
     set_drawing();
     set_jeu(file_name);
+
+	cout << Jeu::game_info_.score << endl;
+    cout << Jeu::game_info_.nbParticule << endl;
+    cout << Jeu::game_info_.nbFaiseurs << endl;
+    cout << Jeu::game_info_.nbArt << endl;
 }
 
 void My_window::set_commands() {
@@ -125,11 +125,7 @@ void My_window::save_clicked() {
 }
 
 void My_window::restart_clicked() {
-	Jeu::clear_info();
-
-    Jeu::game_info_ = (Jeu::read_file(previous_file_name));
-    update_infos();
-    drawing.queue_draw();
+	set_jeu(previous_file_name);
 
     //Debug:
     cout << "Restart with file:" << previous_file_name << endl;
@@ -264,8 +260,6 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 
         if (file_name != "")
         {
-			Jeu::clear_info();
-			Jeu::game_info_ = Jeu::read_file(file_name);
 			set_jeu(file_name);
             previous_file_name = file_name;
 
@@ -301,11 +295,6 @@ bool My_window::loop() {
 void My_window::update() {
 	// remplacer affichage par votre code
     --(Jeu::game_info_.score);
-
-
-
-
-
 	cout <<  __func__ << endl;
 
 	Jeu::update();
@@ -369,13 +358,6 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
 	cout <<  __func__ << endl;
 
 	Jeu::drawScene();
-	/*
-	for (Articulation &articulation : Jeu::game_info_.articulations) {
-    articulation.draw();
-    }
-	*/
-
-
 	drawing.queue_draw();
 }
 
@@ -435,15 +417,17 @@ void My_window::set_jeu(string file_name) {
 	// remplacer affichage par votre code
 	cout <<  __func__ << endl;
 
-    if (!Jeu::gameValid(Jeu::game_info_)) {
+	Jeu::clear_info();
+	Jeu::game_info_ = Jeu::read_file(file_name);
+
+    if (!Jeu::game_info_.valid) {
         buttons[2].set_sensitive(false);
         buttons[4].set_sensitive(false);
         buttons[5].set_sensitive(false);
         checks[0].set_active(true);
         checks[0].set_sensitive(false);
         checks[1].set_sensitive(false);
-        // éventuelle mise à jour de l'attribut jeu
-    } else { // cas de succès de lecture
+    } else {
         buttons[2].set_sensitive(true);
         buttons[4].set_sensitive(true);
         buttons[5].set_sensitive(true);
@@ -458,6 +442,6 @@ void My_window::set_jeu(string file_name) {
 			break;
         }
     }
-    update_infos();
-    drawing.queue_draw();
+	update_infos();
+	drawing.queue_draw();
 }
