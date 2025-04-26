@@ -264,6 +264,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 
         if (file_name != "")
         {
+			Jeu::clear_info();
 			Jeu::game_info_ = Jeu::read_file(file_name);
 			set_jeu(file_name);
             previous_file_name = file_name;
