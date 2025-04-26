@@ -130,6 +130,7 @@ void My_window::restart_clicked() {
     Jeu::game_info_ = (Jeu::read_file(previous_file_name));
     update_infos();
     drawing.queue_draw();
+
     //Debug:
     cout << "Restart with file:" << previous_file_name << endl;
 
@@ -265,6 +266,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
         {
 			Jeu::game_info_ = Jeu::read_file(file_name);
 			update_infos();
+			drawing.queue_draw();
             previous_file_name = file_name;
 
 	        // remplacer affichage par votre code
