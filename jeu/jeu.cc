@@ -315,21 +315,23 @@ namespace Jeu {
 
 	void update(void) {
 		for (auto p = game_info_.particles.begin();
-			 p < game_info_.particles.end();
-			 p++) {
-			p->update();
+			 p != game_info_.particles.end(); ) {
+			std::cout << p->get_counter() << "\n";
 			if (p->get_counter() >= time_to_split) {
 				if (game_info_.particles.size() < nb_particule_max) {
-					game_info_.particles.insert(p, p->split());
+					p = game_info_.particles.insert(p, p->split());
 				} else {
-					game_info_.particles.erase(p);
+					p = game_info_.particles.erase(p);
 				}
+			} else {
+				p->update();
+				p++;
 			}
 		}
 		game_info_.nbParticule = game_info_.particles.size();
 
 		for (auto f = game_info_.faiseurs.begin();
-			 f < game_info_.faiseurs.end();
+			 f != game_info_.faiseurs.end();
 			 f++) {
 			bool collision = false;
 			for (auto f2 = game_info_.faiseurs.begin();
