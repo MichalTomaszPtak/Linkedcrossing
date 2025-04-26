@@ -348,7 +348,7 @@ namespace Jeu {
 		game_info_.faiseurs.clear();
 		game_info_.nbFaiseurs = 0;
 		game_info_.nbArt = 0;
-		game_info_.articulation.clear();
+		game_info_.articulations.clear();
 
 	}
 
