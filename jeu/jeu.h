@@ -25,7 +25,7 @@ enum Status {
     LOST
 };
 
-#test
+//test
 
 namespace Jeu {
 	struct GameInfo {
