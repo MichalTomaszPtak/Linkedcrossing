@@ -265,8 +265,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
         if (file_name != "")
         {
 			Jeu::game_info_ = Jeu::read_file(file_name);
-			update_infos();
-			drawing.queue_draw();
+			set_jeu(file_name);
             previous_file_name = file_name;
 
 	        // remplacer affichage par votre code
