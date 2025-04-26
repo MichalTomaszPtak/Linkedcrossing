@@ -313,37 +313,25 @@ namespace Jeu {
 
 	void update(void) {
 
-		for (Particle &p: game_info_.particles) {
-			if (p.get_counter() == time_to_split) {
-				if(game_info_.particles.size() < nb_particule_max) {
-					game_info_.particles.push_back(p.split());
-					game_info_.nbParticule++;
-				}else{
-					auto it = Jeu::game_info_.particles.begin() + (&p - &Jeu::game_info_.particles[0]);
-					(game_info_.particles).erase(it);
-					game_info_.nbParticule--;
+		for (auto p = game_info_.particles.begin();
+			 p < game_info_.particles.end();
+			 p++) {
+			p->update();
+			if (p->get_counter() >= time_to_split) {
+				if (game_info_.particles.size() < nb_particule_max) {
+					game_info_.particles.insert(p, p->split());
+				} else {
+					game_info_.particles.erase(p);
 				}
 			}
-			update_particle(p);
-
-
-
 		}
+		game_info_.nbParticule = game_info_.particles.size();
 
-		for (Faiseur &f: Jeu::game_info_.faiseurs) {
-			update_faiseur(f);
+		for (auto f = game_info_.faiseurs.begin();
+			 f <= game_info_.faiseurs.end();
+			 f++) {
+			f->update();
 		}
-	game_info_.nbParticule = game_info_.particles.size();
-	}
-
-	void update_particle(Particle &p) {
-		p.update();
-
-		// TODO code for splitting 
-	}
-
-	void update_faiseur(Faiseur &f) {
-		f.update();
 	}
 
 	void draw_Chaine(const std::vector<S2d>& articulation){
