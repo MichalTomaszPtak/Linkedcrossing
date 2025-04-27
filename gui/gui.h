@@ -61,8 +61,6 @@ private:
     S2d scaled(S2d const &pos) const;
 
     void set_jeu(std::string file_name);
-    // void arena_adjust(void);
-
 };
 
 #endif

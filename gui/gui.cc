@@ -190,6 +190,7 @@ void My_window::set_key_controller() {
 													  false);
     add_controller(contr);
 }
+
 bool My_window::key_pressed(guint keyval,
 							guint keycode,
 							Gdk::ModifierType state) {
