@@ -12,7 +12,7 @@
 
 #include <vector>
 #include <string>
-#include <list>
+#include <deque>
 #include <fstream>
 #include <iostream>
 
@@ -88,6 +88,9 @@ public:
 	unsigned int get_segments(void) const;
 	void set_radius(float r);
 	void set_segments(unsigned int s);
+	void create_tail(void);
+	S2d get_tail_element(size_t idx);
+	bool check_tail_collision(Faiseur f, size_t id1, size_t id2);
 	void move(void) override;
 	void draw(void) override;
 	void print(void) override;
@@ -97,7 +100,7 @@ private:
 	float displacement;
 	float radius;
 	unsigned int segments;
-	std::list<S2d> tail;
+	std::deque<S2d> tail;
 };
 
 #endif

@@ -135,12 +135,47 @@ void Faiseur::set_segments(unsigned int s) {
 	return;
 }
 
+void Faiseur::create_tail(void) {
+	S2d p = position;
+	S2d v = velocity * -1;
+	while (tail.size() < segments) {
+		tail.push_back(p);
+		if ((p + v).get_length() >= r_max - radius)
+			v.reflect(p);
+		p += v;
+	}
+}
+
+S2d Faiseur::get_tail_element(size_t idx) {
+	if (0 <= idx && idx < segments) {
+		return tail[idx];
+	} else {
+		std::cout << "Attempted faiseur tail access outside range.\n";
+		exit(1);
+	}
+}
+
+bool Faiseur::check_tail_collision(Faiseur f, size_t id1, size_t id2) {
+	for (size_t e1 = 0; e1 < segments; e1++) {
+		for (size_t e2 = 0; e2 < f.get_segments(); e2++) {
+			if ((get_tail_element(e1) - f.get_tail_element(e2)).get_length()
+					< radius + f.get_radius()) {
+				std::cout << message::faiseur_element_collision(id1, e1, id2, e2);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 void Faiseur::draw(void) {
+	/*
 	S2d pos = get_position();
 	draw_circle(pos.x, pos.y, radius,
 				FAISEUR_COLOR,
 				FAISEUR_FILL,
 				FAISEUR_THICKNESS);
+				*/
 	for (S2d &p : tail) {
 		draw_circle(p.x, p.y, radius,
 					FAISEUR_COLOR,
@@ -165,15 +200,15 @@ void Faiseur::move(void) {
 }
 
 void Faiseur::update(void) {
-	tail.push_front(position);
 	move();
+	tail.push_front(position);
 	if (tail.size() >= segments) tail.pop_back();
 	return;
 }
 
 // returns true if moving would result in a collision with f.
 bool Faiseur::try_collision(Faiseur f) {
-	if ((position - f.position).get_length() < radius + f.radius) return true;
+	//if ((position - f.position).get_length() < radius + f.radius) return true;
 	for (S2d p : f.tail) {
 		if ((position - p).get_length() < radius + f.radius) return true;
 	}

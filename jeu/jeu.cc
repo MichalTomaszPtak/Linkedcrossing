@@ -220,7 +220,10 @@ namespace Jeu {
 
 		vel.set_polar(displacement, angle);
 
-		return Faiseur(pos, vel, displacement, radius, segments);
+		Faiseur f = Faiseur(pos, vel, displacement, radius, segments);
+		f.create_tail();
+
+		return f;
 	}
 
 	bool readParticles(std::ifstream &file, std::string &line, GameInfo &info) {
@@ -247,7 +250,7 @@ namespace Jeu {
 	}
 
 	bool readFaiseurs(std::ifstream &file, std::string &line, GameInfo &info) {
-		Faiseur temp;
+		Faiseur f1;
 		if (!isValid(line, 1)) {
 			return false;
 		}
@@ -255,21 +258,19 @@ namespace Jeu {
 		unsigned int nbFais;
 		ss >> nbFais;
 		info.nbFaiseurs = nbFais;
-		for (unsigned int i = 0; i < info.nbFaiseurs; i++) {
+		for (unsigned int id1 = 0; id1 < info.nbFaiseurs; id1++) {
 			if (!std::getline(file, line)) return false;
 			if (!isValid(line, 6)) return false;
-			temp = read_faiseur(line);
-			if (!faiseurValid(temp)) return false;
+			f1 = read_faiseur(line);
+			if (!faiseurValid(f1)) return false;
 			// check for collisions with faiseurs
-			for (unsigned int fid = 0; fid < i; fid++) {
-				Faiseur f = info.faiseurs[fid];
-				if ((f.get_position() - temp.get_position()).get_length()
-					<= f.get_radius() + temp.get_radius()) {
-					std::cout << message::faiseur_element_collision(fid, 0, i, 0);
+			for (unsigned int id2 = 0; id2 < id1; id2++) {
+				Faiseur f2 = info.faiseurs[id2];
+				if (f1.check_tail_collision(f2, id1, id2)) {
 					return false;
 				}
 			}
-			info.faiseurs.push_back(temp);
+			info.faiseurs.push_back(f1);
 		}
 		return true;
 	}
