@@ -5,10 +5,25 @@
 
 EXEC="./projet"
 PUBLIC_DIR="./public"
+PRIVATE_DIR="./private"
 for input_file in "$PUBLIC_DIR"/t*.txt; do
     base_name=$(basename "$input_file")
     test_number=${base_name:1:2}
     output_file="$PUBLIC_DIR/out$test_number.txt"
+
+    if [[ -f "$output_file" ]]; then
+        echo "Running test for $input_file..."
+        $EXEC "$input_file" \
+            | diff -s - "$output_file"
+    else
+        echo "Warning: Output file $output_file does not exist for $input_file"
+    fi
+done
+
+for input_file in "$PRIVATE_DIR"/t*.txt; do
+    base_name=$(basename "$input_file")
+    test_number=${base_name:1:2}
+    output_file="$PRIVATE_DIR/out$test_number.txt"
 
     if [[ -f "$output_file" ]]; then
         echo "Running test for $input_file..."
