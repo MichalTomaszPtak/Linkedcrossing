@@ -81,6 +81,10 @@ My_window::My_window(string file_name)
 #endif
 }
 
+My_window::~My_window() {
+	delete game;
+}
+
 void My_window::set_commands() {
     command_frame.set_child(command_box);
     for (auto &button : buttons) {
