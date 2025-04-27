@@ -2,6 +2,7 @@
 #include <cassert>
 #include "graphic_gui.h"
 #include "gui.h"
+#include "debug.h"
 
 
 using namespace std;
@@ -71,10 +72,12 @@ My_window::My_window(string file_name)
     set_drawing();
     set_jeu(file_name);
 
+#if DEBUG
 	cout << Jeu::game_info_.score << endl;
     cout << Jeu::game_info_.nbParticule << endl;
     cout << Jeu::game_info_.nbFaiseurs << endl;
     cout << Jeu::game_info_.nbArt << endl;
+#endif
 }
 
 void My_window::set_commands() {
@@ -125,13 +128,11 @@ void My_window::save_clicked() {
 }
 
 void My_window::restart_clicked() {
-	set_jeu(previous_file_name);
-
-    //Debug:
-    cout << "Restart with file:" << previous_file_name << endl;
-
-    // remplacer affichage par votre code
+#if DEBUG
     cout << __func__ << endl;
+    cout << "Restart with file:" << previous_file_name << endl;
+#endif
+	set_jeu(previous_file_name);
 }
 
 void My_window::start_clicked() {
@@ -159,20 +160,22 @@ void My_window::start_clicked() {
 }
 
 void My_window::step_clicked() {
-
-    // remplacer affichage par votre code
+#if DEBUG
     cout << __func__ << endl;
+#endif
 	update();
 }
 
 void My_window::build_clicked() {
-    // remplacer affichage par votre code
+#if DEBUG
     cout << __func__ << endl;
+#endif
 }
 
 void My_window::guide_clicked() {
-    // remplacer affichage par votre code
+#if DEBUG
     cout << __func__ << endl;
+#endif
 }
 
 void My_window::set_key_controller() {
@@ -188,19 +191,21 @@ bool My_window::key_pressed(guint keyval,
 
     switch (keyval) {
     case '1':
-        // remplacer affichage par votre code
+#if DEBUG
 		cout << keyval <<"  " << __func__ << endl;
-		//cout << get_width() <<"  " << get_height() << endl;
+#endif
 
         return true;
     case 's':
-        // remplacer affichage par votre code
+#if DEBUG
 		cout << keyval <<"  " << __func__ << endl;
+#endif
 
         return true;
     case 'r':
-        // remplacer affichage par votre code
+#if DEBUG
 		cout << keyval <<"  " << __func__ << endl;
+#endif
 
         return true;
     default:
@@ -260,20 +265,21 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 
         if (file_name != "")
         {
+#if DEBUG
+			cout << file_name <<"  " << __func__ << endl;
+#endif
 			set_jeu(file_name);
             previous_file_name = file_name;
-
-	        // remplacer affichage par votre code
-			cout << file_name <<"  " << __func__ << endl;
             dialog->hide();
         }
         break;
     case SAVE:
         if (file_name != "")
         {
-            Jeu::save_game_info(file_name);
-	        // remplacer affichage par votre code
+#if DEBUG
 			cout << file_name <<"  " << __func__ << endl;
+#endif
+            Jeu::save_game_info(file_name);
             dialog->hide();
         }
         break;
@@ -286,16 +292,16 @@ bool My_window::loop() {
     if (activated)
     {
         update();
-		//cout << (arena_.get_center()).x <<"  " << (arena_.get_center()).y << endl;
         return true;
     }
     return false;
 }
 
 void My_window::update() {
-	// remplacer affichage par votre code
-    --(Jeu::game_info_.score);
+#if DEBUG
 	cout <<  __func__ << endl;
+#endif
+    --(Jeu::game_info_.score);
 
 	Jeu::update();
     update_infos();
@@ -328,8 +334,9 @@ void My_window::set_infos() {
 }
 
 void My_window::update_infos() {
- 	// remplacer affichage par votre code
+#if DEBUG
 	cout <<  __func__ << endl;
+#endif
 	info_value[0].set_text(std::to_string(Jeu::game_info_.score));
     info_value[1].set_text(std::to_string(Jeu::game_info_.nbParticule));
     info_value[2].set_text(std::to_string(Jeu::game_info_.nbFaiseurs));
@@ -349,13 +356,13 @@ void My_window::set_drawing() {
 void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
                         int width,
 						int height) {
+#if DEBUG
+	cout <<  __func__ << endl;
+#endif
     graphic_set_context(cr);
     double side(min(width, height));
     cr->translate(width / 2, height / 2);
     cr->scale(side / (2 * r_max), -side / (2 * r_max));
-
-	// remplacer affichage par votre code
-	cout <<  __func__ << endl;
 
 	Jeu::drawScene();
 	drawing.queue_draw();
@@ -392,30 +399,34 @@ S2d My_window::scaled(S2d const &pos) const {
 }
 
 void My_window::on_drawing_left_click(int n_press, double x, double y) {
+#if DEBUG
+	cout <<  __func__ << endl;
+#endif
     Jeu::game_info_.mode = (Mode::CONSTRUCTION);
     checks[0].set_active(true);
-	// remplacer affichage par votre code
-	cout <<  __func__ << endl;
 }
 
 void My_window::on_drawing_right_click(int n_press, double x, double y) {
+#if DEBUG
+	cout <<  __func__ << endl;
+#endif
     if (Jeu::game_info_.mode == Mode::GUIDAGE) {
         Jeu::game_info_.target_point = scaled((S2d(x,y)));
     }
     Jeu::game_info_.mode = (Mode::GUIDAGE);
     checks[1].set_active(true);
-	// remplacer affichage par votre code
-	cout <<  __func__ << endl;
 }
 
 void My_window::on_drawing_move(double x, double y) {
-	// remplacer affichage par votre code
+#if DEBUG
 	cout <<  __func__ << endl;
+#endif
 }
 
 void My_window::set_jeu(string file_name) {
-	// remplacer affichage par votre code
+#if DEBUG
 	cout <<  __func__ << endl;
+#endif
 
 	Jeu::clear_info();
 	Jeu::game_info_ = Jeu::read_file(file_name);
