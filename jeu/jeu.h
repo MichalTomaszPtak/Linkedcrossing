@@ -26,8 +26,18 @@ enum Status {
 };
 
 //test
+bool isEmpty(const std::string &line);
+bool isValid(const std::string &line, int Expected_Number);
+bool particleValid(const Particle &particle);
+bool faiseurValid(const Faiseur &faiseur);
+Particle read_particule(const std::string &line);
+Faiseur read_faiseur(const std::string &line);
+Mode read_game_mode(std::ifstream &file, std::string &line);
+void draw_Chaine(const std::vector<S2d>& articulation);
 
-namespace Jeu {
+struct Jeu {
+	Jeu();
+	/*
 	struct GameInfo {
 		bool valid = false;
 		unsigned int score = 4000;
@@ -40,28 +50,28 @@ namespace Jeu {
 		Mode mode;
 		S2d target_point = S2d(0,0);
 	};
+	GameInfo game_info_;
+	*/
 
-	extern GameInfo game_info_;
+	bool valid = false;
+	unsigned int score = 4000;
+	unsigned int nbParticule = 0;
+	std::vector<Particle> particles;
+	std::vector<Faiseur> faiseurs;
+	unsigned int nbFaiseurs = 0;
+	unsigned int nbArt = 0;
+	std::vector<S2d> articulations;
+	Mode mode;
+	S2d target_point = S2d(0,0);
 
 	// game loading
-	bool isEmpty(const std::string &line);
-	bool isValid(const std::string &line, int Expected_Number);
-	GameInfo &read_file(const std::string &filename);
+	void read_file(const std::string &filename);
 
-	bool particleValid(const Particle &particle);
-	bool faiseurValid(const Faiseur &faiseur);
-	bool articulationValid(const S2d pos, unsigned int index, GameInfo &info);
-	//bool gameValid(GameInfo &info);
-
-	Particle read_particule(const std::string &line);
-	Faiseur read_faiseur(const std::string &line);
-
-	Mode read_game_mode(std::ifstream &file, std::string &line);
-
-	bool readParticles(std::ifstream &file, std::string &line, GameInfo &info);
-	bool readFaiseurs(std::ifstream &file, std::string &line, GameInfo &info);
-	bool readArticulations(std::ifstream &file, std::string &line, GameInfo &info);
-	bool readMode(std::ifstream &file, std::string &line, GameInfo &info);
+	bool articulationValid(const S2d pos, unsigned int index);
+	bool readParticles(std::ifstream &file, std::string &line);
+	bool readFaiseurs(std::ifstream &file, std::string &line);
+	bool readArticulations(std::ifstream &file, std::string &line);
+	bool readMode(std::ifstream &file, std::string &line);
 
 	// game runtime
 	void update(void);
@@ -69,8 +79,6 @@ namespace Jeu {
 	void clear_info(void);
 	// Saving file
 	void save_game_info(const std::string &filename);
-
-	void draw_Chaine(const std::vector<S2d>& articulation);
-}
+};
 
 #endif

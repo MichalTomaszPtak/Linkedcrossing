@@ -25,6 +25,7 @@ private:
     std::string previous_file_name;
 
 	// ajouter un attribut pour accéder au jeu (instance ou pointeur)
+	Jeu *game;
 	
     void set_commands();
 

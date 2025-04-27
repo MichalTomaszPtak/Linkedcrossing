@@ -42,20 +42,21 @@ My_window::My_window(string file_name)
                  Gtk::Label("faiseurs:"),
                  Gtk::Label("articulations:")}),
 
-	  info_value({Gtk::Label(std::to_string(Jeu::game_info_.score)),
-                  Gtk::Label(std::to_string(Jeu::game_info_.nbParticule)),
-                  Gtk::Label(std::to_string(Jeu::game_info_.nbFaiseurs)),
-                  Gtk::Label(std::to_string(Jeu::game_info_.nbArt))}),
+	  info_value({Gtk::Label(""),
+                  Gtk::Label(""),
+                  Gtk::Label(""),
+                  Gtk::Label("")}),
 
-      previous_file_name(file_name)
+      previous_file_name(file_name),
 
       // ici éventuelle initialisation de l'attribut pour l'accès au jeu
+	  game(new Jeu())
 
 {
-	info_value[0].set_text(std::to_string(Jeu::game_info_.score));
-    info_value[1].set_text(std::to_string(Jeu::game_info_.nbParticule));
-    info_value[2].set_text(std::to_string(Jeu::game_info_.nbFaiseurs));
-    info_value[3].set_text(std::to_string(Jeu::game_info_.nbArt));
+	info_value[0].set_text(std::to_string(game->score));
+    info_value[1].set_text(std::to_string(game->nbParticule));
+    info_value[2].set_text(std::to_string(game->nbFaiseurs));
+    info_value[3].set_text(std::to_string(game->nbArt));
 
 
     set_title("Linked-Crossing Challenge");
@@ -73,10 +74,10 @@ My_window::My_window(string file_name)
     set_jeu(file_name);
 
 #if DEBUG
-	cout << Jeu::game_info_.score << endl;
-    cout << Jeu::game_info_.nbParticule << endl;
-    cout << Jeu::game_info_.nbFaiseurs << endl;
-    cout << Jeu::game_info_.nbArt << endl;
+	cout << game->score << endl;
+    cout << game->nbParticule << endl;
+    cout << game->nbFaiseurs << endl;
+    cout << game->nbArt << endl;
 #endif
 }
 
@@ -279,7 +280,7 @@ void My_window::dialog_response(int response, Gtk::FileChooserDialog *dialog) {
 #if DEBUG
 			cout << file_name <<"  " << __func__ << endl;
 #endif
-            Jeu::save_game_info(file_name);
+            game->save_game_info(file_name);
             dialog->hide();
         }
         break;
@@ -301,9 +302,9 @@ void My_window::update() {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-    --(Jeu::game_info_.score);
+    --(game->score);
 
-	Jeu::update();
+	game->update();
     update_infos();
     drawing.queue_draw();
 
@@ -337,10 +338,10 @@ void My_window::update_infos() {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-	info_value[0].set_text(std::to_string(Jeu::game_info_.score));
-    info_value[1].set_text(std::to_string(Jeu::game_info_.nbParticule));
-    info_value[2].set_text(std::to_string(Jeu::game_info_.nbFaiseurs));
-    info_value[3].set_text(std::to_string(Jeu::game_info_.nbArt));
+	info_value[0].set_text(std::to_string(game->score));
+    info_value[1].set_text(std::to_string(game->nbParticule));
+    info_value[2].set_text(std::to_string(game->nbFaiseurs));
+    info_value[3].set_text(std::to_string(game->nbArt));
 	//for (auto &value : info_value) {
 		//value.set_text("0");
 	//}
@@ -364,7 +365,7 @@ void My_window::on_draw(const Cairo::RefPtr<Cairo::Context> &cr,
     cr->translate(width / 2, height / 2);
     cr->scale(side / (2 * r_max), -side / (2 * r_max));
 
-	Jeu::drawScene();
+	game->drawScene();
 	drawing.queue_draw();
 }
 
@@ -402,7 +403,7 @@ void My_window::on_drawing_left_click(int n_press, double x, double y) {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-    Jeu::game_info_.mode = (Mode::CONSTRUCTION);
+    game->mode = (Mode::CONSTRUCTION);
     checks[0].set_active(true);
 }
 
@@ -410,10 +411,10 @@ void My_window::on_drawing_right_click(int n_press, double x, double y) {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-    if (Jeu::game_info_.mode == Mode::GUIDAGE) {
-        Jeu::game_info_.target_point = scaled((S2d(x,y)));
+    if (game->mode == Mode::GUIDAGE) {
+        game->target_point = scaled((S2d(x,y)));
     }
-    Jeu::game_info_.mode = (Mode::GUIDAGE);
+    game->mode = (Mode::GUIDAGE);
     checks[1].set_active(true);
 }
 
@@ -428,10 +429,10 @@ void My_window::set_jeu(string file_name) {
 	cout <<  __func__ << endl;
 #endif
 
-	Jeu::clear_info();
-	Jeu::game_info_ = Jeu::read_file(file_name);
+	game->clear_info();
+	game->read_file(file_name);
 
-    if (!Jeu::game_info_.valid) {
+    if (!game->valid) {
         buttons[2].set_sensitive(false);
         buttons[4].set_sensitive(false);
         buttons[5].set_sensitive(false);
@@ -444,7 +445,7 @@ void My_window::set_jeu(string file_name) {
         buttons[5].set_sensitive(true);
         checks[0].set_sensitive(true);
         checks[1].set_sensitive(true);
-        switch (Jeu::game_info_.mode) { // voir jeu.h
+        switch (game->mode) { // voir jeu.h
         case CONSTRUCTION:
 			checks[0].set_active(true);
 			break;
