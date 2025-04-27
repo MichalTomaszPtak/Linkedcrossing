@@ -10,10 +10,10 @@
 						} while (isEmpty(line))
 
 class Running_game{
-public:
-Running_game(void){
+	public:
+	Running_game(void){
 
-};
+	};
 };
 
 namespace Jeu {
@@ -383,6 +383,7 @@ namespace Jeu {
 		draw_Chaine(game_info_.articulations);
 		return;
 	}
+
 	void save_game_info(const std::string &filename) {
 		std::ofstream file(filename);
 		if(!file.is_open()) {
@@ -393,22 +394,28 @@ namespace Jeu {
 		file << tempinfo.score << "\n";
 		file << tempinfo.nbParticule << "\n";
 	    for (const auto& Single: tempinfo.particles) {
-			file << Single.get_position().x << " " << Single.get_position().y << " " << Single.get_velocity().get_angle() << " " << Single.get_displacement() << " " << Single.get_counter() << "\n";
+			file << Single.get_position().x << " ";
+			file << Single.get_position().y << " ";
+			file << Single.get_velocity().get_angle() << " ";
+			file << Single.get_displacement() << " ";
+			file << Single.get_counter() << "\n";
 		}
 		file << tempinfo.nbFaiseurs << "\n";
 		for (const auto& Single: tempinfo.faiseurs) {
-			file << Single.get_position().x << " " << Single.get_position().y << " " << Single.get_velocity().get_angle() << " " << Single.get_displacement() << " " << Single.get_radius() << " " <<Single.get_segments() << "\n";
-
+			file << Single.get_position().x << " ";
+			file << Single.get_position().y << " ";
+			file << Single.get_velocity().get_angle() << " ";
+			file << Single.get_displacement() << " "; 
+			file << Single.get_radius() << " ";
+			file << Single.get_segments() << "\n";
 		}
 		file << tempinfo.nbArt << "\n";
 		for (const auto& Single: tempinfo.articulations) {
 			file << Single.x << " " << Single.y << "\n";
-
 		}
-
 		if (tempinfo.mode == Mode::CONSTRUCTION) {
 			file << "CONSTRUCTION\n";
-		}else{
+		} else {
 			file << "GUIDAGE\n";
 		}
 		return;
