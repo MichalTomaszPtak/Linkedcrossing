@@ -318,7 +318,7 @@ bool Jeu::readMode(std::ifstream &file, std::string &line) {
 void Jeu::update(void) {
 	for (auto p = particles.begin();
 		 p != particles.end(); ) {
-		if (p->get_counter() >= time_to_split) {
+		if (p->get_counter() >= time_to_split -1) {
 			if (particles.size() < nb_particule_max) {
 				p = particles.insert(p, p->split());
 			} else {
