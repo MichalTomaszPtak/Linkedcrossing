@@ -200,7 +200,7 @@ bool My_window::key_pressed(guint keyval,
 #if DEBUG
 		cout << keyval <<"  " << __func__ << endl;
 #endif
-		step_clicked();
+		if(!activated) step_clicked();
 
         return true;
     case 's':
@@ -214,7 +214,8 @@ bool My_window::key_pressed(guint keyval,
 #if DEBUG
 		cout << keyval <<"  " << __func__ << endl;
 #endif
-		restart_clicked();
+		if(!activated) restart_clicked();
+
 
         return true;
     default:
