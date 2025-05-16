@@ -212,6 +212,7 @@ bool My_window::key_pressed(guint keyval,
 #if DEBUG
 		cout << keyval <<"  " << __func__ << endl;
 #endif
+		restart_clicked();
 
         return true;
     default:
