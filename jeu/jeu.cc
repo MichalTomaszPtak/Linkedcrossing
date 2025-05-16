@@ -241,7 +241,7 @@ bool Jeu::readParticles(std::ifstream &file, std::string &line) {
 	}
 	nbParticule = nbPart;
 	for (unsigned int i = 0; i < nbParticule; i++) {
-		//SKIP_EMPTY();
+		SKIP_EMPTY();
 		if (!std::getline(file, line)) return false;
 		if (!isValid(line, 5)) return false;
 		temp = read_particule(line);
