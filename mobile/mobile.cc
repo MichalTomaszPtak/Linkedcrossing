@@ -42,7 +42,7 @@ void Node::move(void) {
 }
 
 void Node::draw(void) {
-	draw_circle(position.x, position.y, 1, BLACK, true, 0);
+	draw_circle(position.x, position.y, 1, BLACK, 0, true);
 	return;
 }
 
@@ -86,7 +86,7 @@ void Particle::print(void) {
 
 void Particle::draw(void) {
     S2d pos = get_position();
-    draw_circle(pos.x, pos.y, PARTICLE_RADIUS, PARTICLE_COLOR, true, 0);
+    draw_circle(pos.x, pos.y, PARTICLE_RADIUS, PARTICLE_COLOR, 1, true, PARTICLE_FILL);
 }
 
 Particle Particle::split(void){
@@ -179,8 +179,8 @@ void Faiseur::draw(void) {
 	for (S2d &p : tail) {
 		draw_circle(p.x, p.y, radius,
 					FAISEUR_COLOR,
-					FAISEUR_FILL,
-					FAISEUR_THICKNESS);
+					FAISEUR_THICKNESS,
+					FAISEUR_FILL);
 	}
 	return;
 }

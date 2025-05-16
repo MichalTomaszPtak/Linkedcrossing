@@ -141,7 +141,7 @@ Faiseur read_faiseur(const std::string &line) {
 
 void draw_Chaine(const std::vector<S2d>& articulation){
 	for (auto a = articulation.begin(); a < articulation.end(); a++) {
-		draw_circle(a->x, a->y, 2 , RED, true , 1);
+		draw_circle(a->x, a->y, 2 , RED, 1, true);
 		if (a+1 != articulation.end()) {
 			draw_segment(a->x, a->y, (a+1)->x, (a+1)->y, RED, 1);
 		}
@@ -149,7 +149,7 @@ void draw_Chaine(const std::vector<S2d>& articulation){
 	if (articulation.size()) {
 		draw_circle(articulation.back().x,
 					articulation.back().y,
-					r_capture, RED, false, 1);
+					r_capture, RED, 1, false);
 	}
 
 }
@@ -346,7 +346,7 @@ void Jeu::update(void) {
 
 void Jeu::drawScene(void) {
 	if (!valid) return;
-	draw_circle(0, 0, r_max, GREEN, false, 1);
+	draw_circle(0, 0, r_max, GREEN, 1, false);
 	for (Particle &particle : Jeu::particles) {
 		particle.draw();
 	}

@@ -20,9 +20,10 @@ constexpr color_t CYAN		= {0.0,	 1.0,  1.0};
 void draw_circle(double x,
 				 double y,
 				 double radius,
-				 color_t color = BLACK,
+				 color_t stroke_color = BLACK,
+				 double thickness = 1.0,
 				 bool filled = false,
-				 double thickness = 1.0);
+				 color_t fill_color = BLACK);
 void draw_rect(double x,
 			   double y,
 			   double width,

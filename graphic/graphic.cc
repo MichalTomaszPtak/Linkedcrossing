@@ -17,14 +17,19 @@ void graphic_set_context(const Cairo::RefPtr<Cairo::Context> &cr) {
 void draw_circle(double x,
 				 double y,
 				 double radius,
-				 color_t color,
+				 color_t stroke_color,
+				 double thickness,
 				 bool filled,
-				 double thickness) {
-    (*ptcr)->set_line_width(thickness);
-    set_color(color);
-    (*ptcr)->arc(x, y, radius, 0, 2 * M_PI);
-    if (filled) (*ptcr)->fill();
-    else 		(*ptcr)->stroke();
+				 color_t fill_color) {
+	if (filled) {
+		(*ptcr)->arc(x, y, radius, 0, 2 * M_PI);
+		set_color(fill_color);
+		(*ptcr)->fill();
+	}
+	(*ptcr)->set_line_width(thickness);
+	(*ptcr)->arc(x, y, radius, 0, 2 * M_PI);
+    set_color(stroke_color);
+	(*ptcr)->stroke();
 	return;
 };
 
