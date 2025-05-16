@@ -5,9 +5,7 @@
 #include <debug/debug.h>
 #include "jeu.h"
 
-#define SKIP_EMPTY()	do { \
-							if (!std::getline(file,line)) break; \
-						} while (isEmpty(line))
+#define SKIP_EMPTY()	do { if (!std::getline(file,line)) break; } while (isEmpty(line))
 
 class Running_game{
 	public:
@@ -241,8 +239,8 @@ bool Jeu::readParticles(std::ifstream &file, std::string &line) {
 	}
 	nbParticule = nbPart;
 	for (unsigned int i = 0; i < nbParticule; i++) {
-		//SKIP_EMPTY();
-		if (!std::getline(file, line)) return false;
+		SKIP_EMPTY();
+		//if (!std::getline(file, line)) return false;
 		if (!isValid(line, 5)) return false;
 		temp = read_particule(line);
 		if (!particleValid(temp)) return false;
@@ -262,7 +260,8 @@ bool Jeu::readFaiseurs(std::ifstream &file, std::string &line) {
 	ss >> nbFais;
 	nbFaiseurs = nbFais;
 	for (unsigned int id1 = 0; id1 < nbFaiseurs; id1++) {
-		if (!std::getline(file, line)) return false;
+		SKIP_EMPTY();
+		//if (!std::getline(file, line)) return false;
 		if (!isValid(line, 6)) return false;
 		f1 = read_faiseur(line);
 		if (!faiseurValid(f1)) return false;
@@ -287,7 +286,8 @@ bool Jeu::readArticulations(std::ifstream &file, std::string &line) {
 	ss >> nbArticulation;
 	nbArt = nbArticulation;
 	for (unsigned int i = 0; i < nbArt; i++) {
-		if (!std::getline(file, line)) return false;
+		SKIP_EMPTY();
+		//if (!std::getline(file, line)) return false;
 		ss = std::stringstream(line);
 		if (!isValid(line, 2)) return false;
 		ss >> temp.x;
