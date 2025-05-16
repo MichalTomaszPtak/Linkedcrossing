@@ -311,22 +311,25 @@ void My_window::update() {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-    --(game->score);
-
-	game->update();
-    update_infos();
-    drawing.queue_draw();
-
-    //~ if (appel pour obtenir le statut du jeu !== ON_GOING) // voir jeu.h 
-    //~ {
-		//~ ...
-        //~ buttons[B_SAVE].set_sensitive(false);
-        //~ buttons[B_START].set_sensitive(false);
-        //~ buttons[B_STEP].set_sensitive(false);
-        //~ checks[0].set_active(true);
-        //~ checks[0].set_sensitive(false);
-        //~ checks[1].set_sensitive(false);
-	//~ }   
+	if (game->score == 0) {
+        loop_conn.disconnect();
+		activated = false;
+        buttons[B_EXIT].set_sensitive(true);
+        buttons[B_OPEN].set_sensitive(true);
+        buttons[B_SAVE].set_sensitive(false);
+        buttons[B_RESTART].set_sensitive(true);
+        buttons[B_START].set_sensitive(false);
+        buttons[B_START].set_label("start");
+        buttons[B_STEP].set_sensitive(false);
+        checks[0].set_active(true);
+        checks[0].set_sensitive(false);
+        checks[1].set_sensitive(false);
+	} else {
+		--(game->score);
+		game->update();
+	}
+	update_infos();
+	drawing.queue_draw();
 }
 
 void My_window::set_infos() {
