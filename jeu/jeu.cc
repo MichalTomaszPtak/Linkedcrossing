@@ -5,10 +5,7 @@
 #include <debug/debug.h>
 #include "jeu.h"
 
-#define SKIP_EMPTY()	do { \
-
-							if (!std::getline(file,line)) break; \
-						} while (isEmpty(line))
+#define SKIP_EMPTY()	do { if (!std::getline(file,line)) break; } while (isEmpty(line))
 
 class Running_game{
 	public:
