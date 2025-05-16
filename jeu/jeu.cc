@@ -6,6 +6,7 @@
 #include "jeu.h"
 
 #define SKIP_EMPTY()	do { \
+
 							if (!std::getline(file,line)) break; \
 						} while (isEmpty(line))
 
@@ -241,8 +242,8 @@ bool Jeu::readParticles(std::ifstream &file, std::string &line) {
 	}
 	nbParticule = nbPart;
 	for (unsigned int i = 0; i < nbParticule; i++) {
-		//SKIP_EMPTY();
-		if (!std::getline(file, line)) return false;
+		SKIP_EMPTY();
+		//if (!std::getline(file, line)) return false;
 		if (!isValid(line, 5)) return false;
 		temp = read_particule(line);
 		if (!particleValid(temp)) return false;
