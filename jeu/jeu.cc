@@ -174,6 +174,7 @@ void Jeu::read_file(const std::string &filename) {
 	}
 	SKIP_EMPTY();
 	score = stoi(line);
+	//std::cout<<score<<std::endl;
 	if(!(score > 0 && score <= score_max)) {
 		std::cout << message::score_outside(score);
 		return;
@@ -240,11 +241,13 @@ bool Jeu::readParticles(std::ifstream &file, std::string &line) {
 	}
 	nbParticule = nbPart;
 	for (unsigned int i = 0; i < nbParticule; i++) {
+		//SKIP_EMPTY();
 		if (!std::getline(file, line)) return false;
 		if (!isValid(line, 5)) return false;
 		temp = read_particule(line);
 		if (!particleValid(temp)) return false;
 		particles.push_back(temp);
+		//std::cout << temp.get_position().x << std::endl;
 	}
 	return true;
 }
