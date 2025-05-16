@@ -260,7 +260,8 @@ bool Jeu::readFaiseurs(std::ifstream &file, std::string &line) {
 	ss >> nbFais;
 	nbFaiseurs = nbFais;
 	for (unsigned int id1 = 0; id1 < nbFaiseurs; id1++) {
-		if (!std::getline(file, line)) return false;
+		SKIP_EMPTY();
+		//if (!std::getline(file, line)) return false;
 		if (!isValid(line, 6)) return false;
 		f1 = read_faiseur(line);
 		if (!faiseurValid(f1)) return false;
@@ -285,7 +286,8 @@ bool Jeu::readArticulations(std::ifstream &file, std::string &line) {
 	ss >> nbArticulation;
 	nbArt = nbArticulation;
 	for (unsigned int i = 0; i < nbArt; i++) {
-		if (!std::getline(file, line)) return false;
+		SKIP_EMPTY();
+		//if (!std::getline(file, line)) return false;
 		ss = std::stringstream(line);
 		if (!isValid(line, 2)) return false;
 		ss >> temp.x;
