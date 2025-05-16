@@ -16,8 +16,9 @@
 #include <fstream>
 #include <iostream>
 
-#define PARTICLE_RADIUS 1
+#define PARTICLE_RADIUS r_viz
 #define PARTICLE_COLOR GREEN
+#define PARTICLE_FILL CYAN
 #define FAISEUR_COLOR BLUE
 #define FAISEUR_FILL false
 #define FAISEUR_THICKNESS 1
