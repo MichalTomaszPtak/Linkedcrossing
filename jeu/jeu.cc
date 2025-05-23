@@ -484,7 +484,7 @@ void Jeu::single_iteration(int i, int k){
 
 	//actual processing
 	double angle = (articulations[i] - articulations[k]).get_angle();
-	articulations[i] = articulations[k] + S2d(articulation_distances[i]*cos(angle), articulation_distances[i]*sin(angle));
+	articulations[i] = articulations[k] + S2d(articulation_distances[std::min(i,k)]*cos(angle), articulation_distances[std::min(i,k)]*sin(angle));
 
 }
 
