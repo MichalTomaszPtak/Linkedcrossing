@@ -75,7 +75,7 @@ struct Jeu {
 	bool readMode(std::ifstream &file, std::string &line);
 
 	// game runtime
-	void init_chaine();
+	//void init_chaine();
 	void update(void);
 	void drawScene(void);
 	void clear_info(void);

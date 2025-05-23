@@ -315,6 +315,7 @@ bool Jeu::readMode(std::ifstream &file, std::string &line) {
 	return true;
 }
 
+/*
 void Jeu::init_chaine() {
 	if (!articulations.size()) {
 		articulations.push_back(mouse_position *
@@ -322,6 +323,7 @@ void Jeu::init_chaine() {
 	}
 	return;
 }
+*/
 
 void Jeu::update(void) {
 	for (auto p = particles.begin();
@@ -364,10 +366,16 @@ void Jeu::drawScene(void) {
 	for (Faiseur &faiseur : Jeu::faiseurs) {
 		faiseur.draw();
 	}
+	if (mode == CONSTRUCTION && !articulations.size()) {
+		S2d pos = mouse_position * (r_max / mouse_position.get_length());
+		draw_circle(pos.x,
+					pos.y,
+					r_capture, RED, 1, false);
+	}
 	draw_Chaine(articulations);
 	return;
 }
-
+ 
 void Jeu::clear_info(void){
 	score = 4000;
 	nbParticule = 0;
