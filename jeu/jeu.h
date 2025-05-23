@@ -80,7 +80,7 @@ struct Jeu {
 
 
 	// game runtime
-	void init_chaine();
+	//void init_chaine();
 	void update(void);
 	void drawScene(void);
 	void clear_info(void);

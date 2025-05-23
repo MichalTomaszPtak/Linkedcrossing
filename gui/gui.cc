@@ -163,7 +163,7 @@ void My_window::start_clicked() {
         buttons[B_STEP].set_sensitive(false);
 
 		if (game->mode == CONSTRUCTION) {
-			game->init_chaine();
+			//game->init_chaine();
 		}
     }
 }
