@@ -458,14 +458,15 @@ void Jeu::chain_algorithm() {
 	std::vector<S2d> temp = articulations;
 
 
-	float angle = (mouse_position - articulations[articulations.size()-1]).get_angle();
-	if((articulations[articulations.size()-1] - mouse_position).get_length() > r_capture){
-		articulations[articulations.size()-1] = articulations[articulations.size()-1] + S2d(r_capture * cos(angle), r_capture * sin(angle));
-	} else{
-		articulations[articulations.size()-1] = mouse_position;
-	}
+
 
 	if (articulations.size() > 1){
+		float angle = (mouse_position - articulations[articulations.size()-1]).get_angle();
+		if((articulations[articulations.size()-1] - mouse_position).get_length() > r_capture){
+			articulations[articulations.size()-1] = articulations[articulations.size()-1] + S2d(r_capture * cos(angle), r_capture * sin(angle));
+		} else{
+			articulations[articulations.size()-1] = mouse_position;
+		}
 		//de l'effecteur vers la racine
 		for(int i = articulations.size()-1; i > 1; i--){
 			single_iteration(i - 1, i);
@@ -481,7 +482,6 @@ void Jeu::chain_algorithm() {
 void Jeu::single_iteration(int i, int k){
 	//mouse_position
 	//articulations
-
 	//actual processing
 	double angle = (articulations[i] - articulations[k]).get_angle();
 	articulations[i] = articulations[k] + S2d(articulation_distances[std::min(i,k)]*cos(angle), articulation_distances[std::min(i,k)]*sin(angle));
