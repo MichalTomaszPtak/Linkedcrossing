@@ -457,8 +457,11 @@ void My_window::on_drawing_move(double x, double y) {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-	game->mouse_position = S2d(((x / drawing.get_width()) - 0.5) * 2 * r_max,
-							   ((y / drawing.get_height()) - 0.5) * -2 * r_max);
+	double width = drawing.get_width();
+	double height = drawing.get_height();
+	double size = min(width, height);
+	game->mouse_position = S2d((x - (width/2)) * 2 * r_max / size,
+							   (y - (height/2)) * -2 * r_max / size);
 }
 
 void My_window::set_jeu(string file_name) {
