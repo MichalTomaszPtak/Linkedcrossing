@@ -366,7 +366,7 @@ void Jeu::capture(void) {
 		}
 		if (articulations.size() > 0) {
 			articulation_distances.push_back(
-					(new_pos - articulations.back()).get_length());
+					(new_pos - head).get_length());
 		}
 
 		articulations.push_back(new_pos);
