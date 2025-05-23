@@ -436,35 +436,33 @@ void Jeu::chain_algorithm() {
 		inter_length.pushback((articulations[i+1] - articulations[i]).get_length());
 	};
 
+	float angle = (mouse_position - articulations[articulations.size()-1]).get_angle();
+	if((articulations[articulations.size()-1] - mouse_position).get_length() > r_capture){
+		articulations[articulations.size()-1] = articulations[articulations.size()-1] + S2d(r_capture * cos(angle), r_capture * sin(angle));
+	} else{
+		articulations[articulations.size()-1] = mouse_position;
+	}
+
 	if (articulations.size() > 1){
-		for (int i = articulations.size() -3 ; i >= 0; i--){
-			single_iteration(i, inter_length);
+		//de l'effecteur vers la racine
+		for(int i = articulations.size()-1; i > 1; i--){
+			single_iteration(i - 1, i);
 		}
-		for (int i = 0; i < articulations.size()-3; i++) {
-			single_iteration(i, inter_length);
+		//de la racine vers l'effecteur
+		for(int i = 0; i < articulations.size()-2; i++){
+			single_iteration(i+1, i);
 		}
+
 	}
 }
 
-void Jeu:single_iteration(int i, std::vector<double> lengths){
+void Jeu:single_iteration(int i, int k){
 	//mouse_position
-
-	//getting the point positions
-	S2d p0 = articulation[i];
-	S2d p1 = articulations[i + 1];
-	S2d p2 = articulations[i + 2];
-
-	//getting the lengths beetween the points
-	double I1 = lengths[i];
-	double I2 = lengths[i + 1];
+	//articulations
 
 	//actual processing
-
-
-
-
-
-
+	double angle = (articulations[i] - articulations[k]).get_angle();
+	articulations[i] = articulations[k] + S2d(articulation_distances[i]*cos(angle), articulation_distances[i]*sin(angle));
 
 
 }
