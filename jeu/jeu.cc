@@ -375,6 +375,7 @@ void Jeu::update(void) {
 	captured = false;
 
 	if (articulations.size()) {
+		chain_algorithm();
 		if ((target_point - articulations.back()).get_length() < r_capture) {
 			// win game
 			status = WON;
