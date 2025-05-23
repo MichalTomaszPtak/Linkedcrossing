@@ -299,6 +299,14 @@ bool Jeu::readArticulations(std::ifstream &file, std::string &line) {
 		S2d front = articulations.front();
 		target_point = front * (-r_max / front.get_length());
 	}
+	if (nbArticulation > 1){
+		for (unsigned int i = 1; i < nbArticulation; i++) {
+			articulation_distances.push_back((articulations[i]- articulations[i-1]).get_length());
+
+		}
+	}
+
+
 	return true;
 }
 
