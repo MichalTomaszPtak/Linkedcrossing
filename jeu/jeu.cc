@@ -375,6 +375,7 @@ void Jeu::update(void) {
 	captured = false;
 
 	if (articulations.size()) {
+		std::cout << artriculation_distances[0] << std::endl;
 		if (mode == Mode::GUIDAGE) {
 			chain_algorithm();
 		}
