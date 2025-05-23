@@ -478,7 +478,7 @@ void Jeu::chain_algorithm() {
 	}
 }
 
-void Jeu:single_iteration(int i, int k){
+void Jeu::single_iteration(int i, int k){
 	//mouse_position
 	//articulations
 

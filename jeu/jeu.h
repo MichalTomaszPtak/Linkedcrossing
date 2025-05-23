@@ -78,7 +78,7 @@ struct Jeu {
 
 	// updating the chain positons
 	void chain_algorithm();
-	void single_iteration(int i1,int i2, std::vector<double> lengths);
+	void single_iteration(int i,int k);
 
 
 	// game runtime
