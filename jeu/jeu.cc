@@ -356,7 +356,13 @@ void Jeu::capture(void) {
 		if (!articulations.size()) {
 			target_point = new_pos * (-r_max / new_pos.get_length());
 		}
+		if (articulations.size() > 1) {
+			articulation_distances.push_back(
+					(new_pos - articulations.back()).get_length());
+		}
+
 		articulations.push_back(new_pos);
+
 		particles.erase(particles.begin()+my_index);
 		if ((target_point - head).get_length() < r_capture) {
 			// win game
