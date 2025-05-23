@@ -330,6 +330,10 @@ void Jeu::init_chaine() {
 */
 
 void Jeu::capture(void) {
+	// allow calling only once per update
+	if (captured) return;
+	captured = true;
+
 	S2d head;
 	unsigned int particle_count = 0;
 	size_t my_index;
@@ -346,12 +350,7 @@ void Jeu::capture(void) {
 			my_index = i;
 		}
 	}
-	if (particle_count == 0 &&
-		articulations.size() &&
-		(target_point - head).get_length() < r_capture) {
-		articulations.push_back(target_point);
-		// win game
-	}
+	
 	if (particle_count == 1) {
 		S2d new_pos = particles[my_index].get_position();
 		if (!articulations.size()) {
@@ -359,10 +358,23 @@ void Jeu::capture(void) {
 		}
 		articulations.push_back(new_pos);
 		particles.erase(particles.begin()+my_index);
+		if ((target_point - head).get_length() < r_capture) {
+			// win game
+			status = WON;
+		}
 	}
 }
 
 void Jeu::update(void) {
+	captured = false;
+
+	if (articulations.size()) {
+		if ((target_point - articulations.back()).get_length() < r_capture) {
+			// win game
+			status = WON;
+		}
+	}
+
 	for (auto p = particles.begin();
 		 p != particles.end(); ) {
 		if (p->get_counter() >= time_to_split -1) {
@@ -391,6 +403,14 @@ void Jeu::update(void) {
 			}
 		}
 		if (!collision) f->update();
+	}
+
+	for (S2d p : articulations) {
+		for (Faiseur f : faiseurs) {
+			if (f.contains(p)) {
+				status = LOST;
+			}
+		}
 	}
 }
 
@@ -440,7 +460,7 @@ void Jeu::chain_algorithm(Jeu& instance, S2d mouse_position) {
 	}
 }
 
-void Jeu:single_iteration(S2d pos1, S2d pos2){
+void Jeu::single_iteration(S2d pos1, S2d pos2){
 
 }
 

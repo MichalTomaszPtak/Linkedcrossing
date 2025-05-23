@@ -63,6 +63,7 @@ struct Jeu {
 	unsigned int nbArt = 0;
 	std::vector<S2d> articulations;
 	Mode mode;
+	bool captured;
 	S2d target_point = S2d(0,0);
 	S2d mouse_position = S2d(0,0);
 

@@ -97,6 +97,7 @@ public:
 	void print(void) override;
 	void update(void) override;
 	bool try_collision(Faiseur f);
+	bool contains(S2d p);
 private:
 	float displacement;
 	float radius;
