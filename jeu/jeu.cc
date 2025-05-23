@@ -375,7 +375,6 @@ void Jeu::update(void) {
 	captured = false;
 
 	if (articulations.size()) {
-		std::cout << artriculation_distances[0] << std::endl;
 		if (mode == Mode::GUIDAGE) {
 			chain_algorithm();
 		}
@@ -466,6 +465,7 @@ void Jeu::chain_algorithm() {
 
 
 	if (articulations.size() > 1){
+		std::cout << artriculation_distances[0] << std::endl;
 		float angle = (mouse_position - articulations[articulations.size()-1]).get_angle();
 		if((articulations[articulations.size()-1] - mouse_position).get_length() > r_capture){
 			articulations[articulations.size()-1] = articulations[articulations.size()-1] + S2d(r_capture * cos(angle), r_capture * sin(angle));
