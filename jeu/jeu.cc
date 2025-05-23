@@ -429,12 +429,7 @@ void Jeu::clear_info(void){
 
 void Jeu::chain_algorithm() {
 	std::vector<S2d> temp = articulations;
-	std::vector<double> inter_length;
 
-	//assinging lengths beetween the articulations in inter_length vector
-	for(int i = 0; i < articulations.size()-1; i++){
-		inter_length.pushback((articulations[i+1] - articulations[i]).get_length());
-	};
 
 	float angle = (mouse_position - articulations[articulations.size()-1]).get_angle();
 	if((articulations[articulations.size()-1] - mouse_position).get_length() > r_capture){
@@ -456,15 +451,11 @@ void Jeu::chain_algorithm() {
 	}
 }
 
-void Jeu:single_iteration(int i, int k){
-	//mouse_position
-	//articulations
+void Jeu::single_iteration(int i, int k){
 
 	//actual processing
 	double angle = (articulations[i] - articulations[k]).get_angle();
 	articulations[i] = articulations[k] + S2d(articulation_distances[i]*cos(angle), articulation_distances[i]*sin(angle));
-
-
 }
 
 void Jeu::save_game_info(const std::string &filename) {
