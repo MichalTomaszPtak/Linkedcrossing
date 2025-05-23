@@ -375,7 +375,7 @@ void Jeu::update(void) {
 	captured = false;
 
 	if (articulations.size()) {
-		if (mode == Mode::CONSTRUCTION) {
+		if (mode == Mode::GUIDAGE) {
 			chain_algorithm();
 		}
 
