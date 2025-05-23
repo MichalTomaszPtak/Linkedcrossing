@@ -474,7 +474,7 @@ void Jeu::chain_algorithm() {
 			single_iteration(i - 1, i);
 		}
 		//de la racine vers l'effecteur
-		for(int i = 0; i < articulations.size()-2; i++){
+		for(int i = 0; i < articulations.size() - 1; i++){
 			single_iteration(i+1, i);
 		}
 		return;
