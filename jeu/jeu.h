@@ -76,7 +76,7 @@ struct Jeu {
 
 	// updating the chain positons
 	void chain_algorithm(Jeu& instance, S2d mouse_position);
-	void single_iteration(S2d pos1, S2d pos2, S2d
+	void single_iteration(S2d pos1, S2d pos2);
 
 
 	// game runtime

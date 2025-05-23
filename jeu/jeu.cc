@@ -380,15 +380,19 @@ void Jeu::clear_info(void){
 
 void Jeu::chain_algorithm(Jeu& instance, S2d mouse_position) {
 	if (articulations.size() > 1){
-		for (int i = articulations.size(); i > 0; i--){
-
-
+		for (int i = articulations.size() -1 ; i > 0; i--){
+			single_iteration(articulations[i], articulations[i-1]);
 
 		}
-		for (int i = 0; i < articulations.size(); i++) {
+		for (int i = 1; i < articulations.size()-1; i++) {
+			single_iteration(articulations[i], articulations[i-1]);
 
 		}
 	}
+}
+
+void Jeu:single_iteration(S2d pos1, S2d pos2){
+
 }
 
 void Jeu::save_game_info(const std::string &filename) {
