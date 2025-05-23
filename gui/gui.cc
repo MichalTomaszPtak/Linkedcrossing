@@ -161,6 +161,10 @@ void My_window::start_clicked() {
         buttons[B_RESTART].set_sensitive(false);
         buttons[B_START].set_label("stop");
         buttons[B_STEP].set_sensitive(false);
+
+		if (game->mode == CONSTRUCTION) {
+			game->init_chaine();
+		}
     }
 }
 
@@ -434,6 +438,8 @@ void My_window::on_drawing_move(double x, double y) {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
+	game->mouse_position = S2d(((x / drawing.get_width()) - 0.5) * 2 * r_max,
+							   ((y / drawing.get_height()) - 0.5) * -2 * r_max);
 }
 
 void My_window::set_jeu(string file_name) {
