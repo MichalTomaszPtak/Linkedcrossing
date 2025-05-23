@@ -295,6 +295,10 @@ bool Jeu::readArticulations(std::ifstream &file, std::string &line) {
 		if (!articulationValid(temp, i)) return false;
 		articulations.push_back(temp);
 	}
+	if (articulations.size()) {
+		S2d front = articulations.front();
+		target_point = front * (-r_max / front.get_length());
+	}
 	return true;
 }
 
@@ -324,6 +328,39 @@ void Jeu::init_chaine() {
 	return;
 }
 */
+
+void Jeu::capture(void) {
+	S2d head;
+	unsigned int particle_count = 0;
+	size_t my_index;
+
+	if (!articulations.size()) {
+		head = mouse_position * (r_max / mouse_position.get_length());
+	} else {
+		head = articulations.back();
+	}
+
+	for (size_t i = 0; i < particles.size(); i++) {
+		if ((particles[i].get_position() - head).get_length() < r_capture) {
+			particle_count++;
+			my_index = i;
+		}
+	}
+	if (particle_count == 0 &&
+		articulations.size() &&
+		(target_point - head).get_length() < r_capture) {
+		articulations.push_back(target_point);
+		// win game
+	}
+	if (particle_count == 1) {
+		S2d new_pos = particles[my_index].get_position();
+		if (!articulations.size()) {
+			target_point = new_pos * (-r_max / new_pos.get_length());
+		}
+		articulations.push_back(new_pos);
+		particles.erase(particles.begin()+my_index);
+	}
+}
 
 void Jeu::update(void) {
 	for (auto p = particles.begin();
@@ -373,6 +410,10 @@ void Jeu::drawScene(void) {
 					r_capture, RED, 1, false);
 	}
 	draw_Chaine(articulations);
+	// draw target point
+	if (articulations.size()) {
+		draw_circle(target_point.x, target_point.y, r_viz, BLACK, 1, false);
+	}
 	return;
 }
  

@@ -81,6 +81,7 @@ struct Jeu {
 
 	// game runtime
 	//void init_chaine();
+	void capture(void);
 	void update(void);
 	void drawScene(void);
 	void clear_info(void);
