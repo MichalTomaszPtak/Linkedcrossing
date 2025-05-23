@@ -315,6 +315,14 @@ bool Jeu::readMode(std::ifstream &file, std::string &line) {
 	return true;
 }
 
+void Jeu::init_chaine() {
+	if (!articulations.size()) {
+		articulations.push_back(mouse_position *
+								(r_max / mouse_position.get_length()));
+	}
+	return;
+}
+
 void Jeu::update(void) {
 	for (auto p = particles.begin();
 		 p != particles.end(); ) {

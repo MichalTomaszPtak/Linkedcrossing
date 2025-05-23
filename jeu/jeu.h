@@ -63,6 +63,7 @@ struct Jeu {
 	std::vector<S2d> articulations;
 	Mode mode;
 	S2d target_point = S2d(0,0);
+	S2d mouse_position = S2d(0,0);
 
 	// game loading
 	void read_file(const std::string &filename);
@@ -74,6 +75,7 @@ struct Jeu {
 	bool readMode(std::ifstream &file, std::string &line);
 
 	// game runtime
+	void init_chaine();
 	void update(void);
 	void drawScene(void);
 	void clear_info(void);
