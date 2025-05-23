@@ -52,6 +52,7 @@ struct Jeu {
 	};
 	GameInfo game_info_;
 	*/
+	Status status;
 
 	bool valid = false;
 	unsigned int score = 4000;
@@ -66,12 +67,14 @@ struct Jeu {
 
 	// game loading
 	void read_file(const std::string &filename);
-
 	bool articulationValid(const S2d pos, unsigned int index);
 	bool readParticles(std::ifstream &file, std::string &line);
 	bool readFaiseurs(std::ifstream &file, std::string &line);
 	bool readArticulations(std::ifstream &file, std::string &line);
 	bool readMode(std::ifstream &file, std::string &line);
+
+	// updating the chain positons
+	void chain_algorithm(Jeu& instance, S2d mouse_position);
 
 	// game runtime
 	void update(void);
@@ -80,5 +83,6 @@ struct Jeu {
 	// Saving file
 	void save_game_info(const std::string &filename);
 };
+
 
 #endif
