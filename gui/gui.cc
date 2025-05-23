@@ -421,6 +421,8 @@ void My_window::on_drawing_left_click(int n_press, double x, double y) {
 #endif
     game->mode = (Mode::CONSTRUCTION);
     checks[0].set_active(true);
+
+	game->capture();
 }
 
 void My_window::on_drawing_right_click(int n_press, double x, double y) {
@@ -457,7 +459,7 @@ void My_window::set_jeu(string file_name) {
         checks[0].set_active(true);
         checks[0].set_sensitive(false);
         checks[1].set_sensitive(false);
-    } else {
+    } else target_point
         buttons[2].set_sensitive(true);
         buttons[4].set_sensitive(true);
         buttons[5].set_sensitive(true);
