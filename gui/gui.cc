@@ -447,7 +447,7 @@ void My_window::on_drawing_right_click(int n_press, double x, double y) {
 	cout <<  __func__ << endl;
 #endif
     if (game->mode == Mode::GUIDAGE) {
-        game->target_point = scaled((S2d(x,y)));
+        //game->target_point = scaled((S2d(x,y)));
     }
     game->mode = (Mode::GUIDAGE);
     checks[1].set_active(true);
