@@ -375,7 +375,10 @@ void Jeu::update(void) {
 	captured = false;
 
 	if (articulations.size()) {
-		chain_algorithm();
+		if (mode == Mode::CONSTRUCTION) {
+			chain_algorithm();
+		}
+
 		if ((target_point - articulations.back()).get_length() < r_capture) {
 			// win game
 			status = WON;
@@ -455,6 +458,7 @@ void Jeu::clear_info(void){
 }
 
 void Jeu::chain_algorithm() {
+	if (articulations.empty()) return;
 	std::vector<S2d> temp = articulations;
 
 
@@ -475,6 +479,7 @@ void Jeu::chain_algorithm() {
 		for(int i = 0; i < articulations.size()-2; i++){
 			single_iteration(i+1, i);
 		}
+		return;
 
 	}
 }
