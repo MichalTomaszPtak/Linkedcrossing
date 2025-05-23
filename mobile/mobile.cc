@@ -214,3 +214,10 @@ bool Faiseur::try_collision(Faiseur f) {
 	}
 	return false;
 }
+
+bool Faiseur::contains(S2d p) {
+	for (S2d t : tail) {
+		if ((t - p).get_length() < radius) return true;
+	}
+	return false;
+}

@@ -64,6 +64,7 @@ struct Jeu {
 	std::vector<S2d> articulations;
 	std::vector<float> articulation_distances;
 	Mode mode;
+	bool captured;
 	S2d target_point = S2d(0,0);
 	S2d mouse_position = S2d(0,0);
 

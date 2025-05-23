@@ -330,6 +330,10 @@ void Jeu::init_chaine() {
 */
 
 void Jeu::capture(void) {
+	// allow calling only once per update
+	if (captured) return;
+	captured = true;
+
 	S2d head;
 	unsigned int particle_count = 0;
 	size_t my_index;
@@ -346,23 +350,37 @@ void Jeu::capture(void) {
 			my_index = i;
 		}
 	}
-	if (particle_count == 0 &&
-		articulations.size() &&
-		(target_point - head).get_length() < r_capture) {
-		articulations.push_back(target_point);
-		// win game
-	}
+	
 	if (particle_count == 1) {
 		S2d new_pos = particles[my_index].get_position();
 		if (!articulations.size()) {
 			target_point = new_pos * (-r_max / new_pos.get_length());
 		}
+		if (articulations.size() > 1) {
+			articulation_distances.push_back(
+					(new_pos - articulations.back()).get_length());
+		}
+
 		articulations.push_back(new_pos);
+
 		particles.erase(particles.begin()+my_index);
+		if ((target_point - head).get_length() < r_capture) {
+			// win game
+			status = WON;
+		}
 	}
 }
 
 void Jeu::update(void) {
+	captured = false;
+
+	if (articulations.size()) {
+		if ((target_point - articulations.back()).get_length() < r_capture) {
+			// win game
+			status = WON;
+		}
+	}
+
 	for (auto p = particles.begin();
 		 p != particles.end(); ) {
 		if (p->get_counter() >= time_to_split -1) {
@@ -391,6 +409,14 @@ void Jeu::update(void) {
 			}
 		}
 		if (!collision) f->update();
+	}
+
+	for (S2d p : articulations) {
+		for (Faiseur f : faiseurs) {
+			if (f.contains(p)) {
+				status = LOST;
+			}
+		}
 	}
 }
 
@@ -429,7 +455,12 @@ void Jeu::clear_info(void){
 
 void Jeu::chain_algorithm() {
 	std::vector<S2d> temp = articulations;
+	std::vector<double> inter_length;
 
+	//assinging lengths beetween the articulations in inter_length vector
+	for(int i = 0; i < articulations.size()-1; i++){
+		inter_length.pushback((articulations[i+1] - articulations[i]).get_length());
+	};
 
 	float angle = (mouse_position - articulations[articulations.size()-1]).get_angle();
 	if((articulations[articulations.size()-1] - mouse_position).get_length() > r_capture){
@@ -451,11 +482,14 @@ void Jeu::chain_algorithm() {
 	}
 }
 
-void Jeu::single_iteration(int i, int k){
+void Jeu:single_iteration(int i, int k){
+	//mouse_position
+	//articulations
 
 	//actual processing
 	double angle = (articulations[i] - articulations[k]).get_angle();
 	articulations[i] = articulations[k] + S2d(articulation_distances[i]*cos(angle), articulation_distances[i]*sin(angle));
+
 }
 
 void Jeu::save_game_info(const std::string &filename) {

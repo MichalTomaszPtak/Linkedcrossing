@@ -315,22 +315,39 @@ void My_window::update() {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-	if (game->score == 0) {
-        loop_conn.disconnect();
-		activated = false;
-        buttons[B_EXIT].set_sensitive(true);
-        buttons[B_OPEN].set_sensitive(true);
-        buttons[B_SAVE].set_sensitive(false);
-        buttons[B_RESTART].set_sensitive(true);
-        buttons[B_START].set_sensitive(false);
-        buttons[B_START].set_label("start");
-        buttons[B_STEP].set_sensitive(false);
-        checks[0].set_active(true);
-        checks[0].set_sensitive(false);
-        checks[1].set_sensitive(false);
-	} else {
-		--(game->score);
-		game->update();
+	switch (game->status) {
+		case LOST:
+			loop_conn.disconnect();
+			activated = false;
+			buttons[B_EXIT].set_sensitive(true);
+			buttons[B_OPEN].set_sensitive(true);
+			buttons[B_SAVE].set_sensitive(false);
+			buttons[B_RESTART].set_sensitive(true);
+			buttons[B_START].set_sensitive(false);
+			buttons[B_START].set_label("start");
+			buttons[B_STEP].set_sensitive(false);
+			checks[0].set_active(true);
+			checks[0].set_sensitive(false);
+			checks[1].set_sensitive(false);
+			break;
+		case ONGOING:
+			--(game->score);
+			game->update();
+			break;
+		case WON:
+			loop_conn.disconnect();
+			activated = false;
+			buttons[B_EXIT].set_sensitive(true);
+			buttons[B_OPEN].set_sensitive(true);
+			buttons[B_SAVE].set_sensitive(false);
+			buttons[B_RESTART].set_sensitive(true);
+			buttons[B_START].set_sensitive(false);
+			buttons[B_START].set_label("start");
+			buttons[B_STEP].set_sensitive(false);
+			checks[0].set_active(true);
+			checks[0].set_sensitive(false);
+			checks[1].set_sensitive(false);
+			break;
 	}
 	update_infos();
 	drawing.queue_draw();
@@ -459,12 +476,13 @@ void My_window::set_jeu(string file_name) {
         checks[0].set_active(true);
         checks[0].set_sensitive(false);
         checks[1].set_sensitive(false);
-    } else target_point
+    } else {
         buttons[2].set_sensitive(true);
         buttons[4].set_sensitive(true);
         buttons[5].set_sensitive(true);
         checks[0].set_sensitive(true);
         checks[1].set_sensitive(true);
+		game->status = ONGOING;
         switch (game->mode) { // voir jeu.h
         case CONSTRUCTION:
 			checks[0].set_active(true);
