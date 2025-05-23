@@ -386,20 +386,45 @@ void Jeu::clear_info(void){
 	articulations.clear();
 }
 
-void Jeu::chain_algorithm(Jeu& instance, S2d mouse_position) {
+void Jeu::chain_algorithm() {
+	std::vector<S2d> temp = articulations;
+	std::vector<double> inter_length;
+
+	//assinging lengths beetween the articulations in inter_length vector
+	for(int i = 0; i < articulations.size()-1; i++){
+		inter_length.pushback((articulations[i+1] - articulations[i]).get_length());
+	};
+
 	if (articulations.size() > 1){
-		for (int i = articulations.size() -1 ; i > 0; i--){
-			single_iteration(articulations[i], articulations[i-1]);
-
+		for (int i = articulations.size() -3 ; i >= 0; i--){
+			single_iteration(i, inter_length);
 		}
-		for (int i = 1; i < articulations.size()-1; i++) {
-			single_iteration(articulations[i], articulations[i-1]);
-
+		for (int i = 0; i < articulations.size()-3; i++) {
+			single_iteration(i, inter_length);
 		}
 	}
 }
 
-void Jeu:single_iteration(S2d pos1, S2d pos2){
+void Jeu:single_iteration(int i, std::vector<double> lengths){
+	//mouse_position
+
+	//getting the point positions
+	S2d p0 = articulation[i];
+	S2d p1 = articulations[i + 1];
+	S2d p2 = articulations[i + 2];
+
+	//getting the lengths beetween the points
+	double I1 = lengths[i];
+	double I2 = lengths[i + 1];
+
+	//actual processing
+
+
+
+
+
+
+
 
 }
 

@@ -75,8 +75,8 @@ struct Jeu {
 	bool readMode(std::ifstream &file, std::string &line);
 
 	// updating the chain positons
-	void chain_algorithm(Jeu& instance, S2d mouse_position);
-	void single_iteration(S2d pos1, S2d pos2);
+	void chain_algorithm();
+	void single_iteration(int i, std::vector<double> lengths);
 
 
 	// game runtime
