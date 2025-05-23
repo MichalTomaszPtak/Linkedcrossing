@@ -62,6 +62,7 @@ struct Jeu {
 	unsigned int nbFaiseurs = 0;
 	unsigned int nbArt = 0;
 	std::vector<S2d> articulations;
+	std::vector<float> articulation_distances;
 	Mode mode;
 	bool captured;
 	S2d target_point = S2d(0,0);
@@ -77,7 +78,7 @@ struct Jeu {
 
 	// updating the chain positons
 	void chain_algorithm();
-	void single_iteration(int i, std::vector<double> lengths);
+	void single_iteration(int i1,int i2, std::vector<double> lengths);
 
 
 	// game runtime
