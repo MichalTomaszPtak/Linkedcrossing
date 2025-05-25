@@ -193,7 +193,7 @@ void Faiseur::print(void) {
 }
 
 void Faiseur::move(void) {
-	if ((position + velocity).get_length() > r_max - radius)
+	if ((position + velocity).get_length() > r_max - radius - 1)
 		velocity.reflect(position);
 	position += velocity;
 	return;

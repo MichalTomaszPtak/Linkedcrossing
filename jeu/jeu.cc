@@ -139,7 +139,7 @@ Faiseur read_faiseur(const std::string &line) {
 
 void draw_Chaine(const std::vector<S2d>& articulation){
 	for (auto a = articulation.begin(); a < articulation.end(); a++) {
-		draw_circle(a->x, a->y, 2 , RED, 1, true);
+		draw_circle(a->x, a->y, r_viz , RED, 1, true, RED);
 		if (a+1 != articulation.end()) {
 			draw_segment(a->x, a->y, (a+1)->x, (a+1)->y, RED, 1);
 		}
@@ -443,15 +443,17 @@ void Jeu::drawScene(void) {
 		faiseur.draw();
 	}
 	if (mode == CONSTRUCTION && !articulations.size()) {
-		S2d pos = mouse_position * (r_max / mouse_position.get_length());
-		draw_circle(pos.x,
+		if (mouse_position.get_length()) {
+			S2d pos = mouse_position * (r_max / mouse_position.get_length());
+			draw_circle(pos.x,
 					pos.y,
 					r_capture, RED, 1, false);
+		}
 	}
 	draw_Chaine(articulations);
 	// draw target point
 	if (articulations.size()) {
-		draw_circle(target_point.x, target_point.y, r_viz, BLACK, 1, false);
+		draw_circle(target_point.x, target_point.y, r_viz, BLACK, 1, true, BLACK);
 	}
 	return;
 }
