@@ -443,10 +443,12 @@ void Jeu::drawScene(void) {
 		faiseur.draw();
 	}
 	if (mode == CONSTRUCTION && !articulations.size()) {
-		S2d pos = mouse_position * (r_max / mouse_position.get_length());
-		draw_circle(pos.x,
+		if (mouse_position.get_length()) {
+			S2d pos = mouse_position * (r_max / mouse_position.get_length());
+			draw_circle(pos.x,
 					pos.y,
 					r_capture, RED, 1, false);
+		}
 	}
 	draw_Chaine(articulations);
 	// draw target point
