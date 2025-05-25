@@ -77,6 +77,7 @@ struct Jeu {
 	bool readMode(std::ifstream &file, std::string &line);
 
 	// updating the chain positons
+	void destroy_chain();
 	void chain_algorithm();
 	void single_iteration(int i,int k);
 

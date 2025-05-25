@@ -426,7 +426,8 @@ void Jeu::update(void) {
 	for (S2d p : articulations) {
 		for (Faiseur f : faiseurs) {
 			if (f.contains(p)) {
-				status = LOST;
+				//status = LOST;
+				destroy_chain()
 			}
 		}
 	}
@@ -499,6 +500,10 @@ void Jeu::single_iteration(int i, int k){
 	articulations[i] = articulations[k] + S2d(articulation_distances[std::min(i,k)]*cos(angle), articulation_distances[std::min(i,k)]*sin(angle));
 
 }
+void Jeu::destroy_chain(){
+	articulations.clear();
+	articulation_distances.clear();
+};
 
 void Jeu::save_game_info(const std::string &filename) {
 	std::ofstream file(filename);
