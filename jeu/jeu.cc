@@ -493,9 +493,7 @@ void Jeu::chain_algorithm() {
 }
 
 void Jeu::single_iteration(int i, int k){
-	//mouse_position
-	//articulations
-	//actual processing
+
 	double angle = (articulations[i] - articulations[k]).get_angle();
 	articulations[i] = articulations[k] + S2d(articulation_distances[std::min(i,k)]*cos(angle), articulation_distances[std::min(i,k)]*sin(angle));
 
@@ -503,6 +501,7 @@ void Jeu::single_iteration(int i, int k){
 void Jeu::destroy_chain(){
 	articulations.clear();
 	articulation_distances.clear();
+	nbArt = 0;
 };
 
 void Jeu::save_game_info(const std::string &filename) {
