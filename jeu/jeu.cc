@@ -431,6 +431,7 @@ void Jeu::update(void) {
 			}
 		}
 	}
+	nbArt = articulations.size();
 }
 
 void Jeu::drawScene(void) {
