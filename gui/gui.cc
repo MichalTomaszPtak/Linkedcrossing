@@ -317,8 +317,11 @@ void My_window::update() {
 #if DEBUG
 	cout <<  __func__ << endl;
 #endif
-	switch (game->status) {
-		case LOST:
+	if (game->status == ONGOING) {
+		--(game->score);
+		game->update();
+	}
+	if (game->status == WON || game->status == LOST){
 			loop_conn.disconnect();
 			activated = false;
 			buttons[B_EXIT].set_sensitive(true);
@@ -331,25 +334,6 @@ void My_window::update() {
 			checks[0].set_active(true);
 			checks[0].set_sensitive(false);
 			checks[1].set_sensitive(false);
-			break;
-		case ONGOING:
-			--(game->score);
-			game->update();
-			break;
-		case WON:
-			loop_conn.disconnect();
-			activated = false;
-			buttons[B_EXIT].set_sensitive(true);
-			buttons[B_OPEN].set_sensitive(true);
-			buttons[B_SAVE].set_sensitive(false);
-			buttons[B_RESTART].set_sensitive(true);
-			buttons[B_START].set_sensitive(false);
-			buttons[B_START].set_label("start");
-			buttons[B_STEP].set_sensitive(false);
-			checks[0].set_active(true);
-			checks[0].set_sensitive(false);
-			checks[1].set_sensitive(false);
-			break;
 	}
 	update_infos();
 	drawing.queue_draw();
@@ -440,8 +424,8 @@ void My_window::on_drawing_left_click(int n_press, double x, double y) {
 #endif
     game->mode = (Mode::CONSTRUCTION);
     checks[0].set_active(true);
-
 	game->capture();
+	update();
 }
 
 void My_window::on_drawing_right_click(int n_press, double x, double y) {
@@ -453,6 +437,7 @@ void My_window::on_drawing_right_click(int n_press, double x, double y) {
     }
     game->mode = (Mode::GUIDAGE);
     checks[1].set_active(true);
+	update();
 }
 
 void My_window::on_drawing_move(double x, double y) {
