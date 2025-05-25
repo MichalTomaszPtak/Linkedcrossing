@@ -37,21 +37,7 @@ void draw_Chaine(const std::vector<S2d>& articulation);
 
 struct Jeu {
 	Jeu();
-	/*
-	struct GameInfo {
-		bool valid = false;
-		unsigned int score = 4000;
-		unsigned int nbParticule = 0;
-		std::vector<Particle> particles;
-		std::vector<Faiseur> faiseurs;
-		unsigned int nbFaiseurs = 0;
-		unsigned int nbArt = 0;
-		std::vector<S2d> articulations;
-		Mode mode;
-		S2d target_point = S2d(0,0);
-	};
-	GameInfo game_info_;
-	*/
+
 	Status status;
 
 	bool valid = false;
