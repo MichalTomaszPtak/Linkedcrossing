@@ -179,12 +179,14 @@ void My_window::build_clicked() {
 #if DEBUG
     cout << __func__ << endl;
 #endif
+	game->mode = CONSTRUCTION;
 }
 
 void My_window::guide_clicked() {
 #if DEBUG
     cout << __func__ << endl;
 #endif
+	game->mode = GUIDAGE;
 }
 
 void My_window::set_key_controller() {
