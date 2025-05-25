@@ -427,7 +427,7 @@ void Jeu::update(void) {
 		for (Faiseur f : faiseurs) {
 			if (f.contains(p)) {
 				//status = LOST;
-				destroy_chain()
+				destroy_chain();
 			}
 		}
 	}
